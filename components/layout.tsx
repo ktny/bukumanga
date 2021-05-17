@@ -21,7 +21,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       </Head>
       <header className={styles.header}>{siteName}</header>
       <main>{children}</main>
-      <footer>bukumanga.com 2021</footer>
+      <footer className={styles.footer}>bukumanga.com 2021</footer>
     </div>
   );
 }
