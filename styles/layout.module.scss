@@ -1,0 +1,21 @@
+.header {
+  display: flex;
+  align-items: center;
+  padding: 1.4rem 2rem;
+  background-color: #000;
+  color: #fff;
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.main {
+  display: flex;
+  justify-content: center;
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}

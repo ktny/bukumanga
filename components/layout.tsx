@@ -1,11 +1,11 @@
 import Head from "next/head";
-import styles from "../styles/layout.module.css";
+import styles from "../styles/layout.module.scss";
 
 export const siteName = "ブクマンガ";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
-    <div className={styles.container}>
+    <>
       <Head>
         <link rel="icon" href="/favicon.ico" />
         <meta name="description" content="はてなブックマーク数を元にweb漫画をまとめているサイトです。" />
@@ -20,8 +20,8 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         <meta name="twitter:card" content="summary_large_image" />
       </Head>
       <header className={styles.header}>{siteName}</header>
-      <main>{children}</main>
+      <main className={styles.main}>{children}</main>
       <footer className={styles.footer}>bukumanga.com 2021</footer>
-    </div>
+    </>
   );
 }

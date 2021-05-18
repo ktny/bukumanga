@@ -1,0 +1,37 @@
+.card {
+  width: 296px;
+  border: 1px solid #ccc;
+}
+
+.bookmarkCount {
+  padding: 10px 20px;
+  border-bottom: 1px solid #ccc;
+  font-weight: bold;
+  font-size: 12px;
+}
+
+.bookmarkCountNum {
+  font-size: 24px;
+  padding-right: 4px;
+}
+
+.body {
+  padding: 10px 20px 20px;
+}
+
+.titleWrapper {
+  overflow: hidden;
+  width: 100%;
+}
+
+.title {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  font-size: 15px;
+  // font-weight: bold;
+}
+
+.img {
+  margin-top: 10px;
+}

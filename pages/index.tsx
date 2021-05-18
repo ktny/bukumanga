@@ -12,7 +12,7 @@ export default function Home() {
     const url = "http://localhost:5000/entries";
     fetch(url)
       .then(res => res.json())
-      .then(res => setEntries(res));
+      .then(res => setEntries(res.slice(0, 30).sort((a, b) => b.bookmark_count - a.bookmark_count)));
   }, []);
 
   return (
