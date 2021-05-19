@@ -1,8 +1,9 @@
 import React from "react";
 import Image from "next/image";
 import styles from "../styles/card.module.scss";
+import { Entry } from "../models/model";
 
-export default function Card({ entry }: { entry: any }) {
+export default function Card({ entry }: { entry: Entry }) {
   const clickCard = (e: React.MouseEvent) => {
     window.open(entry.url, "_blank");
   };
