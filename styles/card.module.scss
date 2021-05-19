@@ -2,11 +2,14 @@
 
 .card {
   width: 296px;
-  margin: 60px 30px 0 0;
+  margin: 0 10px 60px 0;
   border: 1px solid #ccc;
   border-radius: 4px;
   box-shadow: 0 0 1px #ccc;
   cursor: pointer;
+  &:hover {
+    opacity: 0.8;
+  }
 }
 
 .bookmarkCount {

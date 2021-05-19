@@ -1,7 +1,7 @@
 .header {
   display: flex;
   align-items: center;
-  padding: 1.4rem 2rem;
+  padding: 20px 30px;
   background-color: #000;
   color: #fff;
   font-size: 2rem;
@@ -9,8 +9,7 @@
 }
 
 .main {
-  display: flex;
-  justify-content: center;
+  padding: 0 30px 30px;
 }
 
 .footer {
