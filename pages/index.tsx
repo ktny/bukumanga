@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import CardList from "../components/card-list";
 import Layout from "../components/layout";
-import Menu from "../components/menu";
+import Search from "../components/search";
 
 export default function Home() {
   const [entries, setEntries] = useState([]);
@@ -18,7 +18,7 @@ export default function Home() {
 
   return (
     <Layout>
-      <Menu></Menu>
+      <Search></Search>
       <CardList entries={entries}></CardList>
       {/* <button onClick={() => setCount(count + 1)}>{count}</button> */}
     </Layout>

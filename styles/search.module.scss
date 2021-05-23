@@ -1,0 +1,42 @@
+.search {
+  // display: flex;
+  margin-top: 60px;
+}
+
+.simpleSearch {
+  display: flex;
+}
+
+.detailSearch {
+  margin-top: 30px;
+}
+
+.block {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.blockTitle {
+  width: 130px;
+  font-size: 16px;
+}
+
+.blockContent {
+  margin-left: 10px;
+}
+
+.button {
+  width: 200px;
+  border: 1px solid #ccc;
+  padding: 15px 0;
+  margin-right: 10px;
+  font-size: 20px;
+  font-weight: bold;
+  letter-spacing: 2px;
+  text-align: center;
+  cursor: pointer;
+  &:hover {
+    opacity: 0.8;
+  }
+}
