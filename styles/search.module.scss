@@ -24,16 +24,23 @@
 
 .blockContent {
   margin-left: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.periodDelimiter {
+  padding: 0 10px;
+}
+
+.shortcuts {
+  display: flex;
 }
 
 .button {
-  width: 200px;
   border: 1px solid #ccc;
-  padding: 15px 0;
+  padding: 2px 10px;
   margin-right: 10px;
-  font-size: 20px;
-  font-weight: bold;
-  letter-spacing: 2px;
+  font-size: 16px;
   text-align: center;
   cursor: pointer;
   &:hover {
