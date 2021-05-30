@@ -8,5 +8,6 @@ export interface Entry {
     Valid: boolean;
     String: string;
   };
-  publsihed_at: string;
+  hotentried_at: string;
+  published_at: string;
 }

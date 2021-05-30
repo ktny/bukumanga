@@ -2,10 +2,12 @@
 
 .card {
   width: 296px;
+  height: 404px;
   margin: 0 10px 60px 0;
   border: 1px solid #ccc;
   border-radius: 4px;
   box-shadow: 0 0 1px #ccc;
+  position: relative;
   cursor: pointer;
   &:hover {
     opacity: 0.8;
@@ -15,7 +17,6 @@
 .bookmarkCount {
   background-color: $third-color;
   padding: 10px 20px;
-  // border-bottom: 1px solid #ccc;
   font-weight: bold;
   font-size: 12px;
 }
@@ -43,8 +44,16 @@
   line-height: 1.6;
 }
 
-.domain {
-  margin-top: 5px;
+.addon {
+  margin-top: 10px;
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
   font-size: 12px;
   text-align: right;
+  color: $primary-text-color;
+}
+
+.addonItem {
+  margin-top: 5px;
 }

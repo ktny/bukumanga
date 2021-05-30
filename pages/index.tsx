@@ -19,7 +19,6 @@ export default function Home() {
   console.log(entries);
 
   const search = (startDate: Date, endDate: Date, keyword: string, bookmarkCount: number) => {
-    console.log(startDate);
     const params = {
       startDate: formateDate(startDate),
       endDate: formateDate(endDate),
@@ -36,7 +35,8 @@ export default function Home() {
 
     fetch(url)
       .then(res => res.json())
-      .then(res => setEntries(res.slice(0, 100).sort((a, b) => b.bookmark_count - a.bookmark_count)));
+      .then(res => setEntries(res.sort((a, b) => b.bookmark_count - a.bookmark_count)));
+    // .then(res => setEntries(res.slice(0, 100).sort((a, b) => b.bookmark_count - a.bookmark_count)));
   };
 
   return (

@@ -1,5 +1,6 @@
+@import "_vars.scss";
+
 .search {
-  // display: flex;
   margin-top: 60px;
 }
 
@@ -13,38 +14,37 @@
 
 .block {
   display: flex;
-  align-items: center;
-  margin-top: 10px;
+  align-items: start;
+  margin-top: 15px;
 }
 
 .blockTitle {
-  width: 130px;
+  width: 140px;
   font-size: 16px;
-}
-
-.blockContent {
-  margin-left: 10px;
-  display: flex;
-  align-items: center;
 }
 
 .periodDelimiter {
   padding: 0 10px;
 }
 
-.shortcuts {
+.tagList {
   display: flex;
+  margin-top: 5px;
 }
 
-.button {
+.tag {
   border: 1px solid #ccc;
+  border-radius: 4px;
   padding: 2px 10px;
-  margin-right: 10px;
-  font-size: 16px;
+  margin-right: 5px;
+  font-size: 13px;
   text-align: center;
   cursor: pointer;
   &:hover {
     opacity: 0.8;
+  }
+  &.active {
+    background-color: $third-color;
   }
 }
 
