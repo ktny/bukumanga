@@ -4,10 +4,6 @@
   margin-top: 60px;
 }
 
-.simpleSearch {
-  display: flex;
-}
-
 .detailSearch {
   margin-top: 30px;
 }
@@ -48,6 +44,7 @@
   }
 }
 
-.bukumaInput {
-  width: 60px;
+.dateInputWrapper {
+  display: flex;
+  align-items: center;
 }

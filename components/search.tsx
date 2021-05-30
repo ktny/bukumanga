@@ -3,29 +3,36 @@ import DatePicker, { registerLocale } from "react-datepicker";
 import ja from "date-fns/locale/ja";
 import "react-datepicker/dist/react-datepicker.css";
 import styles from "../styles/search.module.scss";
+import { formateDate } from "../helpers/util";
 registerLocale("ja", ja);
+
+const HATEBU_START_DATE = new Date(2005, 1, 10);
 
 export default function Search({
   search,
 }: {
   search: (startDate: Date, endDate: Date, keyword: string, bookmarkCount: number) => void;
 }) {
-  const [startDate, setStartDate] = useState(new Date());
-  const [endDate, setEndDate] = useState(new Date());
+  const defaultEndDate = new Date();
+  const defaultStartDate = new Date(defaultEndDate.getTime());
+  defaultStartDate.setDate(defaultStartDate.getDate() - 7);
+
+  const [startDate, setStartDate] = useState(defaultStartDate);
+  const [endDate, setEndDate] = useState(defaultEndDate);
   const [keyword, setKeyword] = useState("");
-  const [bookmarkCount, setBookmarkCount] = useState(1);
+  const [bookmarkCount, setBookmarkCount] = useState(3);
 
   useEffect(() => {
     search(startDate, endDate, keyword, bookmarkCount);
   }, [startDate, endDate, keyword, bookmarkCount]);
 
-  const changePeriod = days => {
+  const changePeriod = (days: number) => {
     return () => {
       const endDate = new Date();
       setEndDate(endDate);
       let startDate = new Date(endDate.getTime());
       if (days === -1) {
-        startDate = new Date(2005, 1, 10);
+        startDate = HATEBU_START_DATE;
       } else {
         startDate.setDate(startDate.getDate() - days);
       }
@@ -34,45 +41,54 @@ export default function Search({
     };
   };
 
-  const changeKeyword = keyword => {
+  const changeKeyword = (keyword: string) => {
     return () => setKeyword(keyword);
   };
 
-  const changeBookmarkCount = bookmarkCount => {
+  const changeBookmarkCount = (bookmarkCount: number) => {
     return () => setBookmarkCount(bookmarkCount);
   };
 
-  const checkActiveBookmarkCount = target => {
-    return () => {
-      return "active";
-    };
+  const checkActive = (target: any, comparison: any) => {
+    return target === comparison ? { backgroundColor: "#ff9a00" } : undefined;
+  };
+
+  const checkActivePeriod = (comparison: number) => {
+    let date = new Date();
+    if (formateDate(endDate) !== formateDate(date)) return;
+    if (comparison === -1) {
+      date = HATEBU_START_DATE;
+    } else {
+      date.setDate(date.getDate() - comparison);
+    }
+    return formateDate(startDate) === formateDate(date) ? { backgroundColor: "#ff9a00" } : undefined;
   };
 
   const periodList = [
-    { name: "今週", func: changePeriod(7) },
-    { name: "今月", func: changePeriod(30) },
-    { name: "今年", func: changePeriod(365) },
-    { name: "全期間", func: changePeriod(-1) },
+    { name: "今週", value: 7 },
+    { name: "今月", value: 30 },
+    { name: "今年", value: 365 },
+    { name: "全期間", value: -1 },
   ];
   const keywordList = [
-    { name: "少年ジャンプ+", func: changeKeyword("shonenjumpplus.com") },
-    { name: "コミックDAYS", func: changeKeyword("comic-days.com") },
-    { name: "となりのヤングジャンプ", func: changeKeyword("tonarinoyj.jp") },
-    { name: "マガポケ", func: changeKeyword("pocket.shonenmagazine.com") },
-    { name: "ジャンプルーキー", func: changeKeyword("rookie.shonenjump.com") },
-    { name: "コミックウォーカー", func: changeKeyword("comic-walker.com") },
-    { name: "マンガクロス", func: changeKeyword("mangacross.jp") },
-    { name: "コミックアクション", func: changeKeyword("comic-action.com") },
-    { name: "くらげバンチ", func: changeKeyword("kuragebunch.com") },
-    { name: "サンデーうぇぶり", func: changeKeyword("www.sunday-webry.com") },
-    { name: "MAGCOMI", func: changeKeyword("magcomi.com") },
-    { name: "ニコニコ静画", func: changeKeyword("seiga.nicovideo.jp") },
+    { name: "少年ジャンプ+", value: "shonenjumpplus.com" },
+    { name: "コミックDAYS", value: "comic-days.com" },
+    { name: "となりのヤングジャンプ", value: "tonarinoyj.jp" },
+    { name: "マガポケ", value: "pocket.shonenmagazine.com" },
+    { name: "ジャンプルーキー", value: "rookie.shonenjump.com" },
+    { name: "コミックウォーカー", value: "comic-walker.com" },
+    { name: "マンガクロス", value: "mangacross.jp" },
+    { name: "コミックアクション", value: "comic-action.com" },
+    { name: "くらげバンチ", value: "kuragebunch.com" },
+    { name: "サンデーうぇぶり", value: "www.sunday-webry.com" },
+    { name: "MAGCOMI", value: "magcomi.com" },
+    { name: "ニコニコ静画", value: "seiga.nicovideo.jp" },
   ];
   const bookmarkCountList = [
-    { name: "3 users", func: changeBookmarkCount(3), checkActive: checkActiveBookmarkCount(3) },
-    { name: "10 users", func: changeBookmarkCount(10), checkActive: checkActiveBookmarkCount(10) },
-    { name: "50 users", func: changeBookmarkCount(50), checkActive: checkActiveBookmarkCount(50) },
-    { name: "100 users", func: changeBookmarkCount(100), checkActive: checkActiveBookmarkCount(100) },
+    { name: "3 users", value: 3 },
+    { name: "10 users", value: 10 },
+    { name: "50 users", value: 50 },
+    { name: "100 users", value: 100 },
   ];
 
   return (
@@ -81,15 +97,15 @@ export default function Search({
         <div className={styles.block}>
           <div className={styles.blockTitle}>期間指定</div>
           <div className={styles.blockContent}>
-            <div>
+            <div className={styles.dateInputWrapper}>
               <DatePicker selected={startDate} locale="ja" onChange={date => setStartDate(date)} />
               <span className={styles.periodDelimiter}>～</span>
               <DatePicker selected={endDate} locale="ja" onChange={date => setEndDate(date)} />
             </div>
             <div className={styles.tagList}>
-              {periodList.map(period => (
-                <div className={styles.tag} onClick={period.func}>
-                  {period.name}
+              {periodList.map(item => (
+                <div className={styles.tag} style={checkActivePeriod(item.value)} onClick={changePeriod(item.value)}>
+                  {item.name}
                 </div>
               ))}
             </div>
@@ -105,9 +121,13 @@ export default function Search({
               onChange={e => setKeyword(e.target.value)}
             />
             <div className={styles.tagList}>
-              {keywordList.map(keyword => (
-                <div className={styles.tag} onClick={keyword.func}>
-                  {keyword.name}
+              {keywordList.map(item => (
+                <div
+                  className={styles.tag}
+                  style={checkActive(keyword, item.value)}
+                  onClick={changeKeyword(item.value)}
+                >
+                  {item.name}
                 </div>
               ))}
             </div>
@@ -125,7 +145,11 @@ export default function Search({
             />
             <div className={styles.tagList}>
               {bookmarkCountList.map(item => (
-                <div className={`${styles.tag} ${item.checkActive()}`} onClick={item.func}>
+                <div
+                  className={styles.tag}
+                  style={checkActive(bookmarkCount, item.value)}
+                  onClick={changeBookmarkCount(item.value)}
+                >
                   {item.name}
                 </div>
               ))}
