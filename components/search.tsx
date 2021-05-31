@@ -4,6 +4,8 @@ import ja from "date-fns/locale/ja";
 import "react-datepicker/dist/react-datepicker.css";
 import styles from "../styles/search.module.scss";
 import { formateDate } from "../helpers/util";
+import BookmarkCountSlider from "./bookmark-count-slider";
+
 registerLocale("ja", ja);
 
 const HATEBU_START_DATE = new Date(2005, 1, 10);
@@ -136,9 +138,11 @@ export default function Search({
         <div className={styles.block}>
           <div className={styles.blockTitle}>ブックマーク数</div>
           <div className={styles.blockContent}>
+            <BookmarkCountSlider></BookmarkCountSlider>
             <input
-              type="number"
+              type="range"
               min="1"
+              max="1000"
               placeholder="ブクマ数を入力"
               value={bookmarkCount}
               onChange={e => setBookmarkCount(Number(e.target.value))}
