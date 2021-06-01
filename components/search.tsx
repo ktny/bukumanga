@@ -5,7 +5,7 @@ import ja from "date-fns/locale/ja";
 import "react-datepicker/dist/react-datepicker.css";
 import styles from "../styles/search.module.scss";
 import { formateDate } from "../helpers/util";
-import BookmarkCountSlider from "./bookmark-count-slider";
+import BookmarkCountInput from "./search/bookmark-count-input";
 
 registerLocale("ja", ja);
 
@@ -132,7 +132,7 @@ export default function Search({
           </div>
         </div>
         <div className={styles.block}>
-          <BookmarkCountSlider bookmarkCount={bookmarkCount} setBookmarkCount={setBookmarkCount}></BookmarkCountSlider>
+          <BookmarkCountInput bookmarkCount={bookmarkCount} setBookmarkCount={setBookmarkCount}></BookmarkCountInput>
         </div>
       </section>
     </section>

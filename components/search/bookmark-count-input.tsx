@@ -13,7 +13,7 @@ const marks = [
   { value: 500, label: "500" },
 ];
 
-export default function BookmarkCountSlider({
+export default function BookmarkCountInput({
   bookmarkCount,
   setBookmarkCount,
 }: {
@@ -42,6 +42,10 @@ export default function BookmarkCountSlider({
     }
   };
 
+  const valuetext = (value: number) => {
+    return `${value} users`;
+  };
+
   return (
     <div className={classes.root}>
       <Typography id="input-slider" gutterBottom>
@@ -55,7 +59,8 @@ export default function BookmarkCountSlider({
             step={STEP}
             marks={marks}
             value={typeof bookmarkCount === "number" ? bookmarkCount : 0}
-            valueLabelDisplay="auto"
+            valueLabelDisplay="on"
+            getAriaValueText={valuetext}
             aria-labelledby="bookmark-count-slider"
             onChange={handleSliderChange}
           />
