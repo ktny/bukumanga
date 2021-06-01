@@ -22,7 +22,7 @@ export default function Search({
   const [startDate, setStartDate] = useState(defaultStartDate);
   const [endDate, setEndDate] = useState(defaultEndDate);
   const [keyword, setKeyword] = useState("");
-  const [bookmarkCount, setBookmarkCount] = useState(3);
+  const [bookmarkCount, setBookmarkCount] = useState(10);
 
   useEffect(() => {
     search(startDate, endDate, keyword, bookmarkCount);
@@ -86,12 +86,6 @@ export default function Search({
     { name: "MAGCOMI", value: "magcomi.com" },
     { name: "ニコニコ静画", value: "seiga.nicovideo.jp" },
   ];
-  const bookmarkCountList = [
-    { name: "3 users", value: 3 },
-    { name: "10 users", value: 10 },
-    { name: "50 users", value: 50 },
-    { name: "100 users", value: 100 },
-  ];
 
   return (
     <section className={styles.search}>
@@ -136,29 +130,7 @@ export default function Search({
           </div>
         </div>
         <div className={styles.block}>
-          <div className={styles.blockTitle}>ブックマーク数</div>
-          <div className={styles.blockContent}>
-            <BookmarkCountSlider></BookmarkCountSlider>
-            <input
-              type="range"
-              min="1"
-              max="1000"
-              placeholder="ブクマ数を入力"
-              value={bookmarkCount}
-              onChange={e => setBookmarkCount(Number(e.target.value))}
-            />
-            <div className={styles.tagList}>
-              {bookmarkCountList.map(item => (
-                <div
-                  className={styles.tag}
-                  style={checkActive(bookmarkCount, item.value)}
-                  onClick={changeBookmarkCount(item.value)}
-                >
-                  {item.name}
-                </div>
-              ))}
-            </div>
-          </div>
+          <BookmarkCountSlider bookmarkCount={bookmarkCount} setBookmarkCount={setBookmarkCount}></BookmarkCountSlider>
         </div>
       </section>
     </section>
