@@ -5,6 +5,7 @@ import ja from "date-fns/locale/ja";
 import "react-datepicker/dist/react-datepicker.css";
 import styles from "../styles/search.module.scss";
 import { formateDate } from "../helpers/util";
+import KeywordInput from "./search/keyword-input";
 import BookmarkCountInput from "./search/bookmark-count-input";
 
 registerLocale("ja", ja);
@@ -23,12 +24,13 @@ export default function Search({
   const [startDate, setStartDate] = useState(defaultStartDate);
   const [endDate, setEndDate] = useState(defaultEndDate);
   const [keyword, setKeyword] = useState("");
+  const [debouncedKeyword] = useDebounce(keyword, 1000);
   const [bookmarkCount, setBookmarkCount] = useState(10);
   const [debouncedBookmarkCount] = useDebounce(bookmarkCount, 1000);
 
   useEffect(() => {
-    search(startDate, endDate, keyword, bookmarkCount);
-  }, [startDate, endDate, keyword, debouncedBookmarkCount]);
+    search(startDate, endDate, debouncedKeyword, debouncedBookmarkCount);
+  }, [startDate, endDate, debouncedKeyword, debouncedBookmarkCount]);
 
   const changePeriod = (days: number) => {
     return () => {
@@ -43,14 +45,6 @@ export default function Search({
       setStartDate(startDate);
       setEndDate(endDate);
     };
-  };
-
-  const changeKeyword = (keyword: string) => {
-    return () => setKeyword(keyword);
-  };
-
-  const changeBookmarkCount = (bookmarkCount: number) => {
-    return () => setBookmarkCount(bookmarkCount);
   };
 
   const checkActive = (target: any, comparison: any) => {
@@ -74,20 +68,6 @@ export default function Search({
     { name: "今年", value: 365 },
     { name: "全期間", value: -1 },
   ];
-  const keywordList = [
-    { name: "少年ジャンプ+", value: "shonenjumpplus.com" },
-    { name: "コミックDAYS", value: "comic-days.com" },
-    { name: "となりのヤングジャンプ", value: "tonarinoyj.jp" },
-    { name: "マガポケ", value: "pocket.shonenmagazine.com" },
-    { name: "ジャンプルーキー", value: "rookie.shonenjump.com" },
-    { name: "コミックウォーカー", value: "comic-walker.com" },
-    { name: "マンガクロス", value: "mangacross.jp" },
-    { name: "コミックアクション", value: "comic-action.com" },
-    { name: "くらげバンチ", value: "kuragebunch.com" },
-    { name: "サンデーうぇぶり", value: "www.sunday-webry.com" },
-    { name: "MAGCOMI", value: "magcomi.com" },
-    { name: "ニコニコ静画", value: "seiga.nicovideo.jp" },
-  ];
 
   return (
     <section className={styles.search}>
@@ -110,26 +90,7 @@ export default function Search({
           </div>
         </div>
         <div className={styles.block}>
-          <div className={styles.blockTitle}>キーワード</div>
-          <div className={styles.blockContent}>
-            <input
-              type="text"
-              placeholder="キーワードを入力"
-              value={keyword}
-              onChange={e => setKeyword(e.target.value)}
-            />
-            <div className={styles.tagList}>
-              {keywordList.map(item => (
-                <div
-                  className={styles.tag}
-                  style={checkActive(keyword, item.value)}
-                  onClick={changeKeyword(item.value)}
-                >
-                  {item.name}
-                </div>
-              ))}
-            </div>
-          </div>
+          <KeywordInput keyword={keyword} setKeyword={setKeyword}></KeywordInput>
         </div>
         <div className={styles.block}>
           <BookmarkCountInput bookmarkCount={bookmarkCount} setBookmarkCount={setBookmarkCount}></BookmarkCountInput>

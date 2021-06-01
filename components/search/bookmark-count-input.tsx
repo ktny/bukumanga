@@ -48,7 +48,7 @@ export default function BookmarkCountInput({
 
   return (
     <div className={classes.root}>
-      <Typography id="input-slider" gutterBottom>
+      <Typography id="input" gutterBottom>
         ブックマーク数
       </Typography>
       <Grid container spacing={4} alignItems="center">
@@ -59,7 +59,7 @@ export default function BookmarkCountInput({
             step={STEP}
             marks={marks}
             value={typeof bookmarkCount === "number" ? bookmarkCount : 0}
-            valueLabelDisplay="on"
+            valueLabelDisplay="auto"
             getAriaValueText={valuetext}
             aria-labelledby="bookmark-count-slider"
             onChange={handleSliderChange}
@@ -75,7 +75,7 @@ export default function BookmarkCountInput({
               max: MAX,
               step: STEP,
               type: "number",
-              "aria-labelledby": "input-slider",
+              "aria-labelledby": "input",
             }}
           />
         </Grid>
