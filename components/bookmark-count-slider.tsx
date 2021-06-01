@@ -5,11 +5,6 @@ import Input from "@material-ui/core/Input";
 import Typography from "@material-ui/core/Typography";
 import Slider from "@material-ui/core/Slider";
 
-const useStyles = makeStyles({
-  root: { width: 1000 },
-  input: { width: 42 },
-});
-
 const marks = [
   { value: 100, label: "100" },
   { value: 200, label: "200" },
@@ -25,6 +20,7 @@ export default function BookmarkCountSlider({
   bookmarkCount: number;
   setBookmarkCount: Dispatch<SetStateAction<number>>;
 }) {
+  const useStyles = makeStyles({ root: { width: 1000 } });
   const classes = useStyles();
   const MIN = 0;
   const MAX = 500;
@@ -57,18 +53,16 @@ export default function BookmarkCountSlider({
             min={MIN}
             max={MAX}
             step={STEP}
-            value={typeof bookmarkCount === "number" ? bookmarkCount : 0}
-            aria-labelledby="discrete-slider-custom"
-            valueLabelDisplay="auto"
-            onChange={handleSliderChange}
             marks={marks}
+            value={typeof bookmarkCount === "number" ? bookmarkCount : 0}
+            valueLabelDisplay="auto"
+            aria-labelledby="bookmark-count-slider"
+            onChange={handleSliderChange}
           />
         </Grid>
         <Grid item xs={3}>
           <Input
-            className={classes.input}
             value={bookmarkCount}
-            margin="dense"
             onChange={handleInputChange}
             onBlur={handleBlur}
             inputProps={{

@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useDebounce } from "use-debounce";
 import DatePicker, { registerLocale } from "react-datepicker";
 import ja from "date-fns/locale/ja";
 import "react-datepicker/dist/react-datepicker.css";
@@ -23,10 +24,11 @@ export default function Search({
   const [endDate, setEndDate] = useState(defaultEndDate);
   const [keyword, setKeyword] = useState("");
   const [bookmarkCount, setBookmarkCount] = useState(10);
+  const [debouncedBookmarkCount] = useDebounce(bookmarkCount, 1000);
 
   useEffect(() => {
     search(startDate, endDate, keyword, bookmarkCount);
-  }, [startDate, endDate, keyword, bookmarkCount]);
+  }, [startDate, endDate, keyword, debouncedBookmarkCount]);
 
   const changePeriod = (days: number) => {
     return () => {
