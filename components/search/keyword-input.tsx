@@ -8,7 +8,7 @@ interface Chip {
   value: string;
 }
 
-const chips = [
+const chips: Chip[] = [
   { label: "少年ジャンプ+", value: "shonenjumpplus.com" },
   { label: "コミックDAYS", value: "comic-days.com" },
   { label: "となりのヤングジャンプ", value: "tonarinoyj.jp" },
@@ -34,7 +34,7 @@ export default function KeywordInput({
     setKeyword(event.target.value);
   };
 
-  const handleClick = (chip: Chip) => {
+  const handleClickChip = (chip: Chip) => {
     return () => {
       setKeyword(chip.value);
     };
@@ -45,7 +45,7 @@ export default function KeywordInput({
       <TextField id="standard-basic" label="キーワード" value={keyword} onChange={handleInputChange} />
       <Box mt={1}>
         {chips.map((chip, i) => (
-          <Chip size="small" key={i} label={chip.label} clickable color="primary" onClick={handleClick(chip)} />
+          <Chip size="small" key={i} label={chip.label} clickable color="primary" onClick={handleClickChip(chip)} />
         ))}
       </Box>
     </div>
