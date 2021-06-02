@@ -4,6 +4,7 @@ import Grid from "@material-ui/core/Grid";
 import Input from "@material-ui/core/Input";
 import Typography from "@material-ui/core/Typography";
 import Slider from "@material-ui/core/Slider";
+import Box from "@material-ui/core/Box";
 
 const marks = [
   { value: 100, label: "100" },
@@ -47,7 +48,7 @@ export default function BookmarkCountInput({
   };
 
   return (
-    <div className={classes.root}>
+    <Box py={1}>
       <Typography id="input" gutterBottom>
         ブックマーク数
       </Typography>
@@ -80,6 +81,6 @@ export default function BookmarkCountInput({
           />
         </Grid>
       </Grid>
-    </div>
+    </Box>
   );
 }

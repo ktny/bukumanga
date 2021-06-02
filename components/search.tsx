@@ -27,22 +27,14 @@ export default function Search({
 
   return (
     <section className={styles.search}>
-      <section className={styles.detailSearch}>
-        <div className={styles.block}>
-          <PeriodInput
-            startDate={startDate}
-            setStartDate={setStartDate}
-            endDate={endDate}
-            setEndDate={setEndDate}
-          ></PeriodInput>
-        </div>
-        <div className={styles.block}>
-          <KeywordInput keyword={keyword} setKeyword={setKeyword}></KeywordInput>
-        </div>
-        <div className={styles.block}>
-          <BookmarkCountInput bookmarkCount={bookmarkCount} setBookmarkCount={setBookmarkCount}></BookmarkCountInput>
-        </div>
-      </section>
+      <PeriodInput
+        startDate={startDate}
+        setStartDate={setStartDate}
+        endDate={endDate}
+        setEndDate={setEndDate}
+      ></PeriodInput>
+      <KeywordInput keyword={keyword} setKeyword={setKeyword}></KeywordInput>
+      <BookmarkCountInput bookmarkCount={bookmarkCount} setBookmarkCount={setBookmarkCount}></BookmarkCountInput>
     </section>
   );
 }

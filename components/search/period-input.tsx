@@ -55,7 +55,7 @@ export default function PeriodInput({
   };
 
   return (
-    <div>
+    <Box py={1}>
       <Grid container spacing={2} alignItems="center">
         <Grid item>
           <TextField
@@ -63,7 +63,6 @@ export default function PeriodInput({
             label="開始日"
             type="date"
             value={formatDate(startDate)}
-            InputLabelProps={{ shrink: true }}
             onChange={handleInputChangeStartDate}
           />
         </Grid>
@@ -73,7 +72,6 @@ export default function PeriodInput({
             label="終了日"
             type="date"
             value={formatDate(endDate)}
-            InputLabelProps={{ shrink: true }}
             onChange={handleInputChangeEndDate}
           />
         </Grid>
@@ -83,6 +81,6 @@ export default function PeriodInput({
           <Chip size="small" key={i} label={chip.label} clickable color="primary" onClick={handleClickChip(chip)} />
         ))}
       </Box>
-    </div>
+    </Box>
   );
 }

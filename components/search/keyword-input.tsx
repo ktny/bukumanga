@@ -41,13 +41,13 @@ export default function KeywordInput({
   };
 
   return (
-    <div>
+    <Box py={1}>
       <TextField id="standard-basic" label="キーワード" value={keyword} onChange={handleInputChange} />
       <Box mt={1}>
         {chips.map((chip, i) => (
           <Chip size="small" key={i} label={chip.label} clickable color="primary" onClick={handleClickChip(chip)} />
         ))}
       </Box>
-    </div>
+    </Box>
   );
 }
