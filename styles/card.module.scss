@@ -1,5 +1,17 @@
 @import "_vars.scss";
 
+.cardHeader {
+  align-items: flex-end;
+  padding: 8px;
+  &.avatar {
+    margin-right: 8px;
+  }
+}
+
+.cardHeaderAvatar {
+  margin-right: 8px;
+}
+
 .card {
   width: 296px;
   height: 404px;

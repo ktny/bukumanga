@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import CardList from "../components/card-list";
+import EntryList from "../components/entry-list";
 import Layout from "../components/layout";
 import Search from "../components/search";
 import { formatDate } from "../helpers/util";
@@ -34,7 +34,7 @@ export default function Home() {
   return (
     <Layout>
       <Search search={search}></Search>
-      <CardList entries={entries}></CardList>
+      <EntryList entries={entries}></EntryList>
     </Layout>
   );
 }

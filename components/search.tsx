@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useDebounce } from "use-debounce";
-import styles from "../styles/search.module.scss";
+import Box from "@material-ui/core/Box";
 import PeriodInput from "./search/period-input";
 import KeywordInput from "./search/keyword-input";
 import BookmarkCountInput from "./search/bookmark-count-input";
@@ -26,7 +26,7 @@ export default function Search({
   }, [startDate, endDate, debouncedKeyword, debouncedBookmarkCount]);
 
   return (
-    <section className={styles.search}>
+    <Box mt={2}>
       <PeriodInput
         startDate={startDate}
         setStartDate={setStartDate}
@@ -35,6 +35,6 @@ export default function Search({
       ></PeriodInput>
       <KeywordInput keyword={keyword} setKeyword={setKeyword}></KeywordInput>
       <BookmarkCountInput bookmarkCount={bookmarkCount} setBookmarkCount={setBookmarkCount}></BookmarkCountInput>
-    </section>
+    </Box>
   );
 }
