@@ -1,41 +1,43 @@
 import React from "react";
 import Image from "next/image";
-// import styles from "../styles/card.module.scss";
 import { IEntry } from "../models/model";
-import { makeStyles, Theme, createStyles } from "@material-ui/core/styles";
-import Card from "@material-ui/core/Card";
-import CardHeader from "@material-ui/core/CardHeader";
-import CardMedia from "@material-ui/core/CardMedia";
-import CardContent from "@material-ui/core/CardContent";
-import CardActionArea from "@material-ui/core/CardActionArea";
-import CardActions from "@material-ui/core/CardActions";
-import Collapse from "@material-ui/core/Collapse";
-import Avatar from "@material-ui/core/Avatar";
-import IconButton from "@material-ui/core/IconButton";
-import Typography from "@material-ui/core/Typography";
+import { makeStyles } from "@material-ui/core/styles";
+import { Avatar, Box, Card, CardHeader, CardContent, Typography } from "@material-ui/core";
 import { red } from "@material-ui/core/colors";
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      maxWidth: 300,
-      height: 404,
-    },
-    headerRoot: {
-      alignItems: "flex-end",
-      padding: 8,
-    },
-    headerAvatar: {
-      marginRight: 8,
-    },
-    headerTitle: {
-      fontSize: 18,
-    },
-    avatar: {
-      backgroundColor: red[500],
-    },
-  })
-);
+const useStyles = makeStyles({
+  root: {
+    maxWidth: 300,
+    height: 450,
+    position: "relative",
+  },
+  headerRoot: {
+    alignItems: "flex-end",
+    padding: "8px 16px",
+  },
+  headerAvatar: {
+    marginRight: 8,
+  },
+  headerTitle: {
+    fontSize: 18,
+  },
+  avatar: {
+    backgroundColor: red[500],
+  },
+  title: {
+    fontSize: 15,
+    display: "-webkit-box",
+    boxOrient: "vertical",
+    lineClamp: 3,
+    overflow: "hidden",
+  },
+  captions: {
+    position: "absolute",
+    right: 8,
+    bottom: 8,
+    textAlign: "right",
+  },
+});
 
 export default function Entry({ entry }: { entry: IEntry }) {
   const classes = useStyles();
@@ -54,32 +56,30 @@ export default function Entry({ entry }: { entry: IEntry }) {
 
   return (
     <Card className={classes.root}>
-      <CardActionArea onClick={clickBookMark}>
-        <CardHeader
-          classes={{ root: classes.headerRoot, avatar: classes.headerAvatar, title: classes.headerTitle }}
-          avatar={<Avatar className={classes.avatar}>{entry.bookmark_count}</Avatar>}
-          title="users"
-          variant="outlined"
-        />
-      </CardActionArea>
-      <CardActionArea onClick={clickCard}>
-        <Image
-          src={entry.image.Valid ? entry.image.String : dummyImg}
-          alt={entry.title}
-          width="300"
-          height="210"
-        ></Image>
-        <CardContent>
-          <Typography variant="body2" color="textSecondary" component="p">
-            {entry.title}
-          </Typography>
-          <Typography variant="body2" color="textSecondary" component="p">
+      <CardHeader
+        classes={{ root: classes.headerRoot, avatar: classes.headerAvatar, title: classes.headerTitle }}
+        avatar={<Avatar className={classes.avatar}>{entry.bookmark_count}</Avatar>}
+        title="users"
+        variant="outlined"
+        onClick={clickBookMark}
+      />
+      <Image src={entry.image.Valid ? entry.image.String : dummyImg} alt={entry.title} width="300" height="210"></Image>
+      <CardContent onClick={clickCard}>
+        <Typography className={classes.title} component="h2" gutterBottom>
+          {entry.title}
+        </Typography>
+        <Box className={classes.captions}>
+          <Typography variant="caption" component="p" gutterBottom>
             {entry.domain}
+          </Typography>
+          <Typography variant="caption" component="p" gutterBottom>
             HotEntried: {entry.hotentried_at}
+          </Typography>
+          <Typography variant="caption" component="p" gutterBottom>
             Published: {entry.published_at}
           </Typography>
-        </CardContent>
-      </CardActionArea>
+        </Box>
+      </CardContent>
     </Card>
   );
 }

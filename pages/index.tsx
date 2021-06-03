@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import EntryList from "../components/entry-list";
 import Layout from "../components/layout";
-import Search from "../components/search";
+import Search from "../components/search/search";
 import { formatDate } from "../helpers/util";
 
 const baseUrl = "http://localhost:5000/entries";

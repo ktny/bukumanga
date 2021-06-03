@@ -1,8 +1,5 @@
 import React, { Dispatch, SetStateAction } from "react";
-import TextField from "@material-ui/core/TextField";
-import Grid from "@material-ui/core/Grid";
-import Chip from "@material-ui/core/Chip";
-import Box from "@material-ui/core/Box";
+import { Box, Chip, Grid, TextField } from "@material-ui/core";
 import { formatDate } from "../../helpers/util";
 
 interface Chip {
@@ -55,7 +52,7 @@ export default function PeriodInput({
   };
 
   return (
-    <Box py={1}>
+    <Box>
       <Grid container spacing={2} alignItems="center">
         <Grid item>
           <TextField

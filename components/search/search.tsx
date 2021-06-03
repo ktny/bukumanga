@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import { useDebounce } from "use-debounce";
-import Box from "@material-ui/core/Box";
-import PeriodInput from "./search/period-input";
-import KeywordInput from "./search/keyword-input";
-import BookmarkCountInput from "./search/bookmark-count-input";
+import { Box } from "@material-ui/core";
+import PeriodInput from "./period-input";
+import KeywordInput from "./keyword-input";
+import BookmarkCountInput from "./bookmark-count-input";
 
 export default function Search({
   search,
@@ -27,14 +27,20 @@ export default function Search({
 
   return (
     <Box mt={2}>
-      <PeriodInput
-        startDate={startDate}
-        setStartDate={setStartDate}
-        endDate={endDate}
-        setEndDate={setEndDate}
-      ></PeriodInput>
-      <KeywordInput keyword={keyword} setKeyword={setKeyword}></KeywordInput>
-      <BookmarkCountInput bookmarkCount={bookmarkCount} setBookmarkCount={setBookmarkCount}></BookmarkCountInput>
+      <Box mt={2}>
+        <PeriodInput
+          startDate={startDate}
+          setStartDate={setStartDate}
+          endDate={endDate}
+          setEndDate={setEndDate}
+        ></PeriodInput>
+      </Box>
+      <Box mt={1}>
+        <KeywordInput keyword={keyword} setKeyword={setKeyword}></KeywordInput>
+      </Box>
+      <Box mt={3}>
+        <BookmarkCountInput bookmarkCount={bookmarkCount} setBookmarkCount={setBookmarkCount}></BookmarkCountInput>
+      </Box>
     </Box>
   );
 }

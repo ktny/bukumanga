@@ -1,10 +1,6 @@
 import React, { Dispatch, SetStateAction } from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import Grid from "@material-ui/core/Grid";
-import Input from "@material-ui/core/Input";
-import Typography from "@material-ui/core/Typography";
-import Slider from "@material-ui/core/Slider";
-import Box from "@material-ui/core/Box";
+import { Box, Grid, Input, Slider, Typography } from "@material-ui/core";
 
 const marks = [
   { value: 100, label: "100" },
@@ -48,7 +44,7 @@ export default function BookmarkCountInput({
   };
 
   return (
-    <Box py={1}>
+    <Box>
       <Typography id="input" gutterBottom>
         ブックマーク数
       </Typography>

@@ -1,7 +1,5 @@
 import React, { Dispatch, SetStateAction } from "react";
-import TextField from "@material-ui/core/TextField";
-import Chip from "@material-ui/core/Chip";
-import Box from "@material-ui/core/Box";
+import { Chip, Box, TextField } from "@material-ui/core";
 
 interface Chip {
   label: string;
@@ -41,7 +39,7 @@ export default function KeywordInput({
   };
 
   return (
-    <Box py={1}>
+    <Box>
       <TextField id="standard-basic" label="キーワード" value={keyword} onChange={handleInputChange} />
       <Box mt={1}>
         {chips.map((chip, i) => (
