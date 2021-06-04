@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useDebounce } from "use-debounce";
-import { Box } from "@material-ui/core";
+import { Box, Divider } from "@material-ui/core";
 import PeriodInput from "./period-input";
 import KeywordInput from "./keyword-input";
 import BookmarkCountInput from "./bookmark-count-input";
@@ -26,8 +26,8 @@ export default function Search({
   }, [startDate, endDate, debouncedKeyword, debouncedBookmarkCount]);
 
   return (
-    <Box mt={2}>
-      <Box mt={2}>
+    <Box my={3}>
+      <Box my={2}>
         <PeriodInput
           startDate={startDate}
           setStartDate={setStartDate}
@@ -35,10 +35,12 @@ export default function Search({
           setEndDate={setEndDate}
         ></PeriodInput>
       </Box>
-      <Box mt={1}>
+      <Divider />
+      <Box my={2}>
         <KeywordInput keyword={keyword} setKeyword={setKeyword}></KeywordInput>
       </Box>
-      <Box mt={3}>
+      <Divider />
+      <Box my={2}>
         <BookmarkCountInput bookmarkCount={bookmarkCount} setBookmarkCount={setBookmarkCount}></BookmarkCountInput>
       </Box>
     </Box>

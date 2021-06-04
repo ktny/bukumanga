@@ -1,13 +1,9 @@
 import React, { Dispatch, SetStateAction } from "react";
-import { Box, Chip, Grid, TextField } from "@material-ui/core";
+import { Box, Grid, TextField } from "@material-ui/core";
 import { formatDate } from "../../helpers/util";
+import Chips, { IChip } from "./chips.component";
 
-interface Chip {
-  label: string;
-  value: number;
-}
-
-const chips: Chip[] = [
+const chips: IChip<number>[] = [
   { label: "今週", value: 7 },
   { label: "今月", value: 30 },
   { label: "今年", value: 365 },
@@ -35,7 +31,7 @@ export default function PeriodInput({
     setEndDate(new Date(event.target.value));
   };
 
-  const handleClickChip = (chip: Chip) => {
+  const handleClickChip = (chip: IChip<number>) => {
     return () => {
       const days = chip.value;
       const endDate = new Date();
@@ -52,7 +48,7 @@ export default function PeriodInput({
   };
 
   return (
-    <Box>
+    <>
       <Grid container spacing={2} alignItems="center">
         <Grid item>
           <TextField
@@ -74,10 +70,8 @@ export default function PeriodInput({
         </Grid>
       </Grid>
       <Box mt={1}>
-        {chips.map((chip, i) => (
-          <Chip size="small" key={i} label={chip.label} clickable color="primary" onClick={handleClickChip(chip)} />
-        ))}
+        <Chips chips={chips} clickHandler={handleClickChip}></Chips>
       </Box>
-    </Box>
+    </>
   );
 }

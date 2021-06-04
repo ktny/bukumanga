@@ -44,8 +44,8 @@ export default function BookmarkCountInput({
   };
 
   return (
-    <Box>
-      <Typography id="input" gutterBottom>
+    <>
+      <Typography id="input" variant="subtitle1" gutterBottom>
         ブックマーク数
       </Typography>
       <Grid container spacing={4} alignItems="center">
@@ -77,6 +77,6 @@ export default function BookmarkCountInput({
           />
         </Grid>
       </Grid>
-    </Box>
+    </>
   );
 }
