@@ -1,6 +1,6 @@
 import React, { Dispatch, SetStateAction } from "react";
 import { Box, TextField } from "@material-ui/core";
-import Chips, { IChip } from "./chips.component";
+import Chips, { IChip } from "./chips";
 
 const chips: IChip<string>[] = [
   { label: "少年ジャンプ+", value: "shonenjumpplus.com" },

@@ -1,7 +1,7 @@
 import React, { Dispatch, SetStateAction } from "react";
 import { Box, Grid, TextField } from "@material-ui/core";
 import { formatDate } from "../../helpers/util";
-import Chips, { IChip } from "./chips.component";
+import Chips, { IChip } from "./chips";
 
 const chips: IChip<number>[] = [
   { label: "今週", value: 7 },

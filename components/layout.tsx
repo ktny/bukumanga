@@ -1,14 +1,13 @@
-import Head from "next/head";
-import styles from "../styles/layout.module.scss";
+import Header from "./header";
 
 const siteName = "ブクマンガ";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <>
-      <header className={styles.header}>{siteName}</header>
-      <main className={styles.main}>{children}</main>
-      <footer className={styles.footer}>bukumanga.com 2021</footer>
+      <Header />
+      <main>{children}</main>
+      <footer>bukumanga.com 2021</footer>
     </>
   );
 }
