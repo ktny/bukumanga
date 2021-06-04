@@ -26,7 +26,7 @@ export default function Search({
   }, [startDate, endDate, debouncedKeyword, debouncedBookmarkCount]);
 
   return (
-    <Box my={3}>
+    <Box m={3}>
       <Box my={2}>
         <PeriodInput
           startDate={startDate}
