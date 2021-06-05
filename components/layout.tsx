@@ -1,17 +1,9 @@
-import { Dispatch, SetStateAction } from "react";
 import Header from "./header";
-import { IEntry } from "../models/model";
 
-export default function Layout({
-  children,
-  setEntries,
-}: {
-  children: React.ReactNode;
-  setEntries: Dispatch<SetStateAction<IEntry[]>>;
-}) {
+export default function Layout({ children, ...props }: { children: React.ReactNode }) {
   return (
     <>
-      <Header setEntries={setEntries} />
+      <Header {...props} />
       <main>{children}</main>
       <footer>bukumanga.com 2021</footer>
     </>

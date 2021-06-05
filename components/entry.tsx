@@ -79,7 +79,7 @@ export default function Entry({ entry }: { entry: IEntry }) {
       />
       <Box className={classes.imageContainer}>
         <Skeleton className={classes.imageSkeleton} variant="rect" animation="wave" width={300} height={210} />
-        <Image
+        {/* <Image
           className={classes.image}
           layout="responsive"
           src={entry.image.Valid ? entry.image.String : dummyImg}
@@ -87,7 +87,7 @@ export default function Entry({ entry }: { entry: IEntry }) {
           width="300"
           height="210"
           onClick={clickCard}
-        ></Image>
+        ></Image> */}
       </Box>
       <Divider />
       <CardContent onClick={clickCard}>

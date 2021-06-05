@@ -1,4 +1,3 @@
-import { Dispatch, SetStateAction } from "react";
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import {
   Accordion,
@@ -11,7 +10,6 @@ import {
 } from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
 import Search from "./search/search";
-import { IEntry } from "../models/model";
 
 const siteName = "BUKUMANGA";
 
@@ -23,7 +21,7 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-export default function Header({ setEntries }: { setEntries: Dispatch<SetStateAction<IEntry[]>> }) {
+export default function Header(props) {
   const classes = useStyles();
 
   return (
@@ -39,7 +37,7 @@ export default function Header({ setEntries }: { setEntries: Dispatch<SetStateAc
         </Typography>
       </Toolbar>
       <AccordionDetails>
-        <Search setEntries={setEntries}></Search>
+        <Search {...props}></Search>
       </AccordionDetails>
     </Accordion>
   );

@@ -22,6 +22,7 @@ function makeOrderParam(orderKey: string, orderAsc: boolean): string {
  * @param bookmarkCount ブックマーク数
  * @param orderKey 並び替えのキー列
  * @param orderAsc 昇順/降順
+ * @param page ページ番号
  * @return 条件に合致するEntryのリスト
  */
 export default function search(
@@ -30,7 +31,8 @@ export default function search(
   keyword: string,
   bookmarkCount: number,
   orderKey: string,
-  orderAsc: boolean
+  orderAsc: boolean,
+  page: number
 ): Promise<IEntry[]> {
   const params = {
     startDate: formatDate(startDate),
@@ -38,6 +40,7 @@ export default function search(
     keyword: keyword,
     bookmarkCount: bookmarkCount.toString(),
     order: makeOrderParam(orderKey, orderAsc),
+    page: page.toString(),
   };
   const queryString =
     "?" +
