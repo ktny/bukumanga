@@ -5,6 +5,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Period from "./period";
 import Keyword from "./keyword";
 import BookmarkCount from "./bookmark-count";
+import Order from "./order";
 import search from "../../pages/api/search";
 import { IEntry } from "../../models/model";
 
@@ -35,19 +36,20 @@ export default function Search({ setEntries }: { setEntries: Dispatch<SetStateAc
   const [debouncedBookmarkCount] = useDebounce(bookmarkCount, 1000);
 
   useEffect(() => {
-    search(debouncedStartDate, debouncedEndDate, debouncedKeyword, debouncedBookmarkCount, orderKey)
-      .then(res => res.json())
-      .then(res => setEntries(res));
-  }, [debouncedStartDate, debouncedEndDate, debouncedKeyword, debouncedBookmarkCount]);
+    search(debouncedStartDate, debouncedEndDate, debouncedKeyword, debouncedBookmarkCount, orderKey, orderAsc).then(
+      res => setEntries(res)
+    );
+  }, [debouncedStartDate, debouncedEndDate, debouncedKeyword, debouncedBookmarkCount, orderKey, orderAsc]);
 
   return (
     <Box mx={3}>
-      <Period startDate={startDate} setStartDate={setStartDate} endDate={endDate} setEndDate={setEndDate}></Period>
+      <Period {...{ startDate, setStartDate, endDate, setEndDate }}></Period>
       <Divider classes={{ root: classes.divider }} />
-      <Keyword keyword={keyword} setKeyword={setKeyword}></Keyword>
+      <Keyword {...{ keyword, setKeyword }}></Keyword>
       <Divider classes={{ root: classes.divider }} />
-      <BookmarkCount bookmarkCount={bookmarkCount} setBookmarkCount={setBookmarkCount}></BookmarkCount>
+      <BookmarkCount {...{ bookmarkCount, setBookmarkCount }}></BookmarkCount>
       <Divider classes={{ root: classes.divider }} />
+      <Order {...{ orderKey, setOrderKey, orderAsc, setOrderAsc }}></Order>
     </Box>
   );
 }
