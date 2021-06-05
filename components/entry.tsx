@@ -26,8 +26,16 @@ const useStyles = makeStyles({
   avatar: {
     backgroundColor: red[500],
   },
+  imageContainer: {
+    position: "relative",
+  },
+  imageSkeleton: {
+    position: "absolute",
+    zIndex: 0,
+  },
   image: {
-    display: "block",
+    position: "absolute",
+    zIndex: 1,
   },
   title: {
     fontSize: 15,
@@ -69,8 +77,10 @@ export default function Entry({ entry }: { entry: IEntry }) {
         variant="outlined"
         onClick={clickBookMark}
       />
-      {entry.image.Valid ? (
+      <Box className={classes.imageContainer}>
+        <Skeleton className={classes.imageSkeleton} variant="rect" animation="wave" width={300} height={210} />
         <Image
+          className={classes.image}
           layout="responsive"
           src={entry.image.Valid ? entry.image.String : dummyImg}
           alt={entry.title}
@@ -78,9 +88,7 @@ export default function Entry({ entry }: { entry: IEntry }) {
           height="210"
           onClick={clickCard}
         ></Image>
-      ) : (
-        <Skeleton variant="rect" animation="wave" width={300} height={210} />
-      )}
+      </Box>
       <Divider />
       <CardContent onClick={clickCard}>
         <Typography className={classes.title} component="h2" gutterBottom>
