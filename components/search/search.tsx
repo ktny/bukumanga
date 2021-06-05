@@ -2,9 +2,9 @@ import { Dispatch, SetStateAction, useState, useEffect } from "react";
 import { useDebounce } from "use-debounce";
 import { Box, Divider } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import PeriodInput from "./period-input";
-import KeywordInput from "./keyword-input";
-import BookmarkCountInput from "./bookmark-count-input";
+import Period from "./period";
+import Keyword from "./keyword";
+import BookmarkCount from "./bookmark-count";
 import search from "../../pages/api/search";
 import { IEntry } from "../../models/model";
 
@@ -42,16 +42,11 @@ export default function Search({ setEntries }: { setEntries: Dispatch<SetStateAc
 
   return (
     <Box mx={3}>
-      <PeriodInput
-        startDate={startDate}
-        setStartDate={setStartDate}
-        endDate={endDate}
-        setEndDate={setEndDate}
-      ></PeriodInput>
+      <Period startDate={startDate} setStartDate={setStartDate} endDate={endDate} setEndDate={setEndDate}></Period>
       <Divider classes={{ root: classes.divider }} />
-      <KeywordInput keyword={keyword} setKeyword={setKeyword}></KeywordInput>
+      <Keyword keyword={keyword} setKeyword={setKeyword}></Keyword>
       <Divider classes={{ root: classes.divider }} />
-      <BookmarkCountInput bookmarkCount={bookmarkCount} setBookmarkCount={setBookmarkCount}></BookmarkCountInput>
+      <BookmarkCount bookmarkCount={bookmarkCount} setBookmarkCount={setBookmarkCount}></BookmarkCount>
       <Divider classes={{ root: classes.divider }} />
     </Box>
   );

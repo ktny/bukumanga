@@ -17,13 +17,7 @@ const chips: IChip<string>[] = [
   // { label: "ニコニコ静画", value: "seiga.nicovideo.jp" },
 ];
 
-export default function KeywordInput({
-  keyword,
-  setKeyword,
-}: {
-  keyword: string;
-  setKeyword: Dispatch<SetStateAction<string>>;
-}) {
+export default function Keyword({ keyword, setKeyword }: { keyword: string; setKeyword: Dispatch<SetStateAction<string>> }) {
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setKeyword(event.target.value);
   };
@@ -36,14 +30,7 @@ export default function KeywordInput({
 
   return (
     <>
-      <TextField
-        label="キーワード"
-        variant="outlined"
-        size="small"
-        fullWidth
-        value={keyword}
-        onChange={handleInputChange}
-      />
+      <TextField label="キーワード" variant="outlined" size="small" fullWidth value={keyword} onChange={handleInputChange} />
       <Box mt={1}>
         <Chips chips={chips} clickHandler={handleClickChip}></Chips>
       </Box>

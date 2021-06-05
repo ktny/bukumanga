@@ -12,7 +12,7 @@ const chips: IChip<number>[] = [
 
 const HATEBU_START_DATE = new Date(2005, 1, 10);
 
-export default function PeriodInput({
+export default function Period({
   startDate,
   setStartDate,
   endDate,
@@ -51,22 +51,10 @@ export default function PeriodInput({
     <>
       <Grid container spacing={2} alignItems="center">
         <Grid item>
-          <TextField
-            id="date"
-            label="開始日"
-            type="date"
-            value={formatDate(startDate)}
-            onChange={handleInputChangeStartDate}
-          />
+          <TextField id="date" label="開始日" type="date" value={formatDate(startDate)} onChange={handleInputChangeStartDate} />
         </Grid>
         <Grid item>
-          <TextField
-            id="date"
-            label="終了日"
-            type="date"
-            value={formatDate(endDate)}
-            onChange={handleInputChangeEndDate}
-          />
+          <TextField id="date" label="終了日" type="date" value={formatDate(endDate)} onChange={handleInputChangeEndDate} />
         </Grid>
       </Grid>
       <Box mt={1}>

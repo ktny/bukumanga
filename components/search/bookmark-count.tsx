@@ -10,7 +10,7 @@ const marks = [
   { value: 500, label: "500" },
 ];
 
-export default function BookmarkCountInput({
+export default function BookmarkCount({
   bookmarkCount,
   setBookmarkCount,
 }: {
