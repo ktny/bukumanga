@@ -1,15 +1,13 @@
-import { useState, useEffect } from "react";
+import { Dispatch, SetStateAction, useState, useEffect } from "react";
 import { useDebounce } from "use-debounce";
 import { Box, Divider } from "@material-ui/core";
 import PeriodInput from "./period-input";
 import KeywordInput from "./keyword-input";
 import BookmarkCountInput from "./bookmark-count-input";
+import search from "../../pages/api/search";
+import { IEntry } from "../../models/model";
 
-export default function Search({
-  search,
-}: {
-  search: (startDate: Date, endDate: Date, keyword: string, bookmarkCount: number) => void;
-}) {
+export default function Search({ setEntries }: { setEntries: Dispatch<SetStateAction<IEntry[]>> }) {
   const defaultEndDate = new Date();
   const defaultStartDate = new Date(defaultEndDate.getTime());
   defaultStartDate.setDate(defaultStartDate.getDate() - 7);
@@ -22,7 +20,9 @@ export default function Search({
   const [debouncedBookmarkCount] = useDebounce(bookmarkCount, 1000);
 
   useEffect(() => {
-    search(startDate, endDate, debouncedKeyword, debouncedBookmarkCount);
+    search(startDate, endDate, debouncedKeyword, debouncedBookmarkCount)
+      .then(res => res.json())
+      .then(res => setEntries(res.sort((a, b) => b.bookmark_count - a.bookmark_count)));
   }, [startDate, endDate, debouncedKeyword, debouncedBookmarkCount]);
 
   return (
