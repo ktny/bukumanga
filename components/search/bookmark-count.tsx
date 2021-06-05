@@ -1,6 +1,6 @@
 import React, { Dispatch, SetStateAction } from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { Box, Grid, Input, Slider, Typography } from "@material-ui/core";
+import { Grid, Input, Slider, Typography } from "@material-ui/core";
 
 const marks = [
   { value: 100, label: "100" },

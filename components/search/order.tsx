@@ -1,5 +1,5 @@
 import React, { Dispatch, SetStateAction } from "react";
-import { Box, IconButton, MenuItem, Select, Typography } from "@material-ui/core";
+import { IconButton, MenuItem, Select, Typography } from "@material-ui/core";
 import ArrowUpwardIcon from "@material-ui/icons/ArrowUpward";
 import ArrowDownwardIcon from "@material-ui/icons/ArrowDownward";
 
