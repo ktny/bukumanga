@@ -3,6 +3,7 @@ import Image from "next/image";
 import { IEntry } from "../models/model";
 import { makeStyles } from "@material-ui/core/styles";
 import { Avatar, Box, Card, CardHeader, CardContent, Divider, Typography } from "@material-ui/core";
+import Skeleton from "@material-ui/lab/Skeleton";
 import { red } from "@material-ui/core/colors";
 
 const useStyles = makeStyles({
@@ -52,7 +53,8 @@ export default function Entry({ entry }: { entry: IEntry }) {
   const clickBookMark = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
-    window.open(`https://b.hatena.ne.jp/entry/s/${entry.url.replace("https://", "")}`, "_blank");
+    const https = entry.url.startsWith("https") ? "/s" : "";
+    window.open(`https://b.hatena.ne.jp/entry${https}/${entry.url.replace(/https?:\/\//, "")}`, "_blank");
   };
 
   const dummyImg =
@@ -67,14 +69,18 @@ export default function Entry({ entry }: { entry: IEntry }) {
         variant="outlined"
         onClick={clickBookMark}
       />
-      <Image
-        layout="responsive"
-        src={entry.image.Valid ? entry.image.String : dummyImg}
-        alt={entry.title}
-        width="300"
-        height="210"
-        onClick={clickCard}
-      ></Image>
+      {entry.image.Valid ? (
+        <Image
+          layout="responsive"
+          src={entry.image.Valid ? entry.image.String : dummyImg}
+          alt={entry.title}
+          width="300"
+          height="210"
+          onClick={clickCard}
+        ></Image>
+      ) : (
+        <Skeleton variant="rect" animation="wave" width={300} height={210} />
+      )}
       <Divider />
       <CardContent onClick={clickCard}>
         <Typography className={classes.title} component="h2" gutterBottom>
