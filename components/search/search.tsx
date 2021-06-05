@@ -26,8 +26,8 @@ export default function Search({ setEntries }: { setEntries: Dispatch<SetStateAc
   }, [startDate, endDate, debouncedKeyword, debouncedBookmarkCount]);
 
   return (
-    <Box m={3}>
-      <Box my={2}>
+    <Box mx={3}>
+      <Box mb={2}>
         <PeriodInput
           startDate={startDate}
           setStartDate={setStartDate}
@@ -40,7 +40,7 @@ export default function Search({ setEntries }: { setEntries: Dispatch<SetStateAc
         <KeywordInput keyword={keyword} setKeyword={setKeyword}></KeywordInput>
       </Box>
       <Divider />
-      <Box my={2}>
+      <Box mt={2}>
         <BookmarkCountInput bookmarkCount={bookmarkCount} setBookmarkCount={setBookmarkCount}></BookmarkCountInput>
       </Box>
     </Box>

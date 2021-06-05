@@ -2,18 +2,19 @@ import React from "react";
 import Image from "next/image";
 import { IEntry } from "../models/model";
 import { makeStyles } from "@material-ui/core/styles";
-import { Avatar, Box, Card, CardHeader, CardContent, Typography } from "@material-ui/core";
+import { Avatar, Box, Card, CardHeader, CardContent, Divider, Typography } from "@material-ui/core";
 import { red } from "@material-ui/core/colors";
 
 const useStyles = makeStyles({
   root: {
-    maxWidth: 300,
+    width: 300,
     height: 450,
     position: "relative",
   },
   headerRoot: {
     alignItems: "flex-end",
     padding: "8px 16px",
+    backgroundColor: red[100],
   },
   headerAvatar: {
     marginRight: 8,
@@ -23,6 +24,9 @@ const useStyles = makeStyles({
   },
   avatar: {
     backgroundColor: red[500],
+  },
+  image: {
+    display: "block",
   },
   title: {
     fontSize: 15,
@@ -63,7 +67,15 @@ export default function Entry({ entry }: { entry: IEntry }) {
         variant="outlined"
         onClick={clickBookMark}
       />
-      <Image src={entry.image.Valid ? entry.image.String : dummyImg} alt={entry.title} width="300" height="210"></Image>
+      <Image
+        layout="responsive"
+        src={entry.image.Valid ? entry.image.String : dummyImg}
+        alt={entry.title}
+        width="300"
+        height="210"
+        onClick={clickCard}
+      ></Image>
+      <Divider />
       <CardContent onClick={clickCard}>
         <Typography className={classes.title} component="h2" gutterBottom>
           {entry.title}
