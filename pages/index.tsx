@@ -17,7 +17,8 @@ export default function Home() {
   const [bookmarkCount, setBookmarkCount] = useState(10);
   const [orderKey, setOrderKey] = useState("bookmark_count");
   const [orderAsc, setOrderAsc] = useState(false);
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useState(0);
+  const [hasMore, setHasMore] = useState(true);
 
   // イベントを間引くためにdebounced変数をトリガーにする
   const [debouncedStartDate] = useDebounce(startDate, 500);
@@ -26,18 +27,15 @@ export default function Home() {
   const [debouncedBookmarkCount] = useDebounce(bookmarkCount, 500);
 
   useEffect(() => {
-    search(
-      debouncedStartDate,
-      debouncedEndDate,
-      debouncedKeyword,
-      debouncedBookmarkCount,
-      orderKey,
-      orderAsc,
-      page
-    ).then(res => setEntries(res));
-  }, [debouncedStartDate, debouncedEndDate, debouncedKeyword, debouncedBookmarkCount, orderKey, orderAsc, page]);
+    setPage(0);
+    setHasMore(true);
+    console.log("setHasMore", true);
+    search(debouncedStartDate, debouncedEndDate, debouncedKeyword, debouncedBookmarkCount, orderKey, orderAsc).then(
+      entries => setEntries(entries)
+    );
+  }, [debouncedStartDate, debouncedEndDate, debouncedKeyword, debouncedBookmarkCount, orderKey, orderAsc]);
 
-  console.log(entries);
+  // console.log(entries);
 
   const props = {
     entries,
@@ -56,6 +54,8 @@ export default function Home() {
     setOrderAsc,
     page,
     setPage,
+    hasMore,
+    setHasMore,
   };
 
   return (
