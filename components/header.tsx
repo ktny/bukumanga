@@ -3,7 +3,7 @@ import { Accordion, AccordionSummary, AccordionDetails, Toolbar, Typography, Ico
 import MenuIcon from "@material-ui/icons/Menu";
 import Search from "./search/search";
 
-const siteName = "BUKUMANGA";
+const siteName = "BUKUMANGA!";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({

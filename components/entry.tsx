@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import { IEntry } from "../models/model";
 import { makeStyles } from "@material-ui/core/styles";
-import { Avatar, Box, Card, CardHeader, CardContent, Divider, Typography } from "@material-ui/core";
+import { Avatar, Box, Card, CardHeader, CardContent, Divider, IconButton, Typography } from "@material-ui/core";
 import Skeleton from "@material-ui/lab/Skeleton";
+import SmsOutlinedIcon from "@material-ui/icons/SmsOutlined";
 import { red } from "@material-ui/core/colors";
 
 const useStyles = makeStyles({
@@ -13,7 +14,7 @@ const useStyles = makeStyles({
     position: "relative",
   },
   headerRoot: {
-    alignItems: "flex-end",
+    alignItems: "center",
     padding: "8px 16px",
     backgroundColor: red[100],
   },
@@ -22,6 +23,9 @@ const useStyles = makeStyles({
   },
   headerTitle: {
     fontSize: 18,
+  },
+  headerAction: {
+    marginTop: 0,
   },
   avatar: {
     backgroundColor: red[500],
@@ -68,14 +72,37 @@ const useStyles = makeStyles({
 export default function Entry({ entry }: { entry: IEntry }) {
   const classes = useStyles();
 
-  const clickCard = (e: React.MouseEvent) => {
+  const is_https = entry.url.startsWith("https");
+  const [showComment, setShowComment] = useState(false);
+
+  /**
+   * エントリページに遷移する
+   * @param e マウスイベント
+   */
+  const openEntryPage = (e: React.MouseEvent) => {
     window.open(entry.url, "_blank");
   };
-  const clickBookMark = (e: React.MouseEvent) => {
+
+  /**
+   * ブックマークページに遷移する
+   * @param e マウスイベント
+   */
+  const openBookMarkPage = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
-    const https = entry.url.startsWith("https") ? "/s" : "";
-    window.open(`https://b.hatena.ne.jp/entry${https}/${entry.url.replace(/https?:\/\//, "")}`, "_blank");
+    const s = is_https ? "s/" : "";
+    const protocol = is_https ? "https" : "http";
+    window.open(`https://b.hatena.ne.jp/entry/${s}${entry.url.replace(`${protocol}://`, "")}`, "_blank");
+  };
+
+  /**
+   * コメント表示・非表示を切り替える
+   * @param e マウスイベント
+   */
+  const toggleShowComment = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setShowComment(showComment => !showComment);
   };
 
   const dummyImg =
@@ -84,11 +111,21 @@ export default function Entry({ entry }: { entry: IEntry }) {
   return (
     <Card className={classes.root}>
       <CardHeader
-        classes={{ root: classes.headerRoot, avatar: classes.headerAvatar, title: classes.headerTitle }}
+        classes={{
+          root: classes.headerRoot,
+          avatar: classes.headerAvatar,
+          title: classes.headerTitle,
+          action: classes.headerAction,
+        }}
         avatar={<Avatar className={classes.avatar}>{entry.bookmark_count}</Avatar>}
         title="users"
         variant="outlined"
-        onClick={clickBookMark}
+        action={
+          <IconButton onClick={toggleShowComment}>
+            <SmsOutlinedIcon />
+          </IconButton>
+        }
+        onClick={openBookMarkPage}
       />
       <Box className={classes.body}>
         <Box className={classes.imageContainer}>
@@ -100,11 +137,11 @@ export default function Entry({ entry }: { entry: IEntry }) {
             alt={entry.title}
             width="300"
             height="210"
-            onClick={clickCard}
+            onClick={openEntryPage}
           ></Image>
         </Box>
         <Divider />
-        <CardContent onClick={clickCard}>
+        <CardContent onClick={openEntryPage}>
           <Typography className={classes.title} component="h2" gutterBottom>
             {entry.title}
           </Typography>
@@ -120,12 +157,18 @@ export default function Entry({ entry }: { entry: IEntry }) {
             </Typography>
           </Box>
         </CardContent>
-        {/* <Box className={classes.comments} p={2}>
-          <Box my={1}>synopses 美少女しか出てこない理由を説明する設定がなかなか斬新。</Box>
-          <Box my={1}>Itti-nino3 最初、食べ始めた肉が人間かと思った。</Box>
-          <Box my={1}>himakao 美少女設定のせいで、今のところ沙耶の唄説でガチ拷問焼きという線が捨てられない</Box>
-          <Box my={1}>aobyoutann できたよー！って焼けたコットンを開くシーン、中から遺体が出てくるのかと(壊れた感想</Box>
-        </Box> */}
+        {showComment ? (
+          <Box className={classes.comments} p={2}>
+            <Box my={1}>synopses 美少女しか出てこない理由を説明する設定がなかなか斬新。</Box>
+            <Box my={1}>Itti-nino3 最初、食べ始めた肉が人間かと思った。</Box>
+            <Box my={1}>himakao 美少女設定のせいで、今のところ沙耶の唄説でガチ拷問焼きという線が捨てられない</Box>
+            <Box my={1}>
+              aobyoutann できたよー！って焼けたコットンを開くシーン、中から遺体が出てくるのかと(壊れた感想
+            </Box>
+          </Box>
+        ) : (
+          <></>
+        )}
       </Box>
     </Card>
   );
