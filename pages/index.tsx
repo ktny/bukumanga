@@ -2,12 +2,12 @@ import { useState, useEffect } from "react";
 import { useDebounce } from "use-debounce";
 import EntryList from "../components/entry-list";
 import Layout from "../components/layout";
-import search from "./api/search";
+import search, { PER_PAGE } from "./api/search";
 
 export default function Home() {
   const defaultEndDate = new Date();
   const defaultStartDate = new Date(defaultEndDate.getTime());
-  defaultStartDate.setDate(defaultStartDate.getDate() - 7);
+  defaultStartDate.setDate(defaultStartDate.getDate() - 7); // デフォルトを今週にする
 
   // エントリ一覧と検索条件のstate
   const [entries, setEntries] = useState([]);
@@ -20,22 +20,41 @@ export default function Home() {
   const [page, setPage] = useState(0);
   const [hasMore, setHasMore] = useState(true);
 
-  // イベントを間引くためにdebounced変数をトリガーにする
-  const [debouncedStartDate] = useDebounce(startDate, 500);
-  const [debouncedEndDate] = useDebounce(endDate, 500);
-  const [debouncedKeyword] = useDebounce(keyword, 500);
-  const [debouncedBookmarkCount] = useDebounce(bookmarkCount, 500);
+  // イベントを間引くためにdebounce変数をトリガーにする
+  const [debounceStartDate] = useDebounce(startDate, 500);
+  const [debounceEndDate] = useDebounce(endDate, 500);
+  const [debounceKeyword] = useDebounce(keyword, 500);
+  const [debounceBookmarkCount] = useDebounce(bookmarkCount, 500);
 
+  // 検索条件変更時のeffect
   useEffect(() => {
     setPage(0);
     setHasMore(true);
-    console.log("setHasMore", true);
-    search(debouncedStartDate, debouncedEndDate, debouncedKeyword, debouncedBookmarkCount, orderKey, orderAsc).then(
-      entries => setEntries(entries)
+    search(debounceStartDate, debounceEndDate, debounceKeyword, debounceBookmarkCount, orderKey, orderAsc).then(
+      entries => {
+        setEntries(entries);
+        if (entries.length < PER_PAGE) {
+          setHasMore(false);
+        }
+      }
     );
-  }, [debouncedStartDate, debouncedEndDate, debouncedKeyword, debouncedBookmarkCount, orderKey, orderAsc]);
+  }, [debounceStartDate, debounceEndDate, debounceKeyword, debounceBookmarkCount, orderKey, orderAsc]);
 
-  // console.log(entries);
+  // 無限スクロールのeffect
+  useEffect(() => {
+    // これ以上エントリがない、または、初回読み込み時は終了
+    if (!hasMore || page === 0) {
+      return;
+    }
+    search(debounceStartDate, debounceEndDate, debounceKeyword, debounceBookmarkCount, orderKey, orderAsc, page).then(
+      newEntries => {
+        setEntries(entries => [...entries, ...newEntries]);
+        if (newEntries.length < PER_PAGE) {
+          setHasMore(false);
+        }
+      }
+    );
+  }, [page]);
 
   const props = {
     entries,

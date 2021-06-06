@@ -2,7 +2,7 @@ import { formatDate } from "../../helpers/util";
 import { IEntry } from "../../models/model";
 
 const baseUrl = "http://localhost:5000/entries";
-export const PER_PAGE = 50;
+export const PER_PAGE = 20;
 
 /**
  * 条件に合致するエントリを検索する

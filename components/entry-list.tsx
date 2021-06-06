@@ -1,79 +1,62 @@
-import { Dispatch, SetStateAction, useState } from "react";
+import { Dispatch, SetStateAction, useEffect } from "react";
+import lodash from "lodash";
+import { Box, CircularProgress, Grid } from "@material-ui/core";
 import { IEntry } from "../models/model";
 import Entry from "./entry";
-import { Box, Grid } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import InfiniteScroll from "react-infinite-scroller";
-import search, { PER_PAGE } from "../pages/api/search";
 
 const useStyles = makeStyles({
   root: {
     height: "100%",
     overflow: "auto",
   },
+  progress: {
+    position: "relative",
+    left: "calc(50% - 20px)",
+    top: "20px",
+  },
 });
+
+const threshold = 100;
 
 export default function EntryList({
   entries,
-  setEntries,
-  startDate,
-  endDate,
-  keyword,
-  bookmarkCount,
-  orderKey,
-  orderAsc,
-  page,
-  setPage,
   hasMore,
-  setHasMore,
+  setPage,
 }: {
   entries: IEntry[];
-  setEntries: Dispatch<SetStateAction<IEntry[]>>;
-  startDate: Date;
-  endDate: Date;
-  keyword: string;
-  bookmarkCount: number;
-  orderKey: string;
-  orderAsc: boolean;
-  page: number;
-  setPage: Dispatch<SetStateAction<number>>;
   hasMore: boolean;
-  setHasMore: Dispatch<SetStateAction<boolean>>;
+  setPage: Dispatch<SetStateAction<number>>;
 }) {
   const classes = useStyles();
 
   /**
    * ページを読み込むときのコールバック関数
-   * @param page ページ番号
    */
-  const loadMore = (): void => {
-    setPage(page + 1);
-    search(startDate, endDate, keyword, bookmarkCount, orderKey, orderAsc, page).then(newEntries => {
-      setEntries([...entries, ...newEntries]);
-      if (newEntries.length < PER_PAGE) {
-        setHasMore(false);
-        console.log("setHasMore", false);
-      }
-    });
-  };
+  const handleScroll = lodash.throttle(() => {
+    if (window.innerHeight + document.documentElement.scrollTop < document.documentElement.offsetHeight - threshold) {
+      return;
+    }
+    setPage(page => page + 1);
+  }, 200);
 
-  const loader = (
-    <div className="loader" key={0}>
-      Loading ...
-    </div>
-  );
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   return (
     <Box p={3} className={classes.root}>
-      <InfiniteScroll pageStart={page} loadMore={loadMore} hasMore={hasMore} initialLoad={false} loader={loader}>
-        <Grid container spacing={2}>
-          {entries.map((entry, i) => (
-            <Grid item key={i}>
-              <Entry entry={entry} key={entry.id}></Entry>
-            </Grid>
-          ))}
-        </Grid>
-      </InfiniteScroll>
+      <Grid container spacing={3}>
+        {entries.map((entry, i) => (
+          <Grid item key={i}>
+            <Entry entry={entry} key={entry.id}></Entry>
+          </Grid>
+        ))}
+      </Grid>
+      {hasMore ? <CircularProgress className={classes.progress} color="secondary" /> : ""}
     </Box>
   );
 }
