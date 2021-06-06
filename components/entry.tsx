@@ -26,6 +26,10 @@ const useStyles = makeStyles({
   avatar: {
     backgroundColor: red[500],
   },
+  body: {
+    position: "relative",
+    height: "calc(100% - 56px)",
+  },
   imageContainer: {
     position: "relative",
   },
@@ -36,6 +40,12 @@ const useStyles = makeStyles({
   image: {
     position: "absolute",
     zIndex: 1,
+  },
+  quote: {
+    position: "absolute",
+    zIndex: 2,
+    right: "8px",
+    bottom: 0,
   },
   title: {
     fontSize: 15,
@@ -49,6 +59,15 @@ const useStyles = makeStyles({
     right: 8,
     bottom: 8,
     textAlign: "right",
+  },
+  comments: {
+    position: "absolute",
+    left: 0,
+    top: 0,
+    zIndex: 100,
+    width: "100%",
+    height: "100%",
+    backgroundColor: "rgba(255, 255, 255, 0.95)",
   },
 });
 
@@ -77,35 +96,43 @@ export default function Entry({ entry }: { entry: IEntry }) {
         variant="outlined"
         onClick={clickBookMark}
       />
-      <Box className={classes.imageContainer}>
-        <Skeleton className={classes.imageSkeleton} variant="rect" animation="wave" width={300} height={210} />
-        <Image
-          className={classes.image}
-          layout="responsive"
-          src={entry.image.Valid ? entry.image.String : dummyImg}
-          alt={entry.title}
-          width="300"
-          height="210"
-          onClick={clickCard}
-        ></Image>
-      </Box>
-      <Divider />
-      <CardContent onClick={clickCard}>
-        <Typography className={classes.title} component="h2" gutterBottom>
-          {entry.title}
-        </Typography>
-        <Box className={classes.captions}>
-          <Typography variant="caption" component="p" gutterBottom>
-            {entry.domain}
-          </Typography>
-          <Typography variant="caption" component="p" gutterBottom>
-            HotEntried: {entry.hotentried_at}
-          </Typography>
-          <Typography variant="caption" component="p" gutterBottom>
-            Published: {entry.published_at}
-          </Typography>
+      <Box className={classes.body}>
+        <Box className={classes.imageContainer}>
+          <Skeleton className={classes.imageSkeleton} variant="rect" animation="wave" width={300} height={210} />
+          <Image
+            className={classes.image}
+            layout="responsive"
+            src={entry.image.Valid ? entry.image.String : dummyImg}
+            alt={entry.title}
+            width="300"
+            height="210"
+            onClick={clickCard}
+          ></Image>
         </Box>
-      </CardContent>
+        <Divider />
+        <CardContent onClick={clickCard}>
+          <Typography className={classes.title} component="h2" gutterBottom>
+            {entry.title}
+          </Typography>
+          <Box className={classes.captions}>
+            <Typography variant="caption" component="p" gutterBottom>
+              引用: {entry.domain}, b.hatena.ne.jp
+            </Typography>
+            <Typography variant="caption" component="p" gutterBottom>
+              HotEntried: {entry.hotentried_at}
+            </Typography>
+            <Typography variant="caption" component="p" gutterBottom>
+              Published: {entry.published_at}
+            </Typography>
+          </Box>
+        </CardContent>
+        {/* <Box className={classes.comments} p={2}>
+          <Box my={1}>synopses 美少女しか出てこない理由を説明する設定がなかなか斬新。</Box>
+          <Box my={1}>Itti-nino3 最初、食べ始めた肉が人間かと思った。</Box>
+          <Box my={1}>himakao 美少女設定のせいで、今のところ沙耶の唄説でガチ拷問焼きという線が捨てられない</Box>
+          <Box my={1}>aobyoutann できたよー！って焼けたコットンを開くシーン、中から遺体が出てくるのかと(壊れた感想</Box>
+        </Box> */}
+      </Box>
     </Card>
   );
 }
