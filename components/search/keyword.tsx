@@ -6,7 +6,7 @@ const chips: IChip<string>[] = [
   { label: "少年ジャンプ+", value: "shonenjumpplus.com" },
   { label: "コミックDAYS", value: "comic-days.com" },
   { label: "となりのヤングジャンプ", value: "tonarinoyj.jp" },
-  // { label: "ジャンプルーキー", value: "rookie.shonenjump.com" },
+  { label: "ジャンプルーキー", value: "rookie.shonenjump.com" },
   // { label: "コミックウォーカー", value: "comic-walker.com" },
   // { label: "マンガクロス", value: "mangacross.jp" },
   // { label: "コミックアクション", value: "comic-action.com" },
@@ -17,7 +17,13 @@ const chips: IChip<string>[] = [
   // { label: "ニコニコ静画", value: "seiga.nicovideo.jp" },
 ];
 
-export default function Keyword({ keyword, setKeyword }: { keyword: string; setKeyword: Dispatch<SetStateAction<string>> }) {
+export default function Keyword({
+  keyword,
+  setKeyword,
+}: {
+  keyword: string;
+  setKeyword: Dispatch<SetStateAction<string>>;
+}) {
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setKeyword(event.target.value);
   };
@@ -30,7 +36,14 @@ export default function Keyword({ keyword, setKeyword }: { keyword: string; setK
 
   return (
     <>
-      <TextField label="キーワード" variant="outlined" size="small" fullWidth value={keyword} onChange={handleInputChange} />
+      <TextField
+        label="キーワード"
+        variant="outlined"
+        size="small"
+        fullWidth
+        value={keyword}
+        onChange={handleInputChange}
+      />
       <Box mt={1}>
         <Chips chips={chips} clickHandler={handleClickChip}></Chips>
       </Box>
