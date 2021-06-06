@@ -41,12 +41,6 @@ const useStyles = makeStyles({
     position: "absolute",
     zIndex: 1,
   },
-  quote: {
-    position: "absolute",
-    zIndex: 2,
-    right: "8px",
-    bottom: 0,
-  },
   title: {
     fontSize: 15,
     display: "-webkit-box",
