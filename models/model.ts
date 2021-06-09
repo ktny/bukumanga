@@ -10,4 +10,15 @@ export interface IEntry {
   };
   hotentried_at: string;
   published_at: string;
+  comments: IComment[];
+}
+
+export interface IComment {
+  id: number;
+  entry_id: string;
+  rank: number;
+  username: string;
+  icon: string;
+  content: string;
+  commented_at: string;
 }

@@ -159,12 +159,11 @@ export default function Entry({ entry }: { entry: IEntry }) {
         </CardContent>
         {showComment ? (
           <Box className={classes.comments} p={2}>
-            <Box my={1}>synopses 美少女しか出てこない理由を説明する設定がなかなか斬新。</Box>
-            <Box my={1}>Itti-nino3 最初、食べ始めた肉が人間かと思った。</Box>
-            <Box my={1}>himakao 美少女設定のせいで、今のところ沙耶の唄説でガチ拷問焼きという線が捨てられない</Box>
-            <Box my={1}>
-              aobyoutann できたよー！って焼けたコットンを開くシーン、中から遺体が出てくるのかと(壊れた感想
-            </Box>
+            {entry.comments.map(c => (
+              <Box my={1}>
+                {c.username} {c.content}
+              </Box>
+            ))}
           </Box>
         ) : (
           <></>
