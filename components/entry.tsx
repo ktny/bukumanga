@@ -66,6 +66,7 @@ const useStyles = makeStyles({
     width: "100%",
     height: "100%",
     backgroundColor: "rgba(255, 255, 255, 0.95)",
+    overflow: "scroll",
   },
 });
 
@@ -159,9 +160,11 @@ export default function Entry({ entry }: { entry: IEntry }) {
         </CardContent>
         {showComment ? (
           <Box className={classes.comments} p={2}>
-            {entry.comments.map(c => (
+            {entry.comments.map(comment => (
               <Box my={1}>
-                {c.username} {c.content}
+                <Image layout="responsive" src={comment.icon} width="40" height="40" alt={comment.username}></Image>
+                {comment.content}
+                <span>{comment.username}</span>
               </Box>
             ))}
           </Box>
