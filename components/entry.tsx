@@ -17,6 +17,9 @@ const useStyles = makeStyles({
     alignItems: "center",
     padding: "8px 16px",
     backgroundColor: red[100],
+    "&:hover": {
+      cursor: "pointer",
+    },
   },
   headerAvatar: {
     marginRight: 8,
@@ -33,6 +36,11 @@ const useStyles = makeStyles({
   body: {
     position: "relative",
     height: "calc(100% - 56px)",
+    "&:hover": {
+      cursor: "pointer",
+      opacity: "0.8",
+      backgroundColor: "#f3f3f3",
+    },
   },
   imageContainer: {
     position: "relative",
@@ -44,6 +52,9 @@ const useStyles = makeStyles({
   image: {
     position: "absolute",
     zIndex: 1,
+  },
+  content: {
+    cursor: "pointer",
   },
   title: {
     fontSize: 15,
@@ -67,6 +78,20 @@ const useStyles = makeStyles({
     height: "100%",
     backgroundColor: "rgba(255, 255, 255, 0.95)",
     overflow: "scroll",
+  },
+  commentIcon: {
+    display: "inline-block",
+    verticalAlign: "middle",
+    width: 24,
+    height: 24,
+    marginRight: 8,
+  },
+  commentContent: {
+    fontSize: 13,
+    marginRight: 4,
+  },
+  commentUsername: {
+    fontSize: 11,
   },
 });
 
@@ -128,7 +153,7 @@ export default function Entry({ entry }: { entry: IEntry }) {
         }
         onClick={openBookMarkPage}
       />
-      <Box className={classes.body}>
+      <Box className={classes.body} onClick={openEntryPage}>
         <Box className={classes.imageContainer}>
           <Skeleton className={classes.imageSkeleton} variant="rect" animation="wave" width={300} height={210} />
           <Image
@@ -138,11 +163,10 @@ export default function Entry({ entry }: { entry: IEntry }) {
             alt={entry.title}
             width="300"
             height="210"
-            onClick={openEntryPage}
           ></Image>
         </Box>
         <Divider />
-        <CardContent onClick={openEntryPage}>
+        <CardContent className={classes.content}>
           <Typography className={classes.title} component="h2" gutterBottom>
             {entry.title}
           </Typography>
@@ -151,20 +175,23 @@ export default function Entry({ entry }: { entry: IEntry }) {
               引用: {entry.domain}, b.hatena.ne.jp
             </Typography>
             <Typography variant="caption" component="p" gutterBottom>
-              HotEntried: {entry.hotentried_at}
+              HotEntried: {entry.hotentried_at.slice(0, 10)}
             </Typography>
             <Typography variant="caption" component="p" gutterBottom>
-              Published: {entry.published_at}
+              Published: {entry.published_at.slice(0, 10)}
             </Typography>
           </Box>
         </CardContent>
         {showComment ? (
           <Box className={classes.comments} p={2}>
             {entry.comments.map(comment => (
-              <Box my={1}>
-                <Image layout="responsive" src={comment.icon} width="40" height="40" alt={comment.username}></Image>
-                {comment.content}
-                <span>{comment.username}</span>
+              <Box>
+                <Box my={1.5}>
+                  <Avatar variant="square" className={classes.commentIcon} src={comment.icon} alt={comment.username} />
+                  <span className={classes.commentContent}>{comment.content}</span>
+                  <span className={classes.commentUsername}>({comment.username})</span>
+                </Box>
+                <Divider />
               </Box>
             ))}
           </Box>
