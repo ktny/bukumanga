@@ -22,3 +22,8 @@ export interface IComment {
   content: string;
   commented_at: string;
 }
+
+export interface SearchResponse {
+  count: number;
+  entries: IEntry[];
+}

@@ -19,6 +19,7 @@ export default function Home() {
   const [orderAsc, setOrderAsc] = useState(false);
   const [page, setPage] = useState(0);
   const [hasMore, setHasMore] = useState(true);
+  const [count, setCount] = useState(0);
 
   // イベントを間引くためにdebounce変数をトリガーにする
   const [debounceStartDate] = useDebounce(startDate, 500);
@@ -30,14 +31,13 @@ export default function Home() {
   useEffect(() => {
     setPage(0);
     setHasMore(true);
-    search(debounceStartDate, debounceEndDate, debounceKeyword, debounceBookmarkCount, orderKey, orderAsc).then(
-      entries => {
-        setEntries(entries);
-        if (entries.length < PER_PAGE) {
-          setHasMore(false);
-        }
+    search(debounceStartDate, debounceEndDate, debounceKeyword, debounceBookmarkCount, orderKey, orderAsc).then(res => {
+      setEntries(res.entries);
+      setCount(res.count);
+      if (res.entries.length < PER_PAGE) {
+        setHasMore(false);
       }
-    );
+    });
   }, [debounceStartDate, debounceEndDate, debounceKeyword, debounceBookmarkCount, orderKey, orderAsc]);
 
   // 無限スクロールのeffect
@@ -47,9 +47,9 @@ export default function Home() {
       return;
     }
     search(debounceStartDate, debounceEndDate, debounceKeyword, debounceBookmarkCount, orderKey, orderAsc, page).then(
-      newEntries => {
-        setEntries(entries => [...entries, ...newEntries]);
-        if (newEntries.length < PER_PAGE) {
+      res => {
+        setEntries(entries => [...entries, ...res.entries]);
+        if (res.entries.length < PER_PAGE) {
           setHasMore(false);
         }
       }
@@ -75,6 +75,8 @@ export default function Home() {
     setPage,
     hasMore,
     setHasMore,
+    count,
+    setCount,
   };
 
   return (

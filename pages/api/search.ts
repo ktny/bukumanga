@@ -1,5 +1,5 @@
 import { formatDate } from "../../helpers/util";
-import { IEntry } from "../../models/model";
+import { SearchResponse } from "../../models/model";
 
 const baseUrl = "http://localhost:5000/entries";
 export const PER_PAGE = 20;
@@ -25,7 +25,7 @@ export default function search(
   orderAsc: boolean,
   page: number = 0,
   perPage: number = PER_PAGE
-): Promise<IEntry[]> {
+): Promise<SearchResponse> {
   const params = {
     startDate: formatDate(startDate),
     endDate: formatDate(endDate),
