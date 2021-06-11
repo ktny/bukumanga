@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import { Accordion, AccordionSummary, AccordionDetails, Toolbar, Typography, IconButton } from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
@@ -29,10 +28,15 @@ export default function Header(props) {
 
   return (
     <header className={classes.header}>
-      <Accordion square>
+      <Accordion square expanded={props.isHeaderExpanded}>
         <Toolbar variant="dense">
           <AccordionSummary>
-            <IconButton edge="start" className={classes.menuButton} color="inherit">
+            <IconButton
+              edge="start"
+              className={classes.menuButton}
+              color="inherit"
+              onClick={() => props.setIsHeaderExpanded(expanded => !expanded)}
+            >
               <MenuIcon />
             </IconButton>
           </AccordionSummary>

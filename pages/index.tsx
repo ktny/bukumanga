@@ -2,9 +2,24 @@ import { useState, useEffect } from "react";
 import { useDebounce } from "use-debounce";
 import EntryList from "../components/entry-list";
 import Layout from "../components/layout";
+import { makeStyles } from "@material-ui/core/styles";
 import search, { PER_PAGE } from "./api/search";
 
+const useStyles = makeStyles({
+  overlay: {
+    position: "fixed",
+    width: "100vw",
+    height: "100vh",
+    left: 0,
+    top: 0,
+    zIndex: 100,
+    background: "rgba(100, 100, 100, .8)",
+  },
+});
+
 export default function Home() {
+  const classes = useStyles();
+
   const defaultEndDate = new Date();
   const defaultStartDate = new Date(defaultEndDate.getTime());
   defaultStartDate.setDate(defaultStartDate.getDate() - 7); // デフォルトを今週にする
@@ -20,6 +35,7 @@ export default function Home() {
   const [page, setPage] = useState(0);
   const [hasMore, setHasMore] = useState(true);
   const [count, setCount] = useState(0);
+  const [isHeaderExpanded, setIsHeaderExpanded] = useState(false);
 
   // イベントを間引くためにdebounce変数をトリガーにする
   const [debounceStartDate] = useDebounce(startDate, 500);
@@ -77,11 +93,14 @@ export default function Home() {
     setHasMore,
     count,
     setCount,
+    isHeaderExpanded,
+    setIsHeaderExpanded,
   };
 
   return (
     <Layout {...props}>
       <EntryList {...props}></EntryList>
+      {isHeaderExpanded ? <div className={classes.overlay} onClick={() => setIsHeaderExpanded(false)}></div> : <></>}
     </Layout>
   );
 }
