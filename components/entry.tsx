@@ -38,7 +38,6 @@ const useStyles = makeStyles({
     height: "calc(100% - 56px)",
     "&:hover": {
       cursor: "pointer",
-      opacity: "0.8",
       backgroundColor: "#f3f3f3",
     },
   },
