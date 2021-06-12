@@ -9,11 +9,11 @@ export default function Header(props) {
   return (
     <header className={classes.header}>
       <Accordion square expanded={props.isHeaderExpanded}>
-        <Toolbar variant="dense">
-          <AccordionSummary>
+        <Toolbar>
+          <AccordionSummary classes={{ content: classes.accContent, expanded: classes.accExpanded }}>
             <IconButton
               edge="start"
-              className={classes.menuButton}
+              className={classes.iconButton}
               color="inherit"
               onClick={() => props.setIsHeaderExpanded(expanded => !expanded)}
             >
@@ -27,7 +27,7 @@ export default function Header(props) {
             {props.count} HIT
           </Typography>
         </Toolbar>
-        <AccordionDetails className={classes.accordionDetails}>
+        <AccordionDetails className={classes.accDetails}>
           <Search {...props}></Search>
         </AccordionDetails>
       </Accordion>

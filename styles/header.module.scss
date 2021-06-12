@@ -10,7 +10,15 @@
   font-size: 16px;
 }
 
-.accordionDetails {
+.accContent {
+  margin: 0;
+}
+
+.accExpanded {
+  margin: 0 !important;
+}
+
+.accDetails {
   padding: 8px 32px;
   @media screen and (max-width: 480px) {
     padding: 0 16px 8px;
