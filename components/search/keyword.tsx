@@ -35,18 +35,11 @@ export default function Keyword({
   };
 
   return (
-    <>
-      <TextField
-        label="キーワード"
-        variant="outlined"
-        size="small"
-        fullWidth
-        value={keyword}
-        onChange={handleInputChange}
-      />
-      <Box mt={1}>
+    <Box>
+      <TextField label="キーワード" size="small" fullWidth value={keyword} onChange={handleInputChange} />
+      <Box className="mt1">
         <Chips chips={chips} clickHandler={handleClickChip}></Chips>
       </Box>
-    </>
+    </Box>
   );
 }

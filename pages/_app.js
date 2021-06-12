@@ -3,9 +3,8 @@
 import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import Head from "next/head";
-import { StylesProvider, ThemeProvider } from "@material-ui/core/styles";
+import { StylesProvider } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
-import theme from "../src/theme";
 import "../styles/global.css";
 
 const siteName = "BUKUMANGA!";
@@ -37,8 +36,6 @@ export default function MyApp(props) {
         <meta name="twitter:card" content="summary_large_image" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      {/* <ThemeProvider theme={theme}> */}
-      {/* </ThemeProvider> */}
       <StylesProvider injectFirst>
         {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
         <CssBaseline />

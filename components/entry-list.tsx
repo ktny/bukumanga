@@ -34,7 +34,7 @@ export default function EntryList({
   }, []);
 
   return (
-    <Box p={3} className={classes.root}>
+    <Box className={classes.root}>
       <Grid container spacing={3} className={classes.gridContainer}>
         {entries.map((entry, i) => (
           <Grid item key={i}>

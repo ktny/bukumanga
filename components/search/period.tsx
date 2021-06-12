@@ -48,7 +48,7 @@ export default function Period({
   };
 
   return (
-    <>
+    <Box>
       <Grid container spacing={2} alignItems="center">
         <Grid item>
           <TextField
@@ -69,9 +69,9 @@ export default function Period({
           />
         </Grid>
       </Grid>
-      <Box mt={1}>
+      <Box className="mt1">
         <Chips chips={chips} clickHandler={handleClickChip}></Chips>
       </Box>
-    </>
+    </Box>
   );
 }

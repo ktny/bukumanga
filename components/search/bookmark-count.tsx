@@ -51,7 +51,6 @@ export default function BookmarkCount({
             step={STEP}
             marks={marks}
             value={typeof bookmarkCount === "number" ? bookmarkCount : 0}
-            valueLabelDisplay="auto"
             getAriaValueText={valuetext}
             aria-labelledby="bookmark-count-slider"
             onChange={handleSliderChange}
