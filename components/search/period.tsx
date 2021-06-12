@@ -1,6 +1,6 @@
 import React, { Dispatch, SetStateAction } from "react";
 import { Box, Grid, TextField } from "@material-ui/core";
-import { formatDate } from "../../helpers/util";
+import { date2str } from "../../helpers/util";
 import Chips, { IChip } from "./chips";
 
 const chips: IChip<number>[] = [
@@ -51,10 +51,22 @@ export default function Period({
     <>
       <Grid container spacing={2} alignItems="center">
         <Grid item>
-          <TextField id="date" label="開始日" type="date" value={formatDate(startDate)} onChange={handleInputChangeStartDate} />
+          <TextField
+            id="date"
+            label="開始日"
+            type="date"
+            value={date2str(startDate)}
+            onChange={handleInputChangeStartDate}
+          />
         </Grid>
         <Grid item>
-          <TextField id="date" label="終了日" type="date" value={formatDate(endDate)} onChange={handleInputChangeEndDate} />
+          <TextField
+            id="date"
+            label="終了日"
+            type="date"
+            value={date2str(endDate)}
+            onChange={handleInputChangeEndDate}
+          />
         </Grid>
       </Grid>
       <Box mt={1}>

@@ -1,9 +1,12 @@
 import { useState, useEffect } from "react";
 import { useDebounce } from "use-debounce";
+import { useRouter } from "next/router";
+import queryString from "querystring";
 import EntryList from "../components/entry-list";
 import Layout from "../components/layout";
 import { makeStyles } from "@material-ui/core/styles";
 import search, { PER_PAGE } from "./api/search";
+import { calcDate, parseOrderParam, str2Date } from "../helpers/util";
 
 const useStyles = makeStyles({
   overlay: {
@@ -20,18 +23,18 @@ const useStyles = makeStyles({
 export default function Home() {
   const classes = useStyles();
 
-  const defaultEndDate = new Date();
-  const defaultStartDate = new Date(defaultEndDate.getTime());
-  defaultStartDate.setDate(defaultStartDate.getDate() - 7); // デフォルトを今週にする
+  const router = useRouter();
+  const params = queryString.parse(router.asPath.split("?")[1]);
+  const { paramOrderKey, paramOrderAsc } = parseOrderParam(params.order as string);
 
   // エントリ一覧と検索条件のstate
   const [entries, setEntries] = useState([]);
-  const [startDate, setStartDate] = useState(defaultStartDate);
-  const [endDate, setEndDate] = useState(defaultEndDate);
-  const [keyword, setKeyword] = useState("");
-  const [bookmarkCount, setBookmarkCount] = useState(10);
-  const [orderKey, setOrderKey] = useState("bookmark_count");
-  const [orderAsc, setOrderAsc] = useState(false);
+  const [startDate, setStartDate] = useState(str2Date(params.startDate as string) || calcDate(new Date(), -7));
+  const [endDate, setEndDate] = useState(str2Date(params.endDate as string) || new Date());
+  const [keyword, setKeyword] = useState(params.keyword as string);
+  const [bookmarkCount, setBookmarkCount] = useState(Number(params.bookmarkCount) || 10);
+  const [orderKey, setOrderKey] = useState(paramOrderKey || "bookmark_count");
+  const [orderAsc, setOrderAsc] = useState(paramOrderAsc || false);
   const [page, setPage] = useState(0);
   const [hasMore, setHasMore] = useState(true);
   const [count, setCount] = useState(0);

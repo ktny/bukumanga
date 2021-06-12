@@ -1,4 +1,4 @@
-import { formatDate } from "../../helpers/util";
+import { date2str, makeOrderParam } from "../../helpers/util";
 import { SearchResponse } from "../../models/model";
 
 const baseUrl = "http://localhost:5000/entries";
@@ -27,8 +27,8 @@ export default function search(
   perPage: number = PER_PAGE
 ): Promise<SearchResponse> {
   const params = {
-    startDate: formatDate(startDate),
-    endDate: formatDate(endDate),
+    startDate: date2str(startDate),
+    endDate: date2str(endDate),
     keyword: keyword,
     bookmarkCount: bookmarkCount.toString(),
     order: makeOrderParam(orderKey, orderAsc),
@@ -42,16 +42,8 @@ export default function search(
       .join("&");
 
   const url = `${baseUrl}${queryString}`;
-  return fetch(url).then(res => res.json());
-}
-
-/**
- * 並び替え用パラメータを作成する
- * @param orderKey 並び替えのキー列
- * @param orderAsc 昇順/降順
- * @return 並び替え用パラメータ
- */
-function makeOrderParam(orderKey: string, orderAsc: boolean): string {
-  const symbol = orderAsc ? "+" : "-";
-  return `${symbol}${orderKey}`;
+  return fetch(url).then(res => {
+    history.replaceState({}, null, `/${queryString}`);
+    return res.json();
+  });
 }
