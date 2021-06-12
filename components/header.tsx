@@ -1,5 +1,5 @@
 import { Accordion, AccordionSummary, AccordionDetails, Toolbar, Typography, IconButton } from "@material-ui/core";
-import MenuIcon from "@material-ui/icons/Menu";
+import SearchIcon from "@material-ui/icons/Search";
 import Search from "./search/search";
 import classes from "../styles/header.module.scss";
 
@@ -17,7 +17,7 @@ export default function Header(props) {
               color="inherit"
               onClick={() => props.setIsHeaderExpanded(expanded => !expanded)}
             >
-              <MenuIcon />
+              <SearchIcon />
             </IconButton>
           </AccordionSummary>
           <Typography variant="h6" component="h1" color="inherit">
