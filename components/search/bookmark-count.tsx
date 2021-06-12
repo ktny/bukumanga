@@ -1,5 +1,4 @@
 import React, { Dispatch, SetStateAction } from "react";
-import { makeStyles } from "@material-ui/core/styles";
 import { Grid, Input, Slider, Typography } from "@material-ui/core";
 
 const marks = [
@@ -23,8 +22,6 @@ export default function BookmarkCount({
   bookmarkCount: number;
   setBookmarkCount: Dispatch<SetStateAction<number>>;
 }) {
-  const useStyles = makeStyles({ root: { width: 1000 } });
-  const classes = useStyles();
   const MIN = 0;
   const MAX = 1000;
   const STEP = 10;

@@ -2,24 +2,10 @@ import { useState, useEffect } from "react";
 import { useDebounce } from "use-debounce";
 import EntryList from "../components/entry-list";
 import Layout from "../components/layout";
-import { makeStyles } from "@material-ui/core/styles";
 import search, { PER_PAGE } from "./api/search";
-
-const useStyles = makeStyles({
-  overlay: {
-    position: "fixed",
-    width: "100vw",
-    height: "100vh",
-    left: 0,
-    top: 0,
-    zIndex: 100,
-    background: "rgba(100, 100, 100, .8)",
-  },
-});
+import classes from "../styles/index.module.scss";
 
 export default function Home() {
-  const classes = useStyles();
-
   const defaultEndDate = new Date();
   const defaultStartDate = new Date();
   defaultStartDate.setDate(defaultStartDate.getDate() - 7); // デフォルトを今週にする

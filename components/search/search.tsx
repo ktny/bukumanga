@@ -1,21 +1,13 @@
 import { Box, Divider } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
 import Period from "./period";
 import Keyword from "./keyword";
 import BookmarkCount from "./bookmark-count";
 import Order from "./order";
-
-const useStyles = makeStyles({
-  divider: {
-    margin: "16px 0",
-  },
-});
+import classes from "../../styles/search.module.scss";
 
 export default function Search(props) {
-  const classes = useStyles();
-
   return (
-    <Box mx={3}>
+    <Box>
       <Period {...props}></Period>
       <Divider classes={{ root: classes.divider }} />
       <Keyword {...props}></Keyword>

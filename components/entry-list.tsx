@@ -3,19 +3,7 @@ import lodash from "lodash";
 import { Box, CircularProgress, Grid } from "@material-ui/core";
 import { IEntry } from "../models/model";
 import Entry from "./entry";
-import { makeStyles } from "@material-ui/core/styles";
-
-const useStyles = makeStyles({
-  root: {
-    height: "100%",
-    overflow: "auto",
-  },
-  progress: {
-    position: "relative",
-    left: "calc(50% - 20px)",
-    top: "20px",
-  },
-});
+import classes from "../styles/entry-list.module.scss";
 
 const threshold = 100;
 
@@ -28,8 +16,6 @@ export default function EntryList({
   hasMore: boolean;
   setPage: Dispatch<SetStateAction<number>>;
 }) {
-  const classes = useStyles();
-
   /**
    * ページを読み込むときのコールバック関数
    */
@@ -49,7 +35,7 @@ export default function EntryList({
 
   return (
     <Box p={3} className={classes.root}>
-      <Grid container spacing={3}>
+      <Grid container spacing={3} className={classes.gridContainer}>
         {entries.map((entry, i) => (
           <Grid item key={i}>
             <Entry entry={entry} key={entry.id}></Entry>

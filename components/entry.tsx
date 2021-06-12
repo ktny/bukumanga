@@ -1,102 +1,12 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import { IEntry } from "../models/model";
-import { makeStyles } from "@material-ui/core/styles";
 import { Avatar, Box, Card, CardHeader, CardContent, Divider, IconButton, Typography } from "@material-ui/core";
 import Skeleton from "@material-ui/lab/Skeleton";
 import SmsOutlinedIcon from "@material-ui/icons/SmsOutlined";
-import { red } from "@material-ui/core/colors";
-
-const useStyles = makeStyles({
-  root: {
-    width: 300,
-    height: 450,
-    position: "relative",
-  },
-  headerRoot: {
-    alignItems: "center",
-    padding: "8px 16px",
-    backgroundColor: red[100],
-    "&:hover": {
-      cursor: "pointer",
-    },
-  },
-  headerAvatar: {
-    marginRight: 8,
-  },
-  headerTitle: {
-    fontSize: 18,
-  },
-  headerAction: {
-    marginTop: 0,
-  },
-  avatar: {
-    backgroundColor: red[500],
-  },
-  body: {
-    position: "relative",
-    height: "calc(100% - 56px)",
-    "&:hover": {
-      cursor: "pointer",
-      backgroundColor: "#f3f3f3",
-    },
-  },
-  imageContainer: {
-    position: "relative",
-  },
-  imageSkeleton: {
-    position: "absolute",
-    zIndex: 0,
-  },
-  image: {
-    position: "absolute",
-    zIndex: 1,
-  },
-  content: {
-    cursor: "pointer",
-  },
-  title: {
-    fontSize: 15,
-    display: "-webkit-box",
-    boxOrient: "vertical",
-    lineClamp: 3,
-    overflow: "hidden",
-  },
-  captions: {
-    position: "absolute",
-    right: 8,
-    bottom: 8,
-    textAlign: "right",
-  },
-  comments: {
-    position: "absolute",
-    left: 0,
-    top: 0,
-    zIndex: 100,
-    width: "100%",
-    height: "100%",
-    backgroundColor: "rgba(255, 255, 255, 0.95)",
-    overflow: "scroll",
-  },
-  commentIcon: {
-    display: "inline-block",
-    verticalAlign: "middle",
-    width: 24,
-    height: 24,
-    marginRight: 8,
-  },
-  commentContent: {
-    fontSize: 13,
-    marginRight: 4,
-  },
-  commentUsername: {
-    fontSize: 11,
-  },
-});
+import classes from "../styles/entry.module.scss";
 
 export default function Entry({ entry }: { entry: IEntry }) {
-  const classes = useStyles();
-
   const is_https = entry.url.startsWith("https");
   const [showComment, setShowComment] = useState(false);
 
@@ -142,7 +52,7 @@ export default function Entry({ entry }: { entry: IEntry }) {
           title: classes.headerTitle,
           action: classes.headerAction,
         }}
-        avatar={<Avatar className={classes.avatar}>{entry.bookmark_count}</Avatar>}
+        avatar={<Avatar>{entry.bookmark_count}</Avatar>}
         title="users"
         variant="outlined"
         action={
@@ -154,7 +64,7 @@ export default function Entry({ entry }: { entry: IEntry }) {
       />
       <Box className={classes.body} onClick={openEntryPage}>
         <Box className={classes.imageContainer}>
-          <Skeleton className={classes.imageSkeleton} variant="rect" animation="wave" width={300} height={210} />
+          <Skeleton className={classes.imageSkeleton} variant="rect" width="300" height="210" animation="wave" />
           <Image
             className={classes.image}
             layout="responsive"

@@ -1,0 +1,107 @@
+.root {
+  width: 300px;
+  height: 450px;
+  position: relative;
+  @media screen and (max-width: 480px) {
+    width: 85vw;
+  }
+}
+
+.headerRoot {
+  align-items: center;
+  padding: 8px 16px;
+  background-color: #f3f3f3;
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.headerAvatar {
+  margin-right: 8px;
+}
+
+.headerTitle {
+  font-size: 18px;
+}
+
+.headerAction {
+  margin-top: 0;
+}
+
+.avatar {
+  background-color: red;
+}
+
+.body {
+  position: relative;
+  height: calc(100% - 56px);
+  &:hover {
+    cursor: pointer;
+    background-color: #f3f3f3;
+  }
+}
+
+.imageContainer {
+  position: relative;
+}
+
+.imageSkeleton {
+  position: absolute;
+  z-index: 0;
+  @media screen and (max-width: 480px) {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.image {
+  position: absolute;
+  z-index: 1;
+}
+
+.content {
+  cursor: pointer;
+}
+
+.title {
+  font-size: 15px;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+}
+
+.captions {
+  position: absolute;
+  right: 8px;
+  bottom: 8px;
+  text-align: right;
+}
+
+.comments {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 100;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.95);
+  overflow: scroll;
+}
+
+.commentIcon {
+  display: inline-block;
+  vertical-align: middle;
+  width: 24px;
+  height: 24px;
+  margin-right: 8px;
+}
+
+.commentContent {
+  font-size: 13px;
+  margin-right: 4px;
+}
+
+.commentUsername {
+  font-size: 11px;
+}
