@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useDebounce } from "use-debounce";
+import useMedia from "use-media";
 import EntryList from "../components/entry-list";
 import Layout from "../components/layout";
 import search, { PER_PAGE } from "./api/search";
@@ -10,7 +11,7 @@ export default function Home() {
   const defaultStartDate = new Date();
   defaultStartDate.setDate(defaultStartDate.getDate() - 7); // デフォルトを今週にする
 
-  // エントリ一覧と検索条件のstate
+  // 各種state
   const [entries, setEntries] = useState([]);
   const [startDate, setStartDate] = useState(defaultStartDate);
   const [endDate, setEndDate] = useState(defaultEndDate);
@@ -22,6 +23,7 @@ export default function Home() {
   const [hasMore, setHasMore] = useState(true);
   const [count, setCount] = useState(0);
   const [isHeaderExpanded, setIsHeaderExpanded] = useState(false);
+  const isSP = useMedia({ maxWidth: "480px" });
 
   // イベントを間引くためにdebounce変数をトリガーにする
   const [debounceStartDate] = useDebounce(startDate, 500);
@@ -81,6 +83,7 @@ export default function Home() {
     setCount,
     isHeaderExpanded,
     setIsHeaderExpanded,
+    isSP,
   };
 
   return (
