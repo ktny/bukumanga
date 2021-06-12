@@ -1,0 +1,18 @@
+.header {
+  position: sticky;
+  left: 0;
+  top: 0;
+  z-index: 1000;
+}
+
+.count {
+  margin-left: 16px;
+  font-size: 16px;
+}
+
+.accordionDetails {
+  padding: 8px 32px;
+  @media screen and (max-width: 480px) {
+    padding: 0 16px 8px;
+  }
+}

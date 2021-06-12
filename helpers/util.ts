@@ -9,3 +9,14 @@ export const date2str = (date: Date): string => {
   const day = date.getDate().toString().padStart(2, "0");
   return `${year}-${month}-${day}`;
 };
+
+/**
+ * 指定の数値配列を作成する
+ * @param start 開始数値
+ * @param end 終了数値
+ * @param step ステップ数
+ * @return 開始から終了までの数値配列
+ */
+export const range = (start: number, end: number, step: number = 1): number[] => {
+  return [...Array(Math.floor((end - start) / step) + 1)].map((_, i) => start + i * step);
+};

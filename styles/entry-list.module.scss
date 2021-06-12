@@ -1,0 +1,16 @@
+.root {
+  height: 100%;
+  overflow: auto;
+}
+
+.gridContainer {
+  @media screen and (max-width: 480px) {
+    justify-content: center;
+  }
+}
+
+.progress {
+  position: relative;
+  left: calc(50% - 20px);
+  top: 20px;
+}
