@@ -1,4 +1,4 @@
-import { formatDate } from "../../helpers/util";
+import { date2str } from "../../helpers/util";
 import { SearchResponse } from "../../models/model";
 
 const baseUrl = "http://localhost:5000/entries";
@@ -27,8 +27,8 @@ export default function search(
   perPage: number = PER_PAGE
 ): Promise<SearchResponse> {
   const params = {
-    startDate: formatDate(startDate),
-    endDate: formatDate(endDate),
+    startDate: date2str(startDate),
+    endDate: date2str(endDate),
     keyword: keyword,
     bookmarkCount: bookmarkCount.toString(),
     order: makeOrderParam(orderKey, orderAsc),

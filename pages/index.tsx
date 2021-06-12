@@ -21,7 +21,7 @@ export default function Home() {
   const classes = useStyles();
 
   const defaultEndDate = new Date();
-  const defaultStartDate = new Date(defaultEndDate.getTime());
+  const defaultStartDate = new Date();
   defaultStartDate.setDate(defaultStartDate.getDate() - 7); // デフォルトを今週にする
 
   // エントリ一覧と検索条件のstate
