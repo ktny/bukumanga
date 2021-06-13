@@ -1,4 +1,5 @@
 import { Chip } from "@material-ui/core";
+import classes from "../../styles/chips.module.scss";
 
 export interface IChip<T> {
   label: string;
@@ -15,7 +16,7 @@ export default function Chips<T>({
   return (
     <>
       {chips.map((chip, i) => (
-        <Chip size="small" key={i} label={chip.label} clickable color="primary" onClick={clickHandler(chip)} />
+        <Chip size="small" key={i} label={chip.label} clickable className={classes.chip} onClick={clickHandler(chip)} />
       ))}
     </>
   );

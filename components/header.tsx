@@ -8,7 +8,7 @@ const siteName = "BUKUMANGA!";
 export default function Header(props) {
   return (
     <header className={classes.header}>
-      <Accordion square expanded={props.isHeaderExpanded}>
+      <Accordion className={classes.accordion} square expanded={props.isHeaderExpanded}>
         <Toolbar>
           <AccordionSummary classes={{ content: classes.accContent, expanded: classes.accExpanded }}>
             <IconButton

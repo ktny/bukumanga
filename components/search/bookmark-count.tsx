@@ -1,6 +1,7 @@
 import React, { Dispatch, SetStateAction } from "react";
 import { Grid, Input, Slider, Typography } from "@material-ui/core";
 import { range } from "../../helpers/util";
+import classes from "../../styles/bookmark-count.module.scss";
 
 export default function BookmarkCount({
   bookmarkCount,
@@ -52,7 +53,7 @@ export default function BookmarkCount({
             marks={marks}
             value={typeof bookmarkCount === "number" ? bookmarkCount : 0}
             getAriaValueText={valuetext}
-            aria-labelledby="bookmark-count-slider"
+            classes={{ root: classes.sliderRoot }}
             onChange={handleSliderChange}
           />
         </Grid>
