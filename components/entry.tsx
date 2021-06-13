@@ -80,14 +80,11 @@ export default function Entry({ entry }: { entry: IEntry }) {
             {entry.title}
           </Typography>
           <Box className={classes.captions}>
-            <Typography variant="caption" component="p" gutterBottom>
-              引用: {entry.domain}, b.hatena.ne.jp
+            <Typography className={classes.caption} variant="caption" component="p" gutterBottom>
+              Quoted by: {entry.domain}, b.hatena.ne.jp
             </Typography>
-            <Typography variant="caption" component="p" gutterBottom>
-              HotEntried: {entry.hotentried_at.slice(0, 10)}
-            </Typography>
-            <Typography variant="caption" component="p" gutterBottom>
-              Published: {entry.published_at.slice(0, 10)}
+            <Typography className={classes.caption} variant="caption" component="p" gutterBottom>
+              HotEntried: {entry.hotentried_at.slice(0, 10)} / Published: {entry.published_at.slice(0, 10)}
             </Typography>
           </Box>
         </CardContent>

@@ -75,9 +75,13 @@
 
 .captions {
   position: absolute;
-  right: 8px;
-  bottom: 8px;
+  right: 12px;
+  bottom: 12px;
   text-align: right;
+}
+
+.caption {
+  font-size: 11px;
 }
 
 .comments {
