@@ -1,6 +1,7 @@
 import { Dispatch, SetStateAction, useEffect } from "react";
 import lodash from "lodash";
-import { Box, CircularProgress, Grid } from "@material-ui/core";
+import { Box, CircularProgress, Fab, Grid } from "@material-ui/core";
+import UpIcon from "@material-ui/icons/KeyboardArrowUp";
 import { IEntry } from "../models/model";
 import Entry from "./entry";
 import classes from "../styles/entry-list.module.scss";
@@ -43,6 +44,9 @@ export default function EntryList({
         ))}
       </Grid>
       {hasMore ? <CircularProgress className={classes.progress} color="secondary" /> : ""}
+      <Fab className={classes.fab} onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
+        <UpIcon />
+      </Fab>
     </Box>
   );
 }
