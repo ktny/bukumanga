@@ -84,7 +84,7 @@ export default function Entry({ entry }: { entry: IEntry }) {
               Quoted by: {entry.domain}, b.hatena.ne.jp
             </Typography>
             <Typography className={classes.caption} variant="caption" component="p" gutterBottom>
-              HotEntried: {entry.hotentried_at.slice(0, 10)} / Published: {entry.published_at.slice(0, 10)}
+              Hot Entried: {entry.hotentried_at.slice(0, 10)} / Published: {entry.published_at.slice(0, 10)}
             </Typography>
           </Box>
         </CardContent>
