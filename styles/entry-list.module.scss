@@ -7,9 +7,14 @@
 }
 
 .gridContainer {
+  justify-content: space-around;
   @media screen and (max-width: 480px) {
     justify-content: center;
   }
+}
+
+.gridItemEmpty {
+  width: 324px;
 }
 
 .progress {

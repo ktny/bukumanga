@@ -17,7 +17,7 @@ export default function BookmarkCount({
   const STEP = 10;
 
   const marksStep = isSP ? 200 : 100;
-  const marks = range(0, 1001, marksStep).map(n => ({ value: n, label: n.toString() }));
+  const marks = range(0, 1000, marksStep).map(n => ({ value: n, label: n.toString() }));
 
   const handleSliderChange = (event: any, newValue: number) => {
     setBookmarkCount(newValue);
