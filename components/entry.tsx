@@ -52,7 +52,7 @@ export default function Entry({ entry }: { entry: IEntry }) {
           title: classes.headerTitle,
           action: classes.headerAction,
         }}
-        avatar={<Avatar>{entry.bookmark_count}</Avatar>}
+        avatar={<Avatar className={classes.headerAvatarIcon}>{entry.bookmark_count}</Avatar>}
         title="users"
         variant="outlined"
         action={

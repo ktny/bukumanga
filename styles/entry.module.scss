@@ -1,6 +1,7 @@
+@import "../styles/vars";
+
 .root {
   width: 300px;
-  // height: 450px;
   position: relative;
   @media screen and (max-width: 480px) {
     width: 85vw;
@@ -10,14 +11,25 @@
 .headerRoot {
   align-items: center;
   padding: 8px 16px;
-  background-color: #f3f3f3;
+  background-color: $primary;
+  cursor: pointer;
   &:hover {
-    cursor: pointer;
+    .headerTitle {
+      text-decoration: underline;
+      text-decoration-color: $accent;
+      text-decoration-thickness: 2px;
+      text-underline-offset: 1px;
+    }
   }
 }
 
 .headerAvatar {
   margin-right: 8px;
+  cursor: pointer;
+}
+
+.headerAvatarIcon {
+  background-color: $accent;
 }
 
 .headerTitle {
@@ -28,16 +40,17 @@
   margin-top: 0;
 }
 
-.avatar {
-  background-color: red;
-}
-
 .body {
   position: relative;
   height: calc(100% - 56px);
+  cursor: pointer;
   &:hover {
-    cursor: pointer;
-    background-color: #f3f3f3;
+    .title {
+      text-decoration: underline;
+      text-decoration-color: $accent;
+      text-decoration-thickness: 2px;
+      text-underline-offset: 1px;
+    }
   }
 }
 
