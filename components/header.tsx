@@ -20,11 +20,11 @@ export default function Header(props) {
               <SearchIcon />
             </IconButton>
           </AccordionSummary>
-          <Typography variant="h6" component="h1" color="inherit">
+          <Typography variant="h1" component="h1" color="inherit" className={classes.title}>
             {siteName}
           </Typography>
           <Typography variant="subtitle2" component="div" color="primary" className={classes.count}>
-            {props.count} HIT
+            <span className={classes.countNum}>{props.count}</span>HIT
           </Typography>
         </Toolbar>
         <AccordionDetails className={classes.accDetails}>

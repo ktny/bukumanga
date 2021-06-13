@@ -93,8 +93,8 @@ export default function Entry({ entry }: { entry: IEntry }) {
         </CardContent>
         {showComment ? (
           <Box className={classes.comments} p={2}>
-            {entry.comments.map(comment => (
-              <Box>
+            {entry.comments.map((comment, i) => (
+              <Box key={i}>
                 <Box my={1.5}>
                   <Avatar variant="square" className={classes.commentIcon} src={comment.icon} alt={comment.username} />
                   <span className={classes.commentContent}>{comment.content}</span>

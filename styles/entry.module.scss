@@ -64,11 +64,13 @@
 }
 
 .title {
-  font-size: 15px;
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 3;
   overflow: hidden;
+  font-size: 15px;
+  font-family: "Noto Sans JP", sans-serif;
+  font-weight: 700;
 }
 
 .captions {
@@ -105,8 +107,9 @@
 }
 
 .commentContent {
-  font-size: 13px;
   margin-right: 4px;
+  font-size: 13px;
+  font-family: "Noto Sans JP", sans-serif;
 }
 
 .commentUsername {
