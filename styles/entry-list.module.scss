@@ -28,4 +28,9 @@
   bottom: 16px;
   right: 16px;
   z-index: $favZIndex;
+  background-color: $primary !important;
+  color: $white;
+  &:hover {
+    opacity: 0.8;
+  }
 }
