@@ -64,7 +64,7 @@ export default function Entry({ entry }: { entry: IEntry }) {
       />
       <Box className={classes.body} onClick={openEntryPage}>
         <Box className={classes.imageContainer}>
-          <Skeleton className={classes.imageSkeleton} variant="rect" width="300" height="210" animation="wave" />
+          <Skeleton className={classes.imageSkeleton} variant="rect" width={300} height={210} animation="wave" />
           <Image
             className={classes.image}
             layout="responsive"
