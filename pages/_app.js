@@ -7,7 +7,7 @@ import { StylesProvider } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import "../styles/global.css";
 
-const siteName = "BUKUMANGA!";
+export const siteName = "BUKUMANGA";
 
 export default function MyApp(props) {
   const { Component, pageProps } = props;

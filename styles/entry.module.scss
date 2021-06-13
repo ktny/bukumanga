@@ -3,6 +3,7 @@
 .root {
   width: 300px;
   position: relative;
+  background-color: $white;
   @media screen and (max-width: 480px) {
     width: 85vw;
   }
@@ -11,12 +12,12 @@
 .headerRoot {
   align-items: center;
   padding: 8px 16px;
-  background-color: $primary;
+  background-color: $secondary;
   cursor: pointer;
   &:hover {
     .headerTitle {
       text-decoration: underline;
-      text-decoration-color: $accent;
+      text-decoration-color: $primary;
       text-decoration-thickness: 2px;
       text-underline-offset: 1px;
     }
@@ -29,7 +30,7 @@
 }
 
 .headerAvatarIcon {
-  background-color: $accent;
+  background-color: $primary;
 }
 
 .headerTitle {
@@ -47,7 +48,7 @@
   &:hover {
     .title {
       text-decoration: underline;
-      text-decoration-color: $accent;
+      text-decoration-color: $primary;
       text-decoration-thickness: 2px;
       text-underline-offset: 1px;
     }

@@ -2,8 +2,7 @@ import { Accordion, AccordionSummary, AccordionDetails, Toolbar, Typography, Ico
 import SearchIcon from "@material-ui/icons/Search";
 import Search from "./search/search";
 import classes from "../styles/header.module.scss";
-
-const siteName = "BUKUMANGA!";
+import { siteName } from "../pages/_app";
 
 export default function Header(props) {
   return (
@@ -11,12 +10,7 @@ export default function Header(props) {
       <Accordion className={classes.accordion} square expanded={props.isHeaderExpanded}>
         <Toolbar>
           <AccordionSummary classes={{ content: classes.accContent, expanded: classes.accExpanded }}>
-            <IconButton
-              edge="start"
-              className={classes.iconButton}
-              color="inherit"
-              onClick={() => props.setIsHeaderExpanded(expanded => !expanded)}
-            >
+            <IconButton edge="start" color="inherit" onClick={() => props.setIsHeaderExpanded(expanded => !expanded)}>
               <SearchIcon />
             </IconButton>
           </AccordionSummary>

@@ -10,9 +10,9 @@ export default function Search(props) {
     <Box>
       <Period {...props}></Period>
       <Divider classes={{ root: classes.divider }} />
-      <Keyword {...props}></Keyword>
-      <Divider classes={{ root: classes.divider }} />
       <BookmarkCount {...props}></BookmarkCount>
+      <Divider classes={{ root: classes.divider }} />
+      <Keyword {...props}></Keyword>
       <Divider classes={{ root: classes.divider }} />
       <Order {...props}></Order>
     </Box>

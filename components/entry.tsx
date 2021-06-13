@@ -64,6 +64,7 @@ export default function Entry({ entry }: { entry: IEntry }) {
       />
       <Box className={classes.body} onClick={openEntryPage}>
         <Box className={classes.imageContainer}>
+          <Divider />
           <Skeleton className={classes.imageSkeleton} variant="rect" width={300} height={210} animation="wave" />
           <Image
             className={classes.image}
@@ -73,8 +74,8 @@ export default function Entry({ entry }: { entry: IEntry }) {
             width="300"
             height="210"
           ></Image>
+          <Divider />
         </Box>
-        <Divider />
         <CardContent className={classes.content}>
           <Typography className={classes.title} component="h2" gutterBottom>
             {entry.title}
