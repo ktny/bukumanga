@@ -1,21 +1,21 @@
 import React, { Dispatch, SetStateAction } from "react";
 import { Box, TextField } from "@material-ui/core";
-import Chips, { IChip } from "./chips";
+// import Chips, { IChip } from "./chips";
 
-const chips: IChip<string>[] = [
-  { label: "少年ジャンプ+", value: "shonenjumpplus.com" },
-  { label: "コミックDAYS", value: "comic-days.com" },
-  { label: "となりのヤングジャンプ", value: "tonarinoyj.jp" },
-  { label: "ジャンプルーキー", value: "rookie.shonenjump.com" },
-  // { label: "コミックウォーカー", value: "comic-walker.com" },
-  // { label: "マンガクロス", value: "mangacross.jp" },
-  // { label: "コミックアクション", value: "comic-action.com" },
-  // { label: "くらげバンチ", value: "kuragebunch.com" },
-  // { label: "マガポケ", value: "pocket.shonenmagazine.com" },
-  // { label: "サンデーうぇぶり", value: "www.sunday-webry.com" },
-  // { label: "MAGCOMI", value: "magcomi.com" },
-  // { label: "ニコニコ静画", value: "seiga.nicovideo.jp" },
-];
+// const chips: IChip<string>[] = [
+//   { label: "少年ジャンプ+", value: "shonenjumpplus.com" },
+//   { label: "コミックDAYS", value: "comic-days.com" },
+//   { label: "となりのヤングジャンプ", value: "tonarinoyj.jp" },
+//   { label: "ジャンプルーキー", value: "rookie.shonenjump.com" },
+//   { label: "コミックウォーカー", value: "comic-walker.com" },
+//   { label: "マンガクロス", value: "mangacross.jp" },
+//   { label: "コミックアクション", value: "comic-action.com" },
+//   { label: "くらげバンチ", value: "kuragebunch.com" },
+//   { label: "マガポケ", value: "pocket.shonenmagazine.com" },
+//   { label: "サンデーうぇぶり", value: "www.sunday-webry.com" },
+//   { label: "MAGCOMI", value: "magcomi.com" },
+//   { label: "ニコニコ静画", value: "seiga.nicovideo.jp" },
+// ];
 
 export default function Keyword({
   keyword,
@@ -28,18 +28,18 @@ export default function Keyword({
     setKeyword(event.target.value);
   };
 
-  const handleClickChip = (chip: IChip<string>) => {
-    return () => {
-      setKeyword(chip.value);
-    };
-  };
+  // const handleClickChip = (chip: IChip<string>) => {
+  //   return () => {
+  //     setKeyword(chip.value);
+  //   };
+  // };
 
   return (
     <Box>
       <TextField label="キーワード" size="small" fullWidth value={keyword} onChange={handleInputChange} />
-      <Box className="mt1">
+      {/* <Box className="mt1">
         <Chips chips={chips} clickHandler={handleClickChip}></Chips>
-      </Box>
+      </Box> */}
     </Box>
   );
 }

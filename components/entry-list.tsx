@@ -39,9 +39,9 @@ export default function EntryList({
 
   return (
     <Box className={classes.root}>
-      <Grid container spacing={3} className={classes.gridContainer}>
+      <Grid container className={classes.gridContainer}>
         {entries.map((entry, i) => (
-          <Grid item key={i}>
+          <Grid item key={i} className={classes.gridItem}>
             <Entry entry={entry} key={entry.id}></Entry>
           </Grid>
         ))}

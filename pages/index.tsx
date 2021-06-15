@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
 import { useDebounce } from "use-debounce";
 import useMedia from "use-media";
-import EntryList from "../components/entry-list";
 import Layout from "../components/layout";
+import Search from "../components/search/search";
+import EntryList from "../components/entry-list";
 import search, { PER_PAGE } from "./api/search";
 import classes from "../styles/index.module.scss";
 
@@ -88,7 +89,8 @@ export default function Home() {
 
   return (
     <Layout {...props}>
-      <EntryList {...props}></EntryList>
+      {/* <Search {...props} /> */}
+      <EntryList {...props} />
     </Layout>
   );
 }

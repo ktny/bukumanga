@@ -1,15 +1,5 @@
-import {
-  Accordion,
-  AccordionSummary,
-  AccordionDetails,
-  AppBar,
-  Drawer,
-  Toolbar,
-  Typography,
-  IconButton,
-} from "@material-ui/core";
+import { AppBar, Toolbar, Typography, IconButton } from "@material-ui/core";
 import SearchIcon from "@material-ui/icons/Search";
-import Search from "./search/search";
 import classes from "../styles/header.module.scss";
 import { siteName } from "../pages/_app";
 
