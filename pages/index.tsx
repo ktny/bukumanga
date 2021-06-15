@@ -89,7 +89,6 @@ export default function Home() {
   return (
     <Layout {...props}>
       <EntryList {...props}></EntryList>
-      {isHeaderExpanded ? <div className={classes.overlay} onClick={() => setIsHeaderExpanded(false)}></div> : <></>}
     </Layout>
   );
 }
