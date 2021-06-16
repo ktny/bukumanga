@@ -3,6 +3,7 @@ import { useDebounce } from "use-debounce";
 import useMedia from "use-media";
 import Layout from "../components/layout";
 import Search from "../components/search/search";
+import Order from "../components/search/order";
 import EntryList from "../components/entry-list";
 import search, { PER_PAGE } from "./api/search";
 import classes from "../styles/index.module.scss";
@@ -92,6 +93,7 @@ export default function Home() {
   return (
     <Layout {...props}>
       <Search {...props} />
+      <Order {...props} />
       <EntryList {...props} />
     </Layout>
   );

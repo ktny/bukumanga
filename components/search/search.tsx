@@ -4,7 +4,6 @@ import Period from "./period";
 import Keyword from "./keyword";
 import BookmarkCount from "./bookmark-count";
 import { defaultKeyword, defaultStartDate, defaultEndDate, defaultBookmarkCount } from "../../pages/index";
-import Order from "./order";
 import classes from "../../styles/search.module.scss";
 
 export default function Search(props) {
@@ -28,8 +27,6 @@ export default function Search(props) {
           <RefreshIcon></RefreshIcon>
         </IconButton>
       </Tooltip>
-
-      {/* <Order {...props}></Order> */}
     </Box>
   );
 }

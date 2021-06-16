@@ -1,9 +1,5 @@
 @import "./vars.scss";
 
-.root {
-  margin-top: 24px;
-}
-
 .gridContainer {
   justify-content: space-between;
   @media screen and (max-width: 480px) {

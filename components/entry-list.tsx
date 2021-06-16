@@ -38,7 +38,7 @@ export default function EntryList({
   }, []);
 
   return (
-    <Box className={classes.root}>
+    <Box>
       <Grid container className={classes.gridContainer}>
         {entries.map((entry, i) => (
           <Grid item key={i} className={classes.gridItem}>
