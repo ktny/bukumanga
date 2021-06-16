@@ -6,21 +6,19 @@ import { siteName } from "../pages/_app";
 export default function Header(props) {
   return (
     <header>
-      <AppBar>
-        <Toolbar variant="dense">
-          <IconButton
-            edge="start"
-            className={classes.menuButton}
-            color="inherit"
-            onClick={() => props.setIsHeaderExpanded(expanded => !expanded)}
-          >
-            <SearchIcon />
-          </IconButton>
-          <Typography variant="h6" color="inherit">
-            {siteName}
-          </Typography>
-        </Toolbar>
-      </AppBar>
+      <Toolbar variant="dense">
+        <IconButton
+          edge="start"
+          className={classes.menuButton}
+          color="inherit"
+          onClick={() => props.setIsHeaderExpanded(expanded => !expanded)}
+        >
+          {/* <SearchIcon /> */}
+        </IconButton>
+        <Typography variant="h6" color="inherit">
+          {siteName}
+        </Typography>
+      </Toolbar>
     </header>
   );
 }

@@ -89,7 +89,7 @@ export default function Home() {
 
   return (
     <Layout {...props}>
-      {/* <Search {...props} /> */}
+      <Search {...props} />
       <EntryList {...props} />
     </Layout>
   );

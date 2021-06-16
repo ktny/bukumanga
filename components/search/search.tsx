@@ -7,14 +7,13 @@ import classes from "../../styles/search.module.scss";
 
 export default function Search(props) {
   return (
-    <Box>
-      <Period {...props}></Period>
-      <Divider classes={{ root: classes.divider }} />
-      <BookmarkCount {...props}></BookmarkCount>
-      <Divider classes={{ root: classes.divider }} />
+    <Box className={classes.root}>
       <Keyword {...props}></Keyword>
-      <Divider classes={{ root: classes.divider }} />
-      <Order {...props}></Order>
+      <Divider orientation="vertical" flexItem classes={{ root: classes.divider }} />
+      <Period {...props}></Period>
+      <Divider orientation="vertical" flexItem classes={{ root: classes.divider }} />
+      <BookmarkCount {...props}></BookmarkCount>
+      {/* <Order {...props}></Order> */}
     </Box>
   );
 }
