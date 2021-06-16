@@ -1,7 +1,7 @@
 @import "./vars.scss";
 
 .header {
-  margin-top: 16px;
+  margin-top: 24px;
 }
 
 .accordion {
@@ -23,19 +23,4 @@
 
 .countNum {
   margin-right: 4px;
-}
-
-.accContent {
-  margin: 0;
-}
-
-.accExpanded {
-  margin: 0 !important;
-}
-
-.accDetails {
-  padding: 8px 32px;
-  @media screen and (max-width: 480px) {
-    padding: 0 16px 8px;
-  }
 }

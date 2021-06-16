@@ -7,17 +7,19 @@ import EntryList from "../components/entry-list";
 import search, { PER_PAGE } from "./api/search";
 import classes from "../styles/index.module.scss";
 
-export default function Home() {
-  const defaultEndDate = new Date();
-  const defaultStartDate = new Date();
-  defaultStartDate.setDate(defaultStartDate.getDate() - 7); // デフォルトを今週にする
+export const defaultEndDate = new Date();
+export const defaultStartDate = new Date();
+defaultStartDate.setDate(defaultStartDate.getDate() - 7); // デフォルトを今週にする
+export const defaultKeyword = "";
+export const defaultBookmarkCount = 10;
 
+export default function Home() {
   // 各種state
   const [entries, setEntries] = useState([]);
   const [startDate, setStartDate] = useState(defaultStartDate);
   const [endDate, setEndDate] = useState(defaultEndDate);
-  const [keyword, setKeyword] = useState("");
-  const [bookmarkCount, setBookmarkCount] = useState(10);
+  const [keyword, setKeyword] = useState(defaultKeyword);
+  const [bookmarkCount, setBookmarkCount] = useState(defaultBookmarkCount);
   const [orderKey, setOrderKey] = useState("bookmark_count");
   const [orderAsc, setOrderAsc] = useState(false);
   const [page, setPage] = useState(0);
