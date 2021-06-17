@@ -1,3 +1,7 @@
 .root {
-  flex-grow: 1;
+  border-bottom: 1px solid #999;
+  @media screen and (min-width: 481px) {
+    flex-grow: 1;
+    border-bottom: none;
+  }
 }

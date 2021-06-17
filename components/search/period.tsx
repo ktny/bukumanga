@@ -24,13 +24,25 @@ export default function Period({
 
   return (
     <Box className={classes.root}>
-      <Grid container spacing={2} className={classes.gridContainer}>
-        <Grid item>
-          <TextField id="date" type="date" value={date2str(startDate)} onChange={handleInputChangeStartDate} />
+      <Grid container className={classes.gridContainer}>
+        <Grid item className={classes.gridItem}>
+          <TextField
+            id="date"
+            type="date"
+            value={date2str(startDate)}
+            onChange={handleInputChangeStartDate}
+            classes={{ root: classes.input }}
+          />
         </Grid>
         <span className={classes.glue}>~</span>
-        <Grid item>
-          <TextField id="date" type="date" value={date2str(endDate)} onChange={handleInputChangeEndDate} />
+        <Grid item className={classes.gridItem}>
+          <TextField
+            id="date"
+            type="date"
+            value={date2str(endDate)}
+            onChange={handleInputChangeEndDate}
+            classes={{ root: classes.input }}
+          />
         </Grid>
       </Grid>
     </Box>

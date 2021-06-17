@@ -55,24 +55,6 @@
   }
 }
 
-.imageContainer {
-  position: relative;
-}
-
-.imageSkeleton {
-  position: absolute;
-  z-index: 0;
-  @media screen and (max-width: 480px) {
-    width: 100%;
-    height: 100%;
-  }
-}
-
-.image {
-  position: absolute;
-  z-index: 1;
-}
-
 .content {
   cursor: pointer;
   padding-bottom: 16px !important;

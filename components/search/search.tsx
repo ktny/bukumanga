@@ -22,11 +22,13 @@ export default function Search(props) {
       <Divider orientation="vertical" flexItem classes={{ root: classes.divider }} />
       <BookmarkCount {...props}></BookmarkCount>
       <Divider orientation="vertical" flexItem classes={{ root: classes.divider }} />
-      <Tooltip title="Reset" classes={{ tooltip: classes.tooltip }}>
-        <IconButton onClick={reset}>
-          <RefreshIcon></RefreshIcon>
-        </IconButton>
-      </Tooltip>
+      <Box className={classes.reset}>
+        <Tooltip title="Reset" classes={{ tooltip: classes.tooltip }}>
+          <IconButton onClick={reset}>
+            <RefreshIcon></RefreshIcon>
+          </IconButton>
+        </Tooltip>
+      </Box>
     </Box>
   );
 }
