@@ -1,11 +1,19 @@
+@import "./vars.scss";
+
 .root {
   display: flex;
-  justify-content: flex-end;
   align-items: center;
-  margin: 24px 0 -16px;
+  margin-bottom: -16px;
 }
 
-.subTitle {
-  font-size: 16px;
-  margin-right: 8px;
+.count {
+  margin-right: 1rem;
+  font-size: 1rem;
+  line-height: 1;
+}
+
+.countNum {
+  margin-right: 4px;
+  line-height: 1;
+  color: $primary;
 }

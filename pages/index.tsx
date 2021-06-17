@@ -1,12 +1,10 @@
 import { useState, useEffect } from "react";
 import { useDebounce } from "use-debounce";
-import useMedia from "use-media";
 import Layout from "../components/layout";
 import Search from "../components/search/search";
-import Order from "../components/search/order";
 import EntryList from "../components/entry-list";
 import search, { PER_PAGE } from "./api/search";
-import classes from "../styles/index.module.scss";
+import { IEntry, Props } from "../models/model";
 
 export const defaultEndDate = new Date();
 export const defaultStartDate = new Date();
@@ -16,7 +14,7 @@ export const defaultBookmarkCount = 10;
 
 export default function Home() {
   // 各種state
-  const [entries, setEntries] = useState([]);
+  const [entries, setEntries] = useState<IEntry[]>([]);
   const [startDate, setStartDate] = useState(defaultStartDate);
   const [endDate, setEndDate] = useState(defaultEndDate);
   const [keyword, setKeyword] = useState(defaultKeyword);
@@ -26,8 +24,7 @@ export default function Home() {
   const [page, setPage] = useState(0);
   const [hasMore, setHasMore] = useState(true);
   const [count, setCount] = useState(0);
-  const [isHeaderExpanded, setIsHeaderExpanded] = useState(false);
-  const isSP = useMedia({ maxWidth: "480px" });
+  // const isSP = useMedia({ maxWidth: "480px" });
 
   // イベントを間引くためにdebounce変数をトリガーにする
   const [debounceStartDate] = useDebounce(startDate, 500);
@@ -64,7 +61,7 @@ export default function Home() {
     );
   }, [page]);
 
-  const props = {
+  const props: Props = {
     entries,
     setEntries,
     startDate,
@@ -85,15 +82,11 @@ export default function Home() {
     setHasMore,
     count,
     setCount,
-    isHeaderExpanded,
-    setIsHeaderExpanded,
-    isSP,
   };
 
   return (
     <Layout {...props}>
       <Search {...props} />
-      <Order {...props} />
       <EntryList {...props} />
     </Layout>
   );

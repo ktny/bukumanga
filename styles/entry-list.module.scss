@@ -1,17 +1,21 @@
 @import "./vars.scss";
 
-.gridContainer {
+.root {
+  margin-top: 24px;
+}
+
+.entryList {
   justify-content: space-between;
   @media screen and (max-width: 480px) {
     justify-content: center;
   }
 }
 
-.gridItem {
+.entryItem {
   margin-top: 24px;
 }
 
-.gridItemEmpty {
+.entryItemEmpty {
   width: 324px;
 }
 
