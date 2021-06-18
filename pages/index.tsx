@@ -1,29 +1,30 @@
 import { useState, useEffect } from "react";
 import { useDebounce } from "use-debounce";
-import useMedia from "use-media";
-import EntryList from "../components/entry-list";
 import Layout from "../components/layout";
+import Search from "../components/search/search";
+import EntryList from "../components/entry-list";
 import search, { PER_PAGE } from "./api/search";
-import classes from "../styles/index.module.scss";
+import { IEntry, Props } from "../models/model";
+
+export const defaultEndDate = new Date();
+export const defaultStartDate = new Date();
+defaultStartDate.setDate(defaultStartDate.getDate() - 7); // デフォルトを今週にする
+export const defaultKeyword = "";
+export const defaultBookmarkCount = 10;
 
 export default function Home() {
-  const defaultEndDate = new Date();
-  const defaultStartDate = new Date();
-  defaultStartDate.setDate(defaultStartDate.getDate() - 7); // デフォルトを今週にする
-
   // 各種state
-  const [entries, setEntries] = useState([]);
+  const [entries, setEntries] = useState<IEntry[]>([]);
   const [startDate, setStartDate] = useState(defaultStartDate);
   const [endDate, setEndDate] = useState(defaultEndDate);
-  const [keyword, setKeyword] = useState("");
-  const [bookmarkCount, setBookmarkCount] = useState(10);
+  const [keyword, setKeyword] = useState(defaultKeyword);
+  const [bookmarkCount, setBookmarkCount] = useState(defaultBookmarkCount);
   const [orderKey, setOrderKey] = useState("bookmark_count");
   const [orderAsc, setOrderAsc] = useState(false);
   const [page, setPage] = useState(0);
   const [hasMore, setHasMore] = useState(true);
   const [count, setCount] = useState(0);
-  const [isHeaderExpanded, setIsHeaderExpanded] = useState(false);
-  const isSP = useMedia({ maxWidth: "480px" });
+  // const isSP = useMedia({ maxWidth: "480px" });
 
   // イベントを間引くためにdebounce変数をトリガーにする
   const [debounceStartDate] = useDebounce(startDate, 500);
@@ -60,7 +61,7 @@ export default function Home() {
     );
   }, [page]);
 
-  const props = {
+  const props: Props = {
     entries,
     setEntries,
     startDate,
@@ -81,15 +82,12 @@ export default function Home() {
     setHasMore,
     count,
     setCount,
-    isHeaderExpanded,
-    setIsHeaderExpanded,
-    isSP,
   };
 
   return (
     <Layout {...props}>
-      <EntryList {...props}></EntryList>
-      {isHeaderExpanded ? <div className={classes.overlay} onClick={() => setIsHeaderExpanded(false)}></div> : <></>}
+      <Search {...props} />
+      <EntryList {...props} />
     </Layout>
   );
 }

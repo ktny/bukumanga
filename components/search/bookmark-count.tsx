@@ -1,12 +1,10 @@
 import React, { Dispatch, SetStateAction } from "react";
-import { Grid, Input, Slider, Typography } from "@material-ui/core";
-import { range } from "../../helpers/util";
+import { Box, Grid, Input, Slider } from "@material-ui/core";
 import classes from "../../styles/bookmark-count.module.scss";
 
 export default function BookmarkCount({
   bookmarkCount,
   setBookmarkCount,
-  isSP,
 }: {
   bookmarkCount: number;
   setBookmarkCount: Dispatch<SetStateAction<number>>;
@@ -15,9 +13,6 @@ export default function BookmarkCount({
   const MIN = 0;
   const MAX = 1000;
   const STEP = 10;
-
-  const marksStep = isSP ? 200 : 100;
-  const marks = range(0, 1000, marksStep).map(n => ({ value: n, label: n.toString() }));
 
   const handleSliderChange = (event: any, newValue: number) => {
     setBookmarkCount(newValue);
@@ -40,38 +35,32 @@ export default function BookmarkCount({
   };
 
   return (
-    <>
-      <Typography id="input" variant="subtitle1" gutterBottom>
-        ブックマーク数
-      </Typography>
-      <Grid container spacing={4} alignItems="center">
-        <Grid item xs={9}>
-          <Slider
-            min={MIN}
-            max={MAX}
-            step={STEP}
-            marks={marks}
-            value={typeof bookmarkCount === "number" ? bookmarkCount : 0}
-            getAriaValueText={valuetext}
-            classes={{ root: classes.sliderRoot }}
-            onChange={handleSliderChange}
-          />
-        </Grid>
-        <Grid item xs={3}>
+    <Box className={classes.root}>
+      <Grid container spacing={2} alignItems="center">
+        <Grid item>
           <Input
             value={bookmarkCount}
             onChange={handleInputChange}
             onBlur={handleBlur}
-            inputProps={{
-              min: MIN,
-              max: MAX,
-              step: STEP,
-              type: "number",
-              "aria-labelledby": "input",
-            }}
+            inputProps={{ min: MIN, max: MAX, step: STEP, type: "number" }}
+            className={classes.sliderInput}
+            color="secondary"
+          />
+          <span>users</span>
+        </Grid>
+        <Grid item className={classes.gridItemSlider}>
+          <Slider
+            min={MIN}
+            max={MAX}
+            step={STEP}
+            value={typeof bookmarkCount === "number" ? bookmarkCount : 0}
+            getAriaValueText={valuetext}
+            classes={{ root: classes.sliderRoot }}
+            onChange={handleSliderChange}
+            color="secondary"
           />
         </Grid>
       </Grid>
-    </>
+    </Box>
   );
 }

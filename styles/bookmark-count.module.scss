@@ -1,5 +1,19 @@
 @import "./vars.scss";
 
+.root {
+  flex-basis: 30%;
+  min-width: 200px;
+  flex-grow: 2;
+}
+
+.gridItemSlider {
+  flex-grow: 1;
+}
+
 .sliderRoot {
   color: $primary;
+}
+
+.sliderInput {
+  width: 56px;
 }

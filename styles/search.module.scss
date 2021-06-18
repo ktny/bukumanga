@@ -1,3 +1,36 @@
+@import "./vars.scss";
+
+.root {
+  margin-top: 24px;
+  @media screen and (min-width: 481px) {
+    background-color: $white;
+    padding: 0 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 40px;
+    box-shadow: 0 0 1px #ccc;
+  }
+  @media screen and (min-width: 481px) and (max-width: 768px) {
+    overflow-x: scroll;
+  }
+}
+
 .divider {
-  margin: 16px 0;
+  margin-top: 8px;
+  @media screen and (min-width: 481px) {
+    margin: 0 24px;
+  }
+}
+
+.reset {
+  display: none;
+  @media screen and (min-width: 481px) {
+    display: block;
+  }
+}
+
+.tooltip {
+  font-size: 16px;
 }

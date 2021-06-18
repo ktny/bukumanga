@@ -1,20 +1,22 @@
 @import "./vars.scss";
 
 .root {
-  height: 100%;
-  padding: 24px;
-  overflow: auto;
+  margin-top: 24px;
 }
 
-.gridContainer {
-  justify-content: space-around;
+.entryList {
+  justify-content: space-between;
   @media screen and (max-width: 480px) {
     justify-content: center;
   }
 }
 
-.gridItemEmpty {
-  width: 324px;
+.entryItem {
+  margin-top: 24px;
+}
+
+.entryItemEmpty {
+  width: 300px;
 }
 
 .progress {

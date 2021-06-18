@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import Image from "next/image";
 import { IEntry } from "../models/model";
 import { Avatar, Box, Card, CardHeader, CardContent, Divider, IconButton, Typography } from "@material-ui/core";
-import Skeleton from "@material-ui/lab/Skeleton";
 import SmsOutlinedIcon from "@material-ui/icons/SmsOutlined";
 import classes from "../styles/entry.module.scss";
 
@@ -63,19 +62,15 @@ export default function Entry({ entry }: { entry: IEntry }) {
         onClick={openBookMarkPage}
       />
       <Box className={classes.body} onClick={openEntryPage}>
-        <Box className={classes.imageContainer}>
-          <Divider />
-          <Skeleton className={classes.imageSkeleton} variant="rect" width={300} height={210} animation="wave" />
-          <Image
-            className={classes.image}
-            layout="responsive"
-            src={entry.image.Valid ? entry.image.String : dummyImg}
-            alt={entry.title}
-            width="300"
-            height="210"
-          ></Image>
-          <Divider />
-        </Box>
+        <Divider />
+        <Image
+          layout="responsive"
+          src={entry.image.Valid ? entry.image.String : dummyImg}
+          alt={entry.title}
+          width="300"
+          height="210"
+        ></Image>
+        <Divider />
         <CardContent className={classes.content}>
           <Typography className={classes.title} component="h2" gutterBottom>
             {entry.title}

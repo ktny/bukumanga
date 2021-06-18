@@ -8,6 +8,9 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import "../styles/global.css";
 
 export const siteName = "BUKUMANGA";
+const description = "はてなブックマーク数を元にwebマンガをまとめているサイトです。";
+const url = "https://bukumanga.com";
+const imgUrl = "../public/icon.png";
 
 export default function MyApp(props) {
   const { Component, pageProps } = props;
@@ -25,16 +28,16 @@ export default function MyApp(props) {
       <Head>
         <title>{siteName}</title>
         <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
-        <meta name="description" content="はてなブックマーク数を元にweb漫画をまとめているサイトです。" />
-        <meta
-          property="og:image"
-          content={`https://og-image.vercel.app/${encodeURI(
-            siteName
-          )}.png?theme=light&md=0&fontSize=75px&images=https%3A%2F%2Fassets.vercel.com%2Fimage%2Fupload%2Ffront%2Fassets%2Fdesign%2Fnextjs-black-logo.svg`}
-        />
-        <meta name="og:title" content={siteName} />
+        <meta name="description" content={description} />
+        <meta property="og:url" content={url} />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content={siteName} />
+        <meta property="og:description" content={description} />
+        <meta property="og:site_name" content={siteName} />
+        <meta property="og:image" content={imgUrl} />
         <meta name="twitter:card" content="summary_large_image" />
         <link rel="icon" href="/favicon.ico" />
+        <link rel="canonical" href={url} />
       </Head>
       <StylesProvider injectFirst>
         {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}

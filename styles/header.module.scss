@@ -1,44 +1,11 @@
 @import "./vars.scss";
 
 .header {
-  position: sticky;
-  left: 0;
-  top: 0;
-  z-index: $headerZIndex;
-}
-
-.accordion {
-  background-color: $secondary;
+  margin-top: 24px;
 }
 
 .title {
   font-size: 20px;
   font-weight: 700;
   line-height: 1;
-}
-
-.count {
-  margin-left: 16px;
-  font-size: 20px;
-  line-height: 1;
-  color: $primary;
-}
-
-.countNum {
-  margin-right: 4px;
-}
-
-.accContent {
-  margin: 0;
-}
-
-.accExpanded {
-  margin: 0 !important;
-}
-
-.accDetails {
-  padding: 8px 32px;
-  @media screen and (max-width: 480px) {
-    padding: 0 16px 8px;
-  }
 }
