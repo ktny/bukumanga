@@ -37,9 +37,11 @@ export default function EntryList(props: Props) {
             <Entry entry={entry} key={entry.id}></Entry>
           </Grid>
         ))}
-        {range(0, props.count % 5).map((_, i) => (
-          <Grid item key={`empty${i}`} className={classes.entryItemEmpty}></Grid>
-        ))}
+        {/* 最終行のspace-betweenが崩れないように高さ0で幅は他のカードと同じダミーを用意する */}
+        <Grid item className={classes.entryItemEmpty}></Grid>
+        <Grid item className={classes.entryItemEmpty}></Grid>
+        <Grid item className={classes.entryItemEmpty}></Grid>
+        <Grid item className={classes.entryItemEmpty}></Grid>
       </Grid>
       {props.hasMore ? <CircularProgress className={classes.progress} color="secondary" /> : ""}
       <Fab className={classes.fab} onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>

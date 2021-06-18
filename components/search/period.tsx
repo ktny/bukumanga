@@ -32,6 +32,7 @@ export default function Period({
             value={date2str(startDate)}
             onChange={handleInputChangeStartDate}
             classes={{ root: classes.input }}
+            color="secondary"
           />
         </Grid>
         <span className={classes.glue}>~</span>
@@ -42,6 +43,7 @@ export default function Period({
             value={date2str(endDate)}
             onChange={handleInputChangeEndDate}
             classes={{ root: classes.input }}
+            color="secondary"
           />
         </Grid>
       </Grid>

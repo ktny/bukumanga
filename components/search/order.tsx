@@ -22,7 +22,7 @@ export default function Order(props: Props) {
         <IconButton edge="start" onClick={handleOrderAscClick}>
           {props.orderAsc ? <ArrowUpwardIcon /> : <ArrowDownwardIcon />}
         </IconButton>
-        <Select value={props.orderKey} onChange={handleOrderKeyChange}>
+        <Select value={props.orderKey} onChange={handleOrderKeyChange} color="secondary">
           <MenuItem value={"bookmark_count"}>Bookmark Count</MenuItem>
           <MenuItem value={"hotentried_at"}>Hot Entried Date</MenuItem>
           <MenuItem value={"published_at"}>Published Date</MenuItem>

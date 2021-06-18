@@ -44,6 +44,7 @@ export default function BookmarkCount({
             onBlur={handleBlur}
             inputProps={{ min: MIN, max: MAX, step: STEP, type: "number" }}
             className={classes.sliderInput}
+            color="secondary"
           />
           <span>users</span>
         </Grid>
@@ -56,6 +57,7 @@ export default function BookmarkCount({
             getAriaValueText={valuetext}
             classes={{ root: classes.sliderRoot }}
             onChange={handleSliderChange}
+            color="secondary"
           />
         </Grid>
       </Grid>

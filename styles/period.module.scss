@@ -1,7 +1,7 @@
 .root {
   @media screen and (min-width: 481px) {
-    flex-basis: 420px;
-    min-width: 420px;
+    flex-basis: 380px;
+    min-width: 380px;
     padding: 16px 0;
   }
 }
@@ -28,7 +28,7 @@
   margin: 0 12px;
   @media screen and (min-width: 481px) {
     font-size: 24px;
-    margin: 0;
+    // margin: 0;
   }
 }
 

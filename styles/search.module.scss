@@ -12,6 +12,9 @@
     border-radius: 40px;
     box-shadow: 0 0 1px #ccc;
   }
+  @media screen and (min-width: 481px) and (max-width: 768px) {
+    overflow-x: scroll;
+  }
 }
 
 .divider {
