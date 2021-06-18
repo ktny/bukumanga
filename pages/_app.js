@@ -6,7 +6,7 @@ import Head from "next/head";
 import { StylesProvider } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import "../styles/global.css";
-import * as gtag from "~/src/lib/gtag";
+import * as gtag from "../src/lib/gtag";
 
 export const siteName = "BUKUMANGA";
 const description = "はてなブックマーク数を元にwebマンガをまとめているサイトです。";
@@ -24,18 +24,18 @@ export default function MyApp(props) {
     }
   }, []);
 
-  useEffect(() => {
-    if (!gtag.existsGaId) {
-      return;
-    }
-    const handleRouteChange = path => {
-      gtag.pageview(path);
-    };
-    router.events.on("routeChangeComplete", handleRouteChange);
-    return () => {
-      router.events.off("routeChangeComplete", handleRouteChange);
-    };
-  }, [router.events]);
+  // useEffect(() => {
+  //   if (!gtag.existsGaId) {
+  //     return;
+  //   }
+  //   const handleRouteChange = path => {
+  //     gtag.pageview(path);
+  //   };
+  //   router.events.on("routeChangeComplete", handleRouteChange);
+  //   return () => {
+  //     router.events.off("routeChangeComplete", handleRouteChange);
+  //   };
+  // }, [router.events]);
 
   return (
     <React.Fragment>
