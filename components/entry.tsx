@@ -55,9 +55,13 @@ export default function Entry({ entry }: { entry: IEntry }) {
         title="users"
         variant="outlined"
         action={
-          <IconButton onClick={toggleShowComment}>
-            <SmsOutlinedIcon />
-          </IconButton>
+          entry.comments.length ? (
+            <IconButton onClick={toggleShowComment}>
+              <SmsOutlinedIcon />
+            </IconButton>
+          ) : (
+            <></>
+          )
         }
         onClick={openBookMarkPage}
       />
