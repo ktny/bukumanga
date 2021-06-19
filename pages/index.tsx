@@ -24,7 +24,6 @@ export default function Home() {
   const [page, setPage] = useState(0);
   const [hasMore, setHasMore] = useState(true);
   const [count, setCount] = useState(0);
-  // const isSP = useMedia({ maxWidth: "480px" });
 
   // イベントを間引くためにdebounce変数をトリガーにする
   const [debounceStartDate] = useDebounce(startDate, 500);

@@ -1,7 +1,7 @@
 import { date2str } from "../../helpers/util";
 import { SearchResponse } from "../../models/model";
 
-const baseUrl = "http://localhost:5000/entries";
+const baseUrl = `${process.env.API_URL}/entries`;
 export const PER_PAGE = 20;
 
 /**
