@@ -67,13 +67,14 @@ export default function Entry({ entry }: { entry: IEntry }) {
       />
       <Box className={classes.body} onClick={openEntryPage}>
         <Divider />
-        <Image
+        <img src={entry.image.Valid ? entry.image.String : dummyImg} alt={entry.title} width="300" height="210" />
+        {/* <Image
           layout="responsive"
           src={entry.image.Valid ? entry.image.String : dummyImg}
           alt={entry.title}
           width="300"
           height="210"
-        ></Image>
+        ></Image> */}
         <Divider />
         <CardContent className={classes.content}>
           <Typography className={classes.title} component="h2" gutterBottom>
