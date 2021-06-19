@@ -55,26 +55,21 @@ export default function Entry({ entry }: { entry: IEntry }) {
         title="users"
         variant="outlined"
         action={
-          entry.comments.length ? (
-            <IconButton onClick={toggleShowComment}>
-              <SmsOutlinedIcon />
-            </IconButton>
-          ) : (
-            <></>
-          )
+          <IconButton onClick={toggleShowComment}>
+            <SmsOutlinedIcon />
+          </IconButton>
         }
         onClick={openBookMarkPage}
       />
       <Box className={classes.body} onClick={openEntryPage}>
         <Divider />
-        <img src={entry.image.Valid ? entry.image.String : dummyImg} alt={entry.title} width="300" height="210" />
-        {/* <Image
-          layout="responsive"
+        <img
           src={entry.image.Valid ? entry.image.String : dummyImg}
           alt={entry.title}
           width="300"
           height="210"
-        ></Image> */}
+          className={classes.image}
+        />
         <Divider />
         <CardContent className={classes.content}>
           <Typography className={classes.title} component="h2" gutterBottom>
