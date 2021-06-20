@@ -1,66 +1,38 @@
 import React, { useState } from "react";
-import Image from "next/image";
 import { IEntry } from "../models/model";
-import { Avatar, Box, Card, CardHeader, CardContent, Divider, IconButton, Typography } from "@material-ui/core";
-import SmsOutlinedIcon from "@material-ui/icons/SmsOutlined";
+import { Avatar, Box, Card, CardHeader, CardContent, Divider, Typography } from "@material-ui/core";
 import classes from "../styles/entry.module.scss";
 
 export default function Entry({ entry }: { entry: IEntry }) {
   const is_https = entry.url.startsWith("https");
-  const [showComment, setShowComment] = useState(false);
-
-  /**
-   * エントリページに遷移する
-   * @param e マウスイベント
-   */
-  const openEntryPage = (e: React.MouseEvent) => {
-    window.open(entry.url, "_blank");
-  };
 
   /**
    * ブックマークページに遷移する
    * @param e マウスイベント
    */
-  const openBookMarkPage = (e: React.MouseEvent) => {
-    e.preventDefault();
-    e.stopPropagation();
+  const bookMarkUrl = () => {
     const s = is_https ? "s/" : "";
     const protocol = is_https ? "https" : "http";
-    window.open(`https://b.hatena.ne.jp/entry/${s}${entry.url.replace(`${protocol}://`, "")}`, "_blank");
-  };
-
-  /**
-   * コメント表示・非表示を切り替える
-   * @param e マウスイベント
-   */
-  const toggleShowComment = (e: React.MouseEvent) => {
-    e.preventDefault();
-    e.stopPropagation();
-    setShowComment(showComment => !showComment);
+    return `https://b.hatena.ne.jp/entry/${s}${entry.url.replace(`${protocol}://`, "")}`;
   };
 
   const dummyImg = "./noimage.png";
 
   return (
     <Card className={classes.root}>
-      <CardHeader
-        classes={{
-          root: classes.headerRoot,
-          avatar: classes.headerAvatar,
-          title: classes.headerTitle,
-          action: classes.headerAction,
-        }}
-        avatar={<Avatar className={classes.headerAvatarIcon}>{entry.bookmark_count}</Avatar>}
-        title="users"
-        variant="outlined"
-        // action={
-        //   <IconButton onClick={toggleShowComment}>
-        //     <SmsOutlinedIcon />
-        //   </IconButton>
-        // }
-        onClick={openBookMarkPage}
-      />
-      <Box className={classes.body} onClick={openEntryPage}>
+      <a href={bookMarkUrl()} target="_blank" className={classes.bookmarkLink}>
+        <CardHeader
+          classes={{
+            root: classes.headerRoot,
+            avatar: classes.headerAvatar,
+            title: classes.headerTitle,
+          }}
+          avatar={<Avatar className={classes.headerAvatarIcon}>{entry.bookmark_count}</Avatar>}
+          title="users"
+          variant="outlined"
+        />
+      </a>
+      <a href={entry.url} target="_blank" className={classes.body}>
         <Divider />
         <img
           src={entry.image.Valid ? entry.image.String : dummyImg}
@@ -83,23 +55,7 @@ export default function Entry({ entry }: { entry: IEntry }) {
             </Typography>
           </Box>
         </CardContent>
-        {/* {showComment ? (
-          <Box className={classes.comments} p={2}>
-            {entry.comments.map((comment, i) => (
-              <Box key={i}>
-                <Box my={1.5}>
-                  <Avatar variant="square" className={classes.commentIcon} src={comment.icon} alt={comment.username} />
-                  <span className={classes.commentContent}>{comment.content}</span>
-                  <span className={classes.commentUsername}>({comment.username})</span>
-                </Box>
-                <Divider />
-              </Box>
-            ))}
-          </Box>
-        ) : (
-          <></>
-        )} */}
-      </Box>
+      </a>
     </Card>
   );
 }

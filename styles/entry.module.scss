@@ -9,6 +9,11 @@
   }
 }
 
+.bookmarkLink {
+  color: $text;
+  text-decoration: none;
+}
+
 .headerRoot {
   align-items: center;
   padding: 8px 16px;
@@ -37,13 +42,11 @@
   font-size: 18px;
 }
 
-.headerAction {
-  margin-top: 0;
-}
-
 .body {
   position: relative;
   height: calc(100% - 56px);
+  color: $text;
+  text-decoration: none;
   cursor: pointer;
   &:hover {
     .title {
