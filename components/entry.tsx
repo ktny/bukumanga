@@ -54,11 +54,11 @@ export default function Entry({ entry }: { entry: IEntry }) {
         avatar={<Avatar className={classes.headerAvatarIcon}>{entry.bookmark_count}</Avatar>}
         title="users"
         variant="outlined"
-        action={
-          <IconButton onClick={toggleShowComment}>
-            <SmsOutlinedIcon />
-          </IconButton>
-        }
+        // action={
+        //   <IconButton onClick={toggleShowComment}>
+        //     <SmsOutlinedIcon />
+        //   </IconButton>
+        // }
         onClick={openBookMarkPage}
       />
       <Box className={classes.body} onClick={openEntryPage}>
@@ -84,7 +84,7 @@ export default function Entry({ entry }: { entry: IEntry }) {
             </Typography>
           </Box>
         </CardContent>
-        {showComment ? (
+        {/* {showComment ? (
           <Box className={classes.comments} p={2}>
             {entry.comments.map((comment, i) => (
               <Box key={i}>
@@ -99,7 +99,7 @@ export default function Entry({ entry }: { entry: IEntry }) {
           </Box>
         ) : (
           <></>
-        )}
+        )} */}
       </Box>
     </Card>
   );
