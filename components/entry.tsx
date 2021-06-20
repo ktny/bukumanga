@@ -39,8 +39,7 @@ export default function Entry({ entry }: { entry: IEntry }) {
     setShowComment(showComment => !showComment);
   };
 
-  const dummyImg =
-    "https://cdn-ak-scissors.b.st-hatena.com/image/square/abf4f339344e96f39ffb9c18856eca5d454e63f8/height=280;version=1;width=400/https%3A%2F%2Fanond.hatelabo.jp%2Fimages%2Fog-image-1500.gif";
+  const dummyImg = "./noimage.png";
 
   return (
     <Card className={classes.root}>
