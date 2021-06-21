@@ -3,7 +3,13 @@ import RefreshIcon from "@material-ui/icons/Refresh";
 import Period from "./period";
 import Keyword from "./keyword";
 import BookmarkCount from "./bookmark-count";
-import { defaultKeyword, defaultStartDate, defaultEndDate, defaultBookmarkCount } from "../../pages/index";
+import {
+  defaultKeyword,
+  defaultStartDate,
+  defaultEndDate,
+  defaultBookmarkCount,
+  defaultBookmarkCountMax,
+} from "../../pages/index";
 import classes from "../../styles/search.module.scss";
 
 export default function Search(props) {
@@ -12,6 +18,7 @@ export default function Search(props) {
     props.setStartDate(defaultStartDate);
     props.setEndDate(defaultEndDate);
     props.setBookmarkCount(defaultBookmarkCount);
+    props.setBookmarkCountMax(defaultBookmarkCountMax);
   };
 
   return (
