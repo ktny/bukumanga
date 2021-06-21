@@ -9,7 +9,8 @@ export const PER_PAGE = 20;
  * @param startDate 開始日
  * @param endDate 終了日
  * @param keyword キーワード
- * @param bookmarkCount ブックマーク数
+ * @param bookmarkCount 最小ブックマーク数
+ * @param bookmarkCountMax 最大ブックマーク数
  * @param orderKey 並び替えのキー列
  * @param orderAsc 昇順/降順
  * @param page ページ番号
@@ -21,6 +22,7 @@ export default function search(
   endDate: Date,
   keyword: string,
   bookmarkCount: number,
+  bookmarkCountMax: number,
   orderKey: string,
   orderAsc: boolean,
   page: number = 0,
@@ -31,6 +33,7 @@ export default function search(
     endDate: date2str(endDate),
     keyword: keyword,
     bookmarkCount: bookmarkCount.toString(),
+    bookmarkCountMax: bookmarkCountMax.toString(),
     order: makeOrderParam(orderKey, orderAsc),
     page: page.toString(),
     perPage: perPage.toString(),

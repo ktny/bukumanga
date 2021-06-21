@@ -11,6 +11,7 @@ export const defaultStartDate = new Date();
 defaultStartDate.setDate(defaultStartDate.getDate() - 7); // デフォルトを今週にする
 export const defaultKeyword = "";
 export const defaultBookmarkCount = 10;
+export const defaultBookmarkCountMax = 2000;
 
 export default function Home() {
   // 各種state
@@ -19,6 +20,7 @@ export default function Home() {
   const [endDate, setEndDate] = useState(defaultEndDate);
   const [keyword, setKeyword] = useState(defaultKeyword);
   const [bookmarkCount, setBookmarkCount] = useState(defaultBookmarkCount);
+  const [bookmarkCountMax, setBookmarkCountMax] = useState(defaultBookmarkCountMax);
   const [orderKey, setOrderKey] = useState("bookmark_count");
   const [orderAsc, setOrderAsc] = useState(false);
   const [page, setPage] = useState(0);
@@ -30,19 +32,36 @@ export default function Home() {
   const [debounceEndDate] = useDebounce(endDate, 500);
   const [debounceKeyword] = useDebounce(keyword, 500);
   const [debounceBookmarkCount] = useDebounce(bookmarkCount, 500);
+  const [debounceBookmarkCountMax] = useDebounce(bookmarkCountMax, 500);
 
   // 検索条件変更時のeffect
   useEffect(() => {
     setPage(0);
     setHasMore(true);
-    search(debounceStartDate, debounceEndDate, debounceKeyword, debounceBookmarkCount, orderKey, orderAsc).then(res => {
+    search(
+      debounceStartDate,
+      debounceEndDate,
+      debounceKeyword,
+      debounceBookmarkCount,
+      debounceBookmarkCountMax,
+      orderKey,
+      orderAsc
+    ).then(res => {
       setEntries(res.entries);
       setCount(res.count);
       if (res.entries.length < PER_PAGE) {
         setHasMore(false);
       }
     });
-  }, [debounceStartDate, debounceEndDate, debounceKeyword, debounceBookmarkCount, orderKey, orderAsc]);
+  }, [
+    debounceStartDate,
+    debounceEndDate,
+    debounceKeyword,
+    debounceBookmarkCount,
+    debounceBookmarkCountMax,
+    orderKey,
+    orderAsc,
+  ]);
 
   // 無限スクロールのeffect
   useEffect(() => {
@@ -50,14 +69,21 @@ export default function Home() {
     if (!hasMore || page === 0) {
       return;
     }
-    search(debounceStartDate, debounceEndDate, debounceKeyword, debounceBookmarkCount, orderKey, orderAsc, page).then(
-      res => {
-        setEntries(entries => [...entries, ...res.entries]);
-        if (res.entries.length < PER_PAGE) {
-          setHasMore(false);
-        }
+    search(
+      debounceStartDate,
+      debounceEndDate,
+      debounceKeyword,
+      debounceBookmarkCount,
+      debounceBookmarkCountMax,
+      orderKey,
+      orderAsc,
+      page
+    ).then(res => {
+      setEntries(entries => [...entries, ...res.entries]);
+      if (res.entries.length < PER_PAGE) {
+        setHasMore(false);
       }
-    );
+    });
   }, [page]);
 
   const props: Props = {
@@ -71,6 +97,8 @@ export default function Home() {
     setKeyword,
     bookmarkCount,
     setBookmarkCount,
+    bookmarkCountMax,
+    setBookmarkCountMax,
     orderKey,
     setOrderKey,
     orderAsc,

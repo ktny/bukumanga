@@ -41,6 +41,8 @@ export interface Props {
   setKeyword: Dispatch<SetStateAction<string>>;
   bookmarkCount: number;
   setBookmarkCount: Dispatch<SetStateAction<number>>;
+  bookmarkCountMax: number;
+  setBookmarkCountMax: Dispatch<SetStateAction<number>>;
   orderKey: string;
   setOrderKey: Dispatch<SetStateAction<string>>;
   orderAsc: boolean;
