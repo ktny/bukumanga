@@ -7,13 +7,24 @@ export default function Entry({ entry }: { entry: IEntry }) {
   const is_https = entry.url.startsWith("https");
 
   /**
-   * ブックマークページに遷移する
+   * ブックマークページのURLを返す
    * @param e マウスイベント
    */
   const bookMarkUrl = () => {
     const s = is_https ? "s/" : "";
     const protocol = is_https ? "https" : "http";
     return `https://b.hatena.ne.jp/entry/${s}${entry.url.replace(`${protocol}://`, "")}`;
+  };
+
+  /**
+   * エントリページのURLを返す
+   * @param e マウスイベント
+   */
+  const entryUrl = () => {
+    if (entry.url.startsWith("http://neetsha.com")) {
+      return entry.url.replace("http://neetsha.com", "https://neetsha.jp");
+    }
+    return entry.url;
   };
 
   const dummyImg = "./noimage.png";
@@ -32,7 +43,7 @@ export default function Entry({ entry }: { entry: IEntry }) {
           variant="outlined"
         />
       </a>
-      <a href={entry.url} target="_blank" className={classes.body}>
+      <a href={entryUrl()} target="_blank" className={classes.body}>
         <Divider />
         <img
           src={entry.image.Valid ? entry.image.String : dummyImg}
