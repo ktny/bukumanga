@@ -1,4 +1,4 @@
-# BUKUMANGA
+# bukumanga
 
 ## About
 
