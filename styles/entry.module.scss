@@ -61,7 +61,12 @@
 .image {
   display: block;
   width: 100%;
+  height: auto;
   object-fit: cover;
+  max-height: 260px;
+  @media screen and (min-width: 481px) {
+    max-height: 210px;
+  }
 }
 
 .content {
