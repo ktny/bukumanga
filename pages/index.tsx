@@ -10,7 +10,7 @@ export const defaultEndDate = new Date();
 export const defaultStartDate = new Date();
 defaultStartDate.setDate(defaultStartDate.getDate() - 6); // デフォルトを今週にする
 export const defaultKeyword = "";
-export const defaultBookmarkCount = 10;
+export const defaultBookmarkCount = 0;
 export const defaultBookmarkCountMax = 2000;
 
 export default function Home() {
