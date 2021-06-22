@@ -8,7 +8,7 @@ import { IEntry, Props } from "../models/model";
 
 export const defaultEndDate = new Date();
 export const defaultStartDate = new Date();
-defaultStartDate.setDate(defaultStartDate.getDate() - 7); // デフォルトを今週にする
+defaultStartDate.setDate(defaultStartDate.getDate() - 6); // デフォルトを今週にする
 export const defaultKeyword = "";
 export const defaultBookmarkCount = 10;
 export const defaultBookmarkCountMax = 2000;
