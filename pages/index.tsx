@@ -11,10 +11,11 @@ export const defaultEndDate = new Date();
 export const defaultStartDate = new Date();
 defaultStartDate.setDate(defaultStartDate.getDate() - 6); // デフォルトを今週にする
 const defaultPeriods: IPeriod[] = [
-  { label: "今週", days: 7, active: true },
-  { label: "今月", days: 30, active: false },
-  { label: "今年", days: 365, active: false },
-  { label: "歴代", days: -1, active: false },
+  { label: "本日", days: 1, active: false },
+  { label: "週間", days: 7, active: true },
+  { label: "月間", days: 30, active: false },
+  { label: "年間", days: 365, active: false },
+  { label: "歴代", days: Infinity, active: false },
 ];
 
 export const defaultKeyword = "";

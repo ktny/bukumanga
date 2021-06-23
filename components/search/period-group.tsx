@@ -19,10 +19,10 @@ export default function PeriodGroup({
     return () => {
       const endDate = new Date();
       let startDate = new Date(endDate.getTime());
-      if (days === -1) {
+      if (days === Infinity) {
         startDate = new Date(2005, 0, 1);
       } else {
-        startDate.setDate(startDate.getDate() - days);
+        startDate.setDate(startDate.getDate() - (days - 1));
       }
       setStartDate(startDate);
       setEndDate(endDate);
