@@ -1,14 +1,22 @@
 import { useState, useEffect } from "react";
 import { useDebounce } from "use-debounce";
+import useMedia from "use-media";
 import Layout from "../components/layout";
 import Search from "../components/search/search";
 import EntryList from "../components/entry-list";
 import search, { PER_PAGE } from "./api/search";
-import { IEntry, Props } from "../models/model";
+import { IEntry, IPeriod, Props } from "../models/model";
 
 export const defaultEndDate = new Date();
 export const defaultStartDate = new Date();
 defaultStartDate.setDate(defaultStartDate.getDate() - 6); // デフォルトを今週にする
+const defaultPeriods: IPeriod[] = [
+  { label: "今週", days: 7, active: true },
+  { label: "今月", days: 30, active: false },
+  { label: "今年", days: 365, active: false },
+  { label: "歴代", days: -1, active: false },
+];
+
 export const defaultKeyword = "";
 export const defaultBookmarkCount = 0;
 export const defaultBookmarkCountMax = 2000;
@@ -17,6 +25,7 @@ export default function Home() {
   // 各種state
   const [entries, setEntries] = useState<IEntry[]>([]);
   const [startDate, setStartDate] = useState(defaultStartDate);
+  const [periods, setPeriods] = useState<IPeriod[]>(defaultPeriods);
   const [endDate, setEndDate] = useState(defaultEndDate);
   const [keyword, setKeyword] = useState(defaultKeyword);
   const [bookmarkCount, setBookmarkCount] = useState(defaultBookmarkCount);
@@ -33,6 +42,9 @@ export default function Home() {
   const [debounceKeyword] = useDebounce(keyword, 500);
   const [debounceBookmarkCount] = useDebounce(bookmarkCount, 500);
   const [debounceBookmarkCountMax] = useDebounce(bookmarkCountMax, 500);
+
+  // SPモードとの境界
+  const isSP = useMedia({ maxWidth: "480px" });
 
   // 検索条件変更時のeffect
   useEffect(() => {
@@ -93,6 +105,8 @@ export default function Home() {
     setStartDate,
     endDate,
     setEndDate,
+    periods,
+    setPeriods,
     keyword,
     setKeyword,
     bookmarkCount,
@@ -109,6 +123,7 @@ export default function Home() {
     setHasMore,
     count,
     setCount,
+    isSP,
   };
 
   return (

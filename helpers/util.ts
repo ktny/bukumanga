@@ -1,3 +1,5 @@
+import { IPeriod } from "../models/model";
+
 /**
  * Dateをstringに変換する
  * @param date 日付
@@ -19,4 +21,16 @@ export const date2str = (date: Date): string => {
  */
 export const range = (start: number, end: number, step: number = 1): number[] => {
   return [...Array(Math.floor((end - start) / step) + 1)].map((_, i) => start + i * step);
+};
+
+/**
+ * すべてinactiveにした期間リストを返す
+ * @param periods 期間リスト
+ * @return すべてinactiveの期間リスト
+ */
+export const getInActivePeriods = (periods: IPeriod[]) => {
+  return periods.map(period => {
+    period.active = false;
+    return period;
+  });
 };
