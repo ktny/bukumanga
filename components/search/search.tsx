@@ -1,6 +1,7 @@
 import { Box, Divider, IconButton, Tooltip } from "@material-ui/core";
 import RefreshIcon from "@material-ui/icons/Refresh";
 import Period from "./period";
+import PeriodGroup from "./period-group";
 import Keyword from "./keyword";
 import BookmarkCount from "./bookmark-count";
 import {
@@ -26,6 +27,7 @@ export default function Search(props) {
       <Keyword {...props}></Keyword>
       <Divider orientation="vertical" flexItem classes={{ root: classes.divider }} />
       <Period {...props}></Period>
+      {props.isSP ? <PeriodGroup {...props} className={classes.periodGroup}></PeriodGroup> : <></>}
       <Divider orientation="vertical" flexItem classes={{ root: classes.divider }} />
       <BookmarkCount {...props}></BookmarkCount>
       <Divider orientation="vertical" flexItem classes={{ root: classes.divider }} />

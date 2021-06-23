@@ -15,6 +15,12 @@ export interface IEntry {
   comments: IComment[];
 }
 
+export interface IPeriod {
+  label: string;
+  days: number;
+  active: boolean;
+}
+
 export interface IComment {
   id: number;
   entry_id: string;
@@ -37,6 +43,8 @@ export interface Props {
   setStartDate: Dispatch<SetStateAction<Date>>;
   endDate: Date;
   setEndDate: Dispatch<SetStateAction<Date>>;
+  periods: IPeriod[];
+  setPeriods: Dispatch<SetStateAction<IPeriod[]>>;
   keyword: string;
   setKeyword: Dispatch<SetStateAction<string>>;
   bookmarkCount: number;
@@ -53,4 +61,5 @@ export interface Props {
   setHasMore: Dispatch<SetStateAction<boolean>>;
   count: number;
   setCount: Dispatch<SetStateAction<number>>;
+  isSP: boolean;
 }

@@ -30,7 +30,7 @@ export default function Entry({ entry }: { entry: IEntry }) {
   const dummyImg = "./noimage.png";
 
   return (
-    <Card className={classes.root}>
+    <Card className={classes.root} component="article">
       <a href={bookMarkUrl()} target="_blank" className={classes.bookmarkLink}>
         <CardHeader
           classes={{

@@ -1,0 +1,14 @@
+@import "./vars.scss";
+
+.periods {
+  margin-top: 8px;
+  @media screen and (min-width: 481px) {
+    margin-top: 0;
+  }
+}
+
+.periodItem {
+  padding: 0 16px;
+  font-family: "Noto Sans JP", sans-serif;
+  font-size: 16px;
+}
