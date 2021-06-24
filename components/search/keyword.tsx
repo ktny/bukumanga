@@ -15,7 +15,7 @@ export default function Keyword({
 
   return (
     <Box className={classes.root}>
-      <InputBase fullWidth value={keyword} placeholder="Search" onChange={handleInputChange} />
+      <InputBase fullWidth value={keyword} placeholder="スペース区切りでAND検索" onChange={handleInputChange} />
     </Box>
   );
 }

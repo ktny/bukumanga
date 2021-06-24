@@ -59,7 +59,7 @@ export default function Entry({ entry }: { entry: IEntry }) {
           </Typography>
           <Box className={classes.captions}>
             <Typography className={classes.caption} variant="caption" component="p" gutterBottom>
-              Quoted by: {entry.domain}, b.hatena.ne.jp
+              Quote: {entry.domain}, b.hatena.ne.jp
             </Typography>
             <Typography className={classes.caption} variant="caption" component="p" gutterBottom>
               Hot Entried: {entry.hotentried_at.slice(0, 10)} / Published: {entry.published_at.slice(0, 10)}
