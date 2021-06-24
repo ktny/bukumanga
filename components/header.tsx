@@ -7,7 +7,9 @@ export default function Header(props) {
   return (
     <header className={classes.header}>
       <Typography variant="h6" className={classes.title}>
-        {siteName}
+        <a href="/" className={classes.link}>
+          {siteName}
+        </a>
       </Typography>
       {props.isSP ? <></> : <PeriodGroup {...props}></PeriodGroup>}
     </header>
