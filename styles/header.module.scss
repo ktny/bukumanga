@@ -2,8 +2,14 @@
 
 .header {
   display: flex;
+  justify-content: space-between;
   align-items: center;
   margin-top: 24px;
+}
+
+.headerLeft {
+  display: flex;
+  align-items: center;
 }
 
 .title {
@@ -13,4 +19,9 @@
 .link {
   color: $text;
   text-decoration: none;
+}
+
+.mt {
+  margin-top: 32px;
+  font-weight: bold;
 }

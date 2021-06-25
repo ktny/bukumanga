@@ -5,3 +5,7 @@ body {
 .active {
   color: #f62e36;
 }
+
+.bold {
+  font-weight: bold;
+}
