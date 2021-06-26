@@ -11,7 +11,7 @@ import * as gtag from "../src/lib/gtag";
 export const siteName = "BUKUMANGA";
 const description = "はてなブックマーク数を元にwebマンガをまとめているサイトです。";
 const url = "https://bukumanga.com";
-const imgUrl = "../public/icon.png";
+const imgUrl = "https://bukumanga.com/icon.png";
 
 export default function MyApp(props) {
   const { Component, pageProps } = props;
