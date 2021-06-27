@@ -9,7 +9,7 @@ import "../styles/global.css";
 import * as gtag from "../src/lib/gtag";
 
 export const siteName = "BUKUMANGA";
-const description = "はてなブックマーク数を元にwebマンガをまとめたサイト";
+export const description = "はてなブックマーク数を元にwebマンガをまとめたサイト";
 const url = "https://bukumanga.com";
 const imgUrl = "https://bukumanga.com/icon.png";
 
