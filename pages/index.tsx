@@ -13,7 +13,7 @@ defaultStartDate.setDate(defaultStartDate.getDate() - 6); // デフォルトを�
 const defaultPeriods: IPeriod[] = [
   { label: "直近", days: 2, active: false },
   { label: "週間", days: 7, active: true },
-  { label: "月間", days: 30, active: false },
+  { label: "月間", days: 31, active: false },
   { label: "年間", days: 365, active: false },
   { label: "歴代", days: Infinity, active: false },
 ];
