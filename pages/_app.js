@@ -9,7 +9,9 @@ import "../styles/global.css";
 import * as gtag from "../src/lib/gtag";
 
 export const siteName = "BUKUMANGA";
-export const description = "はてなブックマーク数を元にwebマンガをまとめたサイト";
+export const title = "BUKUMANGA - はてなブックマーク数を元にwebマンガをまとめたサイト";
+export const description =
+  "BUKUMANGAははてなブックマーク数を元にwebマンガをまとめたサイトです。話題になったweb公開の漫画を多くまとめています。";
 const url = "https://bukumanga.com";
 const imgUrl = "https://bukumanga.com/icon.png";
 
@@ -40,9 +42,7 @@ export default function MyApp(props) {
   return (
     <React.Fragment>
       <Head>
-        <title>
-          {siteName} - {description}
-        </title>
+        <title>{title}</title>
         <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
         <meta name="description" content={description} />
         <meta property="og:url" content={url} />
