@@ -41,7 +41,6 @@ export default function Entry({ entry }: { entry: IEntry }) {
       fontFamily: "Noto Sans JP",
       backgroundColor: "#fafafa",
       margin: 0,
-      padding: "16px 0 8px",
       "&:not(:last-child)": {
         borderBottom: 0,
       },
@@ -50,7 +49,6 @@ export default function Entry({ entry }: { entry: IEntry }) {
       },
       "&$expanded": {
         margin: 0,
-        padding: "16px 0 8px",
       },
     },
     expanded: {},
@@ -58,8 +56,7 @@ export default function Entry({ entry }: { entry: IEntry }) {
 
   const AccordionSummary = withStyles({
     root: {
-      backgroundColor: "#fafafa",
-      padding: 0,
+      padding: "8px 0",
       minHeight: 0,
       "&$expanded": {
         minHeight: 0,
@@ -77,8 +74,6 @@ export default function Entry({ entry }: { entry: IEntry }) {
   const AccordionDetails = withStyles({
     root: {
       padding: 0,
-      paddingTop: "8px",
-      backgroundColor: "#fafafa",
     },
   })(MuiAccordionDetails);
 
@@ -124,18 +119,20 @@ export default function Entry({ entry }: { entry: IEntry }) {
               </AccordionSummary>
               <AccordionDetails>
                 <div>
-                  {entry.comments.slice(0, 3).map(comment => (
-                    <div>
-                      <div className={classes.comment}>
-                        <Typography className={classes.caption} variant="caption" component="p">
-                          <Avatar className={classes.commentIcon} src={comment.icon} />
-                          <span className={classes.commentContent}>{comment.content}</span>
-                          <span className={classes.commentUsername}>({comment.username})</span>
-                        </Typography>
+                  <div className={classes.comments}>
+                    {entry.comments.map(comment => (
+                      <div>
+                        <div className={classes.comment}>
+                          <Typography className={classes.caption} variant="caption" component="p">
+                            <Avatar className={classes.commentIcon} src={comment.icon} />
+                            <span className={classes.commentContent}>{comment.content}</span>
+                            <span className={classes.commentUsername}>({comment.username})</span>
+                          </Typography>
+                        </div>
+                        <Divider />
                       </div>
-                      <Divider />
-                    </div>
-                  ))}
+                    ))}
+                  </div>
                   <a href={bookMarkUrl()} target="_blank" className={classes.more}>
                     もっと見る
                   </a>
