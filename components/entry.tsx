@@ -56,7 +56,7 @@ export default function Entry({ entry }: { entry: IEntry }) {
 
   const AccordionSummary = withStyles({
     root: {
-      padding: "8px 0",
+      padding: "16px 0",
       minHeight: 0,
       "&$expanded": {
         minHeight: 0,
