@@ -45,17 +45,11 @@
 .body {
   position: relative;
   height: calc(100% - 56px);
-  color: $text;
-  text-decoration: none;
+}
+
+.imageLink {
+  display: block;
   cursor: pointer;
-  &:hover {
-    .title {
-      text-decoration: underline;
-      text-decoration-color: $primary;
-      text-decoration-thickness: 2px;
-      text-underline-offset: 1px;
-    }
-  }
 }
 
 .image {
@@ -77,6 +71,19 @@
   padding-bottom: 16px !important;
 }
 
+.titleLink {
+  display: block;
+  color: $text;
+  text-decoration: none;
+  cursor: pointer;
+  &:hover {
+    text-decoration: underline;
+    text-decoration-color: $primary;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 1px;
+  }
+}
+
 .title {
   display: -webkit-box;
   -webkit-box-orient: vertical;
@@ -86,7 +93,9 @@
   font-family: "Noto Sans JP", sans-serif;
   font-weight: 700;
   line-height: 1.5;
-  height: calc(1.5em * 3);
+  @media screen and (min-width: 481px) {
+    height: calc(1.5em * 3);
+  }
 }
 
 .captions {
@@ -98,29 +107,15 @@
   word-break: break-all;
 }
 
-.comments {
-  position: absolute;
-  left: 0;
-  top: 0;
-  z-index: 100;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(255, 255, 255, 0.95);
-  overflow: scroll;
-  &::-webkit-scrollbar {
-    width: 8px;
-  }
-  &::-webkit-scrollbar-thumb {
-    background-color: rgba(0, 0, 50, 0.5);
-    border-radius: 4px;
-  }
+.comment {
+  margin: 8px auto;
 }
 
 .commentIcon {
   display: inline-block;
   vertical-align: middle;
-  width: 24px;
-  height: 24px;
+  width: 20px;
+  height: 20px;
   margin-right: 8px;
 }
 
@@ -132,4 +127,23 @@
 
 .commentUsername {
   font-size: 11px;
+}
+
+// .commentIcon {
+//   margin-right: 4px;
+// }
+
+.more {
+  display: block;
+  margin-top: 8px;
+  text-align: right;
+}
+
+.commentOpen {
+  display: flex;
+  align-items: center;
+}
+
+.commentBlockTitle {
+  margin-left: 4px;
 }
