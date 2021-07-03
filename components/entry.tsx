@@ -39,7 +39,9 @@ export default function Entry({ entry }: { entry: IEntry }) {
       border: "none",
       boxShadow: "none",
       fontFamily: "Noto Sans JP",
-      marginTop: "16px",
+      backgroundColor: "#fafafa",
+      margin: 0,
+      padding: "16px 0 8px",
       "&:not(:last-child)": {
         borderBottom: 0,
       },
@@ -47,7 +49,8 @@ export default function Entry({ entry }: { entry: IEntry }) {
         display: "none",
       },
       "&$expanded": {
-        marginTop: "16px",
+        margin: 0,
+        padding: "16px 0 8px",
       },
     },
     expanded: {},
