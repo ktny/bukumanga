@@ -1,6 +1,11 @@
 import React, { useState } from "react";
+import { withStyles } from "@material-ui/core/styles";
 import { IEntry } from "../models/model";
 import { Avatar, Box, Card, CardHeader, CardContent, Divider, Typography } from "@material-ui/core";
+import MuiAccordion from "@material-ui/core/Accordion";
+import MuiAccordionSummary from "@material-ui/core/AccordionSummary";
+import MuiAccordionDetails from "@material-ui/core/AccordionDetails";
+import ChatOutlinedIcon from "@material-ui/icons/ChatOutlined";
 import classes from "../styles/entry.module.scss";
 
 export default function Entry({ entry }: { entry: IEntry }) {
@@ -29,6 +34,51 @@ export default function Entry({ entry }: { entry: IEntry }) {
 
   const dummyImg = "./noimage.png";
 
+  const Accordion = withStyles({
+    root: {
+      border: "none",
+      boxShadow: "none",
+      fontFamily: "Noto Sans JP",
+      marginTop: "16px",
+      "&:not(:last-child)": {
+        borderBottom: 0,
+      },
+      "&:before": {
+        display: "none",
+      },
+      "&$expanded": {
+        marginTop: "16px",
+      },
+    },
+    expanded: {},
+  })(MuiAccordion);
+
+  const AccordionSummary = withStyles({
+    root: {
+      backgroundColor: "#fafafa",
+      padding: 0,
+      minHeight: 0,
+      "&$expanded": {
+        minHeight: 0,
+      },
+    },
+    content: {
+      margin: 0,
+      "&$expanded": {
+        margin: 0,
+      },
+    },
+    expanded: {},
+  })(MuiAccordionSummary);
+
+  const AccordionDetails = withStyles({
+    root: {
+      padding: 0,
+      paddingTop: "8px",
+      backgroundColor: "#fafafa",
+    },
+  })(MuiAccordionDetails);
+
   return (
     <Card className={classes.root} component="article">
       <a href={bookMarkUrl()} target="_blank" className={classes.bookmarkLink}>
@@ -43,30 +93,65 @@ export default function Entry({ entry }: { entry: IEntry }) {
           variant="outlined"
         />
       </a>
-      <a href={entryUrl()} target="_blank" className={classes.body}>
+      <div className={classes.body}>
         <Divider />
-        <img
-          src={entry.image.Valid ? entry.image.String : dummyImg}
-          alt={entry.title}
-          width="300"
-          height="210"
-          className={classes.image}
-        />
+        <a href={entryUrl()} target="_blank" className={classes.imageLink}>
+          <img
+            src={entry.image.Valid ? entry.image.String : dummyImg}
+            alt={entry.title}
+            width="300"
+            height="210"
+            className={classes.image}
+          />
+        </a>
         <Divider />
         <CardContent className={classes.content}>
-          <Typography className={classes.title} component="h2" gutterBottom>
-            {entry.title}
-          </Typography>
+          <a href={entryUrl()} target="_blank" className={classes.titleLink}>
+            <Typography className={classes.title} component="h2" gutterBottom title={entry.title}>
+              {entry.title}
+            </Typography>
+          </a>
+          {entry.comments.length ? (
+            <Accordion>
+              <AccordionSummary>
+                <div className={classes.commentOpen}>
+                  <ChatOutlinedIcon></ChatOutlinedIcon>
+                  <span className={classes.commentBlockTitle}>コメントを見る</span>
+                </div>
+              </AccordionSummary>
+              <AccordionDetails>
+                <div>
+                  {entry.comments.slice(0, 3).map(comment => (
+                    <div>
+                      <div className={classes.comment}>
+                        <Typography className={classes.caption} variant="caption" component="p">
+                          <Avatar className={classes.commentIcon} src={comment.icon} />
+                          <span className={classes.commentContent}>{comment.content}</span>
+                          <span className={classes.commentUsername}>({comment.username})</span>
+                        </Typography>
+                      </div>
+                      <Divider />
+                    </div>
+                  ))}
+                  <a href={bookMarkUrl()} target="_blank" className={classes.more}>
+                    もっと見る
+                  </a>
+                </div>
+              </AccordionDetails>
+            </Accordion>
+          ) : (
+            <></>
+          )}
           <Box className={classes.captions}>
             <Typography className={classes.caption} variant="caption" component="p" gutterBottom>
               Quote: {entry.domain}, b.hatena.ne.jp
             </Typography>
             <Typography className={classes.caption} variant="caption" component="p" gutterBottom>
-              Hot Entried: {entry.hotentried_at.slice(0, 10)} / Published: {entry.published_at.slice(0, 10)}
+              Published: {entry.published_at.slice(0, 10)}
             </Typography>
           </Box>
         </CardContent>
-      </a>
+      </div>
     </Card>
   );
 }
