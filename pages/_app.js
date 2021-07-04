@@ -9,9 +9,9 @@ import "../styles/global.css";
 import * as gtag from "../src/lib/gtag";
 
 export const siteName = "BUKUMANGA";
-export const title = "BUKUMANGA - はてなブックマーク数を元にwebマンガをまとめたサイト";
+export const title = "BUKUMANGA - 人気・おすすめのweb漫画が見つかるサイト";
 export const description =
-  "BUKUMANGAははてなブックマーク数を元にwebマンガをまとめたサイトです。話題になったweb公開の漫画を多くまとめています。";
+  "BUKUMANGAは主にはてなブックマークで人気・おすすめのweb漫画が見つかるサイトです。話題になったweb公開のマンガを多くまとめています。";
 const url = "https://bukumanga.com";
 const imgUrl = "https://bukumanga.com/icon.png";
 
