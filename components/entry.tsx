@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { withStyles } from "@material-ui/core/styles";
-import { IEntry } from "../models/model";
+import { IComment, IEntry } from "../models/model";
 import { Avatar, Box, Card, CardHeader, CardContent, Divider, Typography } from "@material-ui/core";
 import MuiAccordion from "@material-ui/core/Accordion";
 import MuiAccordionSummary from "@material-ui/core/AccordionSummary";
@@ -125,7 +125,10 @@ const Entry = React.memo(({ entry }: { entry: IEntry }) => {
                         <div className={classes.comment}>
                           <Typography className={classes.caption} variant="caption" component="p">
                             <Avatar className={classes.commentIcon} src={comment.icon} />
-                            <span className={classes.commentContent}>{comment.content}</span>
+                            <span
+                              className={classes.commentContent}
+                              dangerouslySetInnerHTML={{ __html: comment.content }}
+                            ></span>
                             <span className={classes.commentUsername}>({comment.username})</span>
                           </Typography>
                         </div>
