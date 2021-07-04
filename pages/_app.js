@@ -11,7 +11,7 @@ import * as gtag from "../src/lib/gtag";
 export const siteName = "BUKUMANGA";
 export const title = "BUKUMANGA - 人気・おすすめのweb漫画が見つかるサイト";
 export const description =
-  "BUKUMANGAは主にはてなブックマークで人気・おすすめのweb漫画が見つかるサイトです。話題になったweb公開のマンガを多くまとめています。";
+  "BUKUMANGAは主にはてなブックマークで人気・おすすめのweb漫画が見つかるサイトです。無料で読めるものが多く、ブックマーク数などで話題になったwebマンガのランキングを見ることもできます。";
 const url = "https://bukumanga.com";
 const imgUrl = "https://bukumanga.com/icon.png";
 
