@@ -37,7 +37,7 @@ export default function Header(props) {
           </Typography>
           <Typography gutterBottom>
             当サイトでは、はてな社様のサービス「
-            <a href="https://b.hatena.ne.jp/" target="_href">
+            <a href="https://b.hatena.ne.jp/" target="_blank" rel="noopener nofollow">
               はてなブックマーク
             </a>
             」を元にwebマンガをまとめています。はてな社様への負荷軽減のため一定の間隔を空けて情報を更新しています。
@@ -52,7 +52,7 @@ export default function Header(props) {
             お問い合わせ
           </Typography>
           <Typography gutterBottom>
-            <a href="https://forms.gle/xAngdgWxsJ6QiSwA9" target="_blank">
+            <a href="https://forms.gle/xAngdgWxsJ6QiSwA9" target="_blank" rel="noopener nofollow">
               こちら
             </a>
             のGoogleFormsからお問い合わせお願いします。
@@ -63,13 +63,13 @@ export default function Header(props) {
           <Typography gutterBottom>
             <div>
               <span>Twitter: </span>
-              <a href="https://twitter.com/kattsu_3" target="_blank">
+              <a href="https://twitter.com/kattsu_3" target="_blank" rel="noopener nofollow">
                 @kattsu_3
               </a>
             </div>
             <div>
               <span>GitHub: </span>
-              <a href="https://github.com/ktny/bukumanga" target="_blank">
+              <a href="https://github.com/ktny/bukumanga" target="_blank" rel="noopener nofollow">
                 bukumanga
               </a>
             </div>

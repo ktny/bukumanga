@@ -79,7 +79,7 @@ const Entry = React.memo(({ entry }: { entry: IEntry }) => {
 
   return (
     <Card className={classes.root} component="article">
-      <a href={bookMarkUrl()} target="_blank" className={classes.bookmarkLink}>
+      <a href={bookMarkUrl()} target="_blank" rel="noopener nofollow" className={classes.bookmarkLink}>
         <CardHeader
           classes={{
             root: classes.headerRoot,
@@ -93,7 +93,7 @@ const Entry = React.memo(({ entry }: { entry: IEntry }) => {
       </a>
       <div className={classes.body}>
         <Divider />
-        <a href={entryUrl()} target="_blank" className={classes.imageLink}>
+        <a href={entryUrl()} target="_blank" rel="noopener nofollow" className={classes.imageLink}>
           <img
             src={entry.image.Valid ? entry.image.String : dummyImg}
             alt={entry.title}
@@ -104,7 +104,7 @@ const Entry = React.memo(({ entry }: { entry: IEntry }) => {
         </a>
         <Divider />
         <CardContent className={classes.content}>
-          <a href={entryUrl()} target="_blank" className={classes.titleLink}>
+          <a href={entryUrl()} target="_blank" rel="noopener nofollow" className={classes.titleLink}>
             <Typography className={classes.title} component="h2" gutterBottom title={entry.title}>
               {entry.title}
             </Typography>
@@ -133,7 +133,7 @@ const Entry = React.memo(({ entry }: { entry: IEntry }) => {
                       </div>
                     ))}
                   </div>
-                  <a href={bookMarkUrl()} target="_blank" className={classes.more}>
+                  <a href={bookMarkUrl()} target="_blank" rel="noopener nofollow" className={classes.more}>
                     もっと見る
                   </a>
                 </div>
