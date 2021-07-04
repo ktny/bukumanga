@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction, useEffect } from "react";
+import React, { Dispatch, SetStateAction, useEffect } from "react";
 import lodash from "lodash";
 import { Box, CircularProgress, Fab, Grid } from "@material-ui/core";
 import UpIcon from "@material-ui/icons/KeyboardArrowUp";
@@ -10,7 +10,7 @@ import { range } from "../helpers/util";
 
 const threshold = 100;
 
-export default function EntryList(props: Props) {
+const EntryList = (props: Props) => {
   /**
    * ページを読み込むときのコールバック関数
    */
@@ -49,4 +49,6 @@ export default function EntryList(props: Props) {
       </Fab>
     </Box>
   );
-}
+};
+
+export default EntryList;

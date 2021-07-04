@@ -8,7 +8,7 @@ import MuiAccordionDetails from "@material-ui/core/AccordionDetails";
 import ChatOutlinedIcon from "@material-ui/icons/ChatOutlined";
 import classes from "../styles/entry.module.scss";
 
-export default function Entry({ entry }: { entry: IEntry }) {
+const Entry = React.memo(({ entry }: { entry: IEntry }) => {
   const is_https = entry.url.startsWith("https");
 
   /**
@@ -154,4 +154,6 @@ export default function Entry({ entry }: { entry: IEntry }) {
       </div>
     </Card>
   );
-}
+});
+
+export default Entry;
