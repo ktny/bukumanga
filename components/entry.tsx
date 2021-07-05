@@ -147,14 +147,15 @@ const Entry = React.memo(({ entry }: { entry: IEntry }) => {
             <></>
           )}
           <Box className={classes.captions}>
-            <Typography className={classes.published} variant="subtitle2" component="p" gutterBottom>
-              {diffHours === 0
-                ? "新着"
-                : diffHours < 24
-                ? `${diffHours}時間前`
-                : diffDays < 7
-                ? `${diffDays}日前`
-                : entry.published_at.slice(0, 10)}
+            {diffDays < 7 ? (
+              <Typography className={classes.published} variant="subtitle2" component="p" gutterBottom>
+                {diffHours === 0 ? "新着" : diffHours < 24 ? `${diffHours}時間前` : `${diffDays}日前`}
+              </Typography>
+            ) : (
+              <></>
+            )}
+            <Typography className={classes.caption} variant="caption" component="p" gutterBottom>
+              Published: {entry.published_at.slice(0, 10)}
             </Typography>
             <Typography className={classes.caption} variant="caption" component="p" gutterBottom>
               Quote: {entry.domain}, b.hatena.ne.jp
