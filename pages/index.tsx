@@ -11,7 +11,7 @@ export const defaultEndDate = new Date();
 export const defaultStartDate = new Date();
 defaultStartDate.setDate(defaultStartDate.getDate() - 6); // デフォルトを今週にする
 const defaultPeriods: IPeriod[] = [
-  { label: "直近", days: 2, active: false },
+  { label: "直近", days: 3, active: false },
   { label: "週間", days: 7, active: true },
   { label: "月間", days: 31, active: false },
   { label: "年間", days: 365, active: false },
