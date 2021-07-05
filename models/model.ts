@@ -13,6 +13,8 @@ export interface IEntry {
   hotentried_at: string;
   published_at: string;
   comments: IComment[];
+  created_at: string;
+  updated_at: string;
 }
 
 export interface IPeriod {

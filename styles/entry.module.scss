@@ -15,7 +15,9 @@
 }
 
 .headerRoot {
+  display: flex;
   align-items: center;
+  justify-content: space-between;
   padding: 8px 16px;
   background-color: $secondary;
   cursor: pointer;
@@ -30,11 +32,13 @@
 }
 
 .headerAvatar {
-  margin-right: 8px;
+  display: flex;
+  align-items: center;
   cursor: pointer;
 }
 
 .headerAvatarIcon {
+  margin-right: 8px;
   background-color: $primary;
 }
 

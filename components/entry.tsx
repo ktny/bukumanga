@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { withStyles } from "@material-ui/core/styles";
 import { IComment, IEntry } from "../models/model";
-import { Avatar, Box, Card, CardHeader, CardContent, Divider, Typography } from "@material-ui/core";
+import { Avatar, Box, Card, CardContent, Divider, Typography } from "@material-ui/core";
 import MuiAccordion from "@material-ui/core/Accordion";
 import MuiAccordionSummary from "@material-ui/core/AccordionSummary";
 import MuiAccordionDetails from "@material-ui/core/AccordionDetails";
@@ -77,19 +77,20 @@ const Entry = React.memo(({ entry }: { entry: IEntry }) => {
     },
   })(MuiAccordionDetails);
 
+  const createdAt = new Date(entry.created_at);
+  const diff = new Date().getTime() - createdAt.getTime();
+  const diffHours = Math.floor(diff / (1000 * 60 * 60));
+  const diffDays = Math.floor(diff / (1000 * 60 * 60 * 24));
+
   return (
     <Card className={classes.root} component="article">
       <a href={bookMarkUrl()} target="_blank" rel="noopener nofollow" className={classes.bookmarkLink}>
-        <CardHeader
-          classes={{
-            root: classes.headerRoot,
-            avatar: classes.headerAvatar,
-            title: classes.headerTitle,
-          }}
-          avatar={<Avatar className={classes.headerAvatarIcon}>{entry.bookmark_count}</Avatar>}
-          title="users"
-          variant="outlined"
-        />
+        <div className={classes.headerRoot}>
+          <div className={classes.headerAvatar}>
+            <Avatar className={classes.headerAvatarIcon}>{entry.bookmark_count}</Avatar>
+            <span className={classes.headerTitle}>users</span>
+          </div>
+        </div>
       </a>
       <div className={classes.body}>
         <Divider />
@@ -146,11 +147,17 @@ const Entry = React.memo(({ entry }: { entry: IEntry }) => {
             <></>
           )}
           <Box className={classes.captions}>
-            <Typography className={classes.caption} variant="caption" component="p" gutterBottom>
-              Quote: {entry.domain}, b.hatena.ne.jp
+            <Typography className={classes.published} variant="subtitle2" component="p" gutterBottom>
+              {diffHours === 0
+                ? "新着"
+                : diffHours < 24
+                ? `${diffHours}時間前`
+                : diffDays < 7
+                ? `${diffDays}日前`
+                : entry.published_at.slice(0, 10)}
             </Typography>
             <Typography className={classes.caption} variant="caption" component="p" gutterBottom>
-              Published: {entry.published_at.slice(0, 10)}
+              Quote: {entry.domain}, b.hatena.ne.jp
             </Typography>
           </Box>
         </CardContent>
