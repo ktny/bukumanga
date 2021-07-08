@@ -31,6 +31,7 @@ export default function Home() {
   const [keyword, setKeyword] = useState(defaultKeyword);
   const [bookmarkCount, setBookmarkCount] = useState(defaultBookmarkCount);
   const [bookmarkCountMax, setBookmarkCountMax] = useState(defaultBookmarkCountMax);
+  const [publisherIds, setPublisherIds] = useState<number[]>([]);
   const [orderKey, setOrderKey] = useState("bookmark_count");
   const [orderAsc, setOrderAsc] = useState(false);
   const [page, setPage] = useState(0);
@@ -43,6 +44,7 @@ export default function Home() {
   const [debounceKeyword] = useDebounce(keyword, 500);
   const [debounceBookmarkCount] = useDebounce(bookmarkCount, 500);
   const [debounceBookmarkCountMax] = useDebounce(bookmarkCountMax, 500);
+  const [debouncePublisherIds] = useDebounce(publisherIds, 500);
 
   // SPモードとの境界
   const isSP = useMedia({ maxWidth: "480px" });
@@ -57,6 +59,7 @@ export default function Home() {
       debounceKeyword,
       debounceBookmarkCount,
       debounceBookmarkCountMax,
+      debouncePublisherIds,
       orderKey,
       orderAsc
     ).then(res => {
@@ -72,6 +75,7 @@ export default function Home() {
     debounceKeyword,
     debounceBookmarkCount,
     debounceBookmarkCountMax,
+    debouncePublisherIds,
     orderKey,
     orderAsc,
   ]);
@@ -88,6 +92,7 @@ export default function Home() {
       debounceKeyword,
       debounceBookmarkCount,
       debounceBookmarkCountMax,
+      debouncePublisherIds,
       orderKey,
       orderAsc,
       page
@@ -118,6 +123,8 @@ export default function Home() {
     setOrderKey,
     orderAsc,
     setOrderAsc,
+    publisherIds,
+    setPublisherIds,
     page,
     setPage,
     hasMore,

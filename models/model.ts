@@ -53,6 +53,8 @@ export interface Props {
   setBookmarkCount: Dispatch<SetStateAction<number>>;
   bookmarkCountMax: number;
   setBookmarkCountMax: Dispatch<SetStateAction<number>>;
+  publisherIds: number[];
+  setPublisherIds: Dispatch<SetStateAction<number[]>>;
   orderKey: string;
   setOrderKey: Dispatch<SetStateAction<string>>;
   orderAsc: boolean;

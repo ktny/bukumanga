@@ -1,3 +1,4 @@
+import querystring from "querystring";
 import { date2str } from "../../helpers/util";
 import { SearchResponse } from "../../models/model";
 
@@ -11,6 +12,7 @@ export const PER_PAGE = 20;
  * @param keyword キーワード
  * @param bookmarkCount 最小ブックマーク数
  * @param bookmarkCountMax 最大ブックマーク数
+ * @param publisherIds 配信元ID
  * @param orderKey 並び替えのキー列
  * @param orderAsc 昇順/降順
  * @param page ページ番号
@@ -23,6 +25,7 @@ export default function search(
   keyword: string,
   bookmarkCount: number,
   bookmarkCountMax: number,
+  publisherIds: number[],
   orderKey: string,
   orderAsc: boolean,
   page: number = 0,
@@ -32,19 +35,15 @@ export default function search(
     startDate: date2str(startDate),
     endDate: date2str(endDate),
     keyword: keyword,
-    bookmarkCount: bookmarkCount.toString(),
-    bookmarkCountMax: bookmarkCountMax.toString(),
+    bookmarkCount: bookmarkCount,
+    bookmarkCountMax: bookmarkCountMax,
+    publisherIds: publisherIds,
     order: makeOrderParam(orderKey, orderAsc),
-    page: page.toString(),
-    perPage: perPage.toString(),
+    page: page,
+    perPage: perPage,
   };
-  const queryString =
-    "?" +
-    Object.entries(params)
-      .map(([k, v]) => `${k}=${encodeURI(v)}`)
-      .join("&");
-
-  const url = `${baseUrl}${queryString}`;
+  const queryString = querystring.stringify(params);
+  const url = `${baseUrl}?${queryString}`;
   return fetch(url).then(res => res.json());
 }
 
