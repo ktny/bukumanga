@@ -20,7 +20,7 @@ export default function Publisher({
 
   return (
     <div>
-      <div>ドメイン検索</div>
+      <div>配信サイト</div>
       <FormControl className={classes.formControl}>
         <Select
           multiple
