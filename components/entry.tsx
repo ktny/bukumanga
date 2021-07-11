@@ -110,7 +110,7 @@ const Entry = React.memo(({ entry }: { entry: IEntry }) => {
               {entry.title}
             </Typography>
           </a>
-          {entry.comments.length ? (
+          {entry.comments?.length ? (
             <Accordion>
               <AccordionSummary>
                 <div className={classes.commentOpen}>
