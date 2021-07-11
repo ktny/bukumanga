@@ -2,11 +2,7 @@ import React, { Dispatch, SetStateAction } from "react";
 import { createStyles, makeStyles, useTheme, Theme } from "@material-ui/core/styles";
 import { Chip, FormControl, Select, MenuItem } from "@material-ui/core";
 import classes from "../../styles/bookmark-count.module.scss";
-
-interface IPublisher {
-  id: number;
-  name: string;
-}
+import { IPublisher } from "../../models/model";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -27,21 +23,17 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-const options: IPublisher[] = [
-  { id: 1, name: "少年ジャンプ+" },
-  { id: 2, name: "となりのヤングジャンプ" },
-  { id: 3, name: "コミックDAYS" },
-  { id: 4, name: "トーチ" },
-];
-
 export default function Publisher({
+  publishers,
   publisherIds,
   setPublisherIds,
 }: {
+  publishers: IPublisher[];
   publisherIds: number[];
   setPublisherIds: Dispatch<SetStateAction<number[]>>;
 }) {
   const classes = useStyles();
+  const options = publishers;
 
   const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
     setPublisherIds(event.target.value as number[]);
@@ -67,7 +59,7 @@ export default function Publisher({
             </div>
           )}
         >
-          {options.map(option => (
+          {options?.map(option => (
             <MenuItem key={option.id} value={option.id}>
               {option.name}
             </MenuItem>

@@ -5,7 +5,8 @@ import Layout from "../components/layout";
 import Search from "../components/search/search";
 import EntryList from "../components/entry-list";
 import search, { PER_PAGE } from "./api/search";
-import { IEntry, IPeriod, Props } from "../models/model";
+import getPublishers from "./api/publisher";
+import { IEntry, IPeriod, IPublisher, Props } from "../models/model";
 
 export const defaultEndDate = new Date();
 export const defaultStartDate = new Date();
@@ -25,6 +26,7 @@ export const defaultBookmarkCountMax = 2000;
 export default function Home() {
   // 各種state
   const [entries, setEntries] = useState<IEntry[]>([]);
+  const [publishers, setPublishers] = useState<IPublisher[]>([]);
   const [startDate, setStartDate] = useState(defaultStartDate);
   const [periods, setPeriods] = useState<IPeriod[]>(defaultPeriods);
   const [endDate, setEndDate] = useState(defaultEndDate);
@@ -48,6 +50,11 @@ export default function Home() {
 
   // SPモードとの境界
   const isSP = useMedia({ maxWidth: "480px" });
+
+  // 配信サイト一覧を取得
+  useEffect(() => {
+    getPublishers().then(res => setPublishers(res.publishers));
+  }, []);
 
   // 検索条件変更時のeffect
   useEffect(() => {
@@ -131,6 +138,8 @@ export default function Home() {
     setHasMore,
     count,
     setCount,
+    publishers,
+    setPublishers,
     isSP,
   };
 

@@ -38,12 +38,16 @@ export interface IPublisher {
   id: number;
   domain: string;
   name: string;
-  icon: string;
+  // icon: string;
 }
 
 export interface SearchResponse {
   count: number;
   entries: IEntry[];
+}
+
+export interface GetPublishersResponse {
+  publishers: IPublisher[];
 }
 
 export interface Props {
@@ -73,5 +77,7 @@ export interface Props {
   setHasMore: Dispatch<SetStateAction<boolean>>;
   count: number;
   setCount: Dispatch<SetStateAction<number>>;
+  publishers: IPublisher[];
+  setPublishers: Dispatch<SetStateAction<IPublisher[]>>;
   isSP: boolean;
 }
