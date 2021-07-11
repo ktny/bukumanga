@@ -109,10 +109,10 @@ const Entry = React.memo(({ entry }: { entry: IEntry }) => {
               <></>
             )}
             <Typography className={classes.caption} variant="caption" component="p" gutterBottom>
-              Published: {entry.published_at.slice(0, 10)}
+              {entry.published_at.slice(0, 10)}
             </Typography>
             <Typography className={classes.caption} variant="caption" component="p" gutterBottom>
-              Quote: {entry.domain}, b.hatena.ne.jp
+              {entry.publisher?.name}
             </Typography>
           </Box>
         </CardContent>

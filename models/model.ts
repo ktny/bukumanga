@@ -13,6 +13,7 @@ export interface IEntry {
   hotentried_at: string;
   published_at: string;
   comments: IComment[];
+  publisher: IPublisher;
   created_at: string;
   updated_at: string;
 }
@@ -31,6 +32,13 @@ export interface IComment {
   icon: string;
   content: string;
   commented_at: string;
+}
+
+export interface IPublisher {
+  id: number;
+  domain: string;
+  name: string;
+  icon: string;
 }
 
 export interface SearchResponse {
