@@ -1,10 +1,7 @@
 import React, { useState } from "react";
-import { withStyles } from "@material-ui/core/styles";
+import { Accordion, AccordionDetails, AccordionSummary } from "./util/accordion";
 import { IComment, IEntry } from "../models/model";
 import { Avatar, Box, Card, CardContent, Divider, Typography } from "@material-ui/core";
-import MuiAccordion from "@material-ui/core/Accordion";
-import MuiAccordionSummary from "@material-ui/core/AccordionSummary";
-import MuiAccordionDetails from "@material-ui/core/AccordionDetails";
 import ChatOutlinedIcon from "@material-ui/icons/ChatOutlined";
 import classes from "../styles/entry.module.scss";
 
@@ -33,49 +30,6 @@ const Entry = React.memo(({ entry }: { entry: IEntry }) => {
   };
 
   const dummyImg = "./noimage.png";
-
-  const Accordion = withStyles({
-    root: {
-      border: "none",
-      boxShadow: "none",
-      fontFamily: "Noto Sans JP",
-      backgroundColor: "#fafafa",
-      margin: 0,
-      "&:not(:last-child)": {
-        borderBottom: 0,
-      },
-      "&:before": {
-        display: "none",
-      },
-      "&$expanded": {
-        margin: 0,
-      },
-    },
-    expanded: {},
-  })(MuiAccordion);
-
-  const AccordionSummary = withStyles({
-    root: {
-      padding: "16px 0",
-      minHeight: 0,
-      "&$expanded": {
-        minHeight: 0,
-      },
-    },
-    content: {
-      margin: 0,
-      "&$expanded": {
-        margin: 0,
-      },
-    },
-    expanded: {},
-  })(MuiAccordionSummary);
-
-  const AccordionDetails = withStyles({
-    root: {
-      padding: 0,
-    },
-  })(MuiAccordionDetails);
 
   const createdAt = new Date(entry.created_at);
   const diff = new Date().getTime() - createdAt.getTime();
@@ -155,10 +109,10 @@ const Entry = React.memo(({ entry }: { entry: IEntry }) => {
               <></>
             )}
             <Typography className={classes.caption} variant="caption" component="p" gutterBottom>
-              Published: {entry.published_at.slice(0, 10)}
+              {entry.published_at.slice(0, 10)}
             </Typography>
             <Typography className={classes.caption} variant="caption" component="p" gutterBottom>
-              Quote: {entry.domain}, b.hatena.ne.jp
+              {entry.publisher?.name || entry.domain}
             </Typography>
           </Box>
         </CardContent>

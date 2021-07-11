@@ -13,6 +13,7 @@ export interface IEntry {
   hotentried_at: string;
   published_at: string;
   comments: IComment[];
+  publisher: IPublisher;
   created_at: string;
   updated_at: string;
 }
@@ -33,9 +34,20 @@ export interface IComment {
   commented_at: string;
 }
 
+export interface IPublisher {
+  id: number;
+  domain: string;
+  name: string;
+  // icon: string;
+}
+
 export interface SearchResponse {
   count: number;
   entries: IEntry[];
+}
+
+export interface GetPublishersResponse {
+  publishers: IPublisher[];
 }
 
 export interface Props {
@@ -53,6 +65,8 @@ export interface Props {
   setBookmarkCount: Dispatch<SetStateAction<number>>;
   bookmarkCountMax: number;
   setBookmarkCountMax: Dispatch<SetStateAction<number>>;
+  publisherIds: number[];
+  setPublisherIds: Dispatch<SetStateAction<number[]>>;
   orderKey: string;
   setOrderKey: Dispatch<SetStateAction<string>>;
   orderAsc: boolean;
@@ -63,5 +77,7 @@ export interface Props {
   setHasMore: Dispatch<SetStateAction<boolean>>;
   count: number;
   setCount: Dispatch<SetStateAction<number>>;
+  publishers: IPublisher[];
+  setPublishers: Dispatch<SetStateAction<IPublisher[]>>;
   isSP: boolean;
 }

@@ -5,7 +5,8 @@ import Layout from "../components/layout";
 import Search from "../components/search/search";
 import EntryList from "../components/entry-list";
 import search, { PER_PAGE } from "./api/search";
-import { IEntry, IPeriod, Props } from "../models/model";
+import getPublishers from "./api/publisher";
+import { IEntry, IPeriod, IPublisher, Props } from "../models/model";
 
 export const defaultEndDate = new Date();
 export const defaultStartDate = new Date();
@@ -25,12 +26,14 @@ export const defaultBookmarkCountMax = 2000;
 export default function Home() {
   // 各種state
   const [entries, setEntries] = useState<IEntry[]>([]);
+  const [publishers, setPublishers] = useState<IPublisher[]>([]);
   const [startDate, setStartDate] = useState(defaultStartDate);
   const [periods, setPeriods] = useState<IPeriod[]>(defaultPeriods);
   const [endDate, setEndDate] = useState(defaultEndDate);
   const [keyword, setKeyword] = useState(defaultKeyword);
   const [bookmarkCount, setBookmarkCount] = useState(defaultBookmarkCount);
   const [bookmarkCountMax, setBookmarkCountMax] = useState(defaultBookmarkCountMax);
+  const [publisherIds, setPublisherIds] = useState<number[]>([]);
   const [orderKey, setOrderKey] = useState("bookmark_count");
   const [orderAsc, setOrderAsc] = useState(false);
   const [page, setPage] = useState(0);
@@ -43,9 +46,15 @@ export default function Home() {
   const [debounceKeyword] = useDebounce(keyword, 500);
   const [debounceBookmarkCount] = useDebounce(bookmarkCount, 500);
   const [debounceBookmarkCountMax] = useDebounce(bookmarkCountMax, 500);
+  const [debouncePublisherIds] = useDebounce(publisherIds, 500);
 
   // SPモードとの境界
   const isSP = useMedia({ maxWidth: "480px" });
+
+  // 配信サイト一覧を取得
+  useEffect(() => {
+    getPublishers().then(res => setPublishers(res.publishers));
+  }, []);
 
   // 検索条件変更時のeffect
   useEffect(() => {
@@ -57,6 +66,7 @@ export default function Home() {
       debounceKeyword,
       debounceBookmarkCount,
       debounceBookmarkCountMax,
+      debouncePublisherIds,
       orderKey,
       orderAsc
     ).then(res => {
@@ -72,6 +82,7 @@ export default function Home() {
     debounceKeyword,
     debounceBookmarkCount,
     debounceBookmarkCountMax,
+    debouncePublisherIds,
     orderKey,
     orderAsc,
   ]);
@@ -88,6 +99,7 @@ export default function Home() {
       debounceKeyword,
       debounceBookmarkCount,
       debounceBookmarkCountMax,
+      debouncePublisherIds,
       orderKey,
       orderAsc,
       page
@@ -118,12 +130,16 @@ export default function Home() {
     setOrderKey,
     orderAsc,
     setOrderAsc,
+    publisherIds,
+    setPublisherIds,
     page,
     setPage,
     hasMore,
     setHasMore,
     count,
     setCount,
+    publishers,
+    setPublishers,
     isSP,
   };
 
