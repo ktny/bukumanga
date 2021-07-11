@@ -49,13 +49,13 @@ const Entry = React.memo(({ entry }: { entry: IEntry }) => {
       <div className={classes.body}>
         <Divider />
         <a href={entryUrl()} target="_blank" rel="noopener nofollow" className={classes.imageLink}>
-          <img
+          {/* <img
             src={entry.image.Valid ? entry.image.String : dummyImg}
             alt={entry.title}
             width="300"
             height="210"
             className={classes.image}
-          />
+          /> */}
         </a>
         <Divider />
         <CardContent className={classes.content}>
@@ -112,7 +112,7 @@ const Entry = React.memo(({ entry }: { entry: IEntry }) => {
               {entry.published_at.slice(0, 10)}
             </Typography>
             <Typography className={classes.caption} variant="caption" component="p" gutterBottom>
-              {entry.publisher?.name}
+              {entry.publisher?.name || entry.domain}
             </Typography>
           </Box>
         </CardContent>
