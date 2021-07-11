@@ -1,27 +1,7 @@
 import React, { Dispatch, SetStateAction } from "react";
-import { createStyles, makeStyles, useTheme, Theme } from "@material-ui/core/styles";
 import { Chip, FormControl, Select, MenuItem } from "@material-ui/core";
-import classes from "../../styles/bookmark-count.module.scss";
 import { IPublisher } from "../../models/model";
-
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    formControl: {
-      marginTop: "8px",
-      minWidth: 200,
-    },
-    chips: {
-      display: "flex",
-      flexWrap: "wrap",
-    },
-    chip: {
-      margin: 2,
-    },
-    noLabel: {
-      marginTop: theme.spacing(3),
-    },
-  })
-);
+import classes from "../../styles/publisher.module.scss";
 
 export default function Publisher({
   publishers,
@@ -32,7 +12,6 @@ export default function Publisher({
   publisherIds: number[];
   setPublisherIds: Dispatch<SetStateAction<number[]>>;
 }) {
-  const classes = useStyles();
   const options = publishers;
 
   const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
