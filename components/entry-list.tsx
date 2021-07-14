@@ -34,7 +34,7 @@ const EntryList = (props: Props) => {
       <Grid container className={classes.entryList}>
         {props.entries.map((entry, i) => (
           <Grid item key={i} className={classes.entryItem}>
-            <Entry entry={entry} key={entry.id}></Entry>
+            <Entry entry={entry} setPublisherIds={props.setPublisherIds} key={entry.id}></Entry>
           </Grid>
         ))}
         {/* 最終行のspace-betweenが崩れないように高さ0で幅は他のカードと同じダミーを用意する */}

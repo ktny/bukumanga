@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React, { Dispatch, SetStateAction } from "react";
 import { Accordion, AccordionDetails, AccordionSummary } from "./util/accordion";
 import { IComment, IEntry } from "../models/model";
-import { Avatar, Box, Card, CardContent, Divider, Typography } from "@material-ui/core";
+import { Avatar, Box, Chip, Card, CardContent, Divider, Typography } from "@material-ui/core";
 import ChatOutlinedIcon from "@material-ui/icons/ChatOutlined";
 import classes from "../styles/entry.module.scss";
 
-const Entry = React.memo(({ entry }: { entry: IEntry }) => {
+const Entry = React.memo(({ entry, setPublisherIds }: { entry: IEntry; setPublisherIds: Dispatch<SetStateAction<number[]>>; }) => {
   const is_https = entry.url.startsWith("https");
 
   /**
@@ -111,9 +111,10 @@ const Entry = React.memo(({ entry }: { entry: IEntry }) => {
             <Typography className={classes.caption} variant="caption" component="p" gutterBottom>
               {entry.published_at.slice(0, 10)}
             </Typography>
-            <Typography className={classes.caption} variant="caption" component="p" gutterBottom>
-              {entry.publisher?.name || entry.domain}
-            </Typography>
+            <Chip
+              label={entry.publisher?.name || entry.domain}
+              onClick={() => setPublisherIds([entry.publisher.id])}
+            ></Chip>
           </Box>
         </CardContent>
       </div>

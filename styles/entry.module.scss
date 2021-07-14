@@ -107,7 +107,6 @@
 
 .caption {
   font-size: 0.68rem;
-  word-break: break-all;
 }
 
 .comments {
@@ -159,4 +158,12 @@
 
 .commentBlockTitle {
   margin-left: 4px;
+}
+
+.link {
+  display: inline-block;
+  cursor: pointer;
+  padding: 8px;
+  border: 1px solid;
+  border-radius: 4px;
 }
