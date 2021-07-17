@@ -10,11 +10,11 @@ import { IEntry, IPeriod, IPublisher, Props } from "../models/model";
 
 export const defaultEndDate = new Date();
 export const defaultStartDate = new Date();
-defaultStartDate.setDate(defaultStartDate.getDate() - 6); // デフォルトを今週にする
+defaultStartDate.setDate(defaultStartDate.getDate() - 2); // デフォルトを今週にする
 const defaultPeriods: IPeriod[] = [
-  { label: "直近", days: 3, active: false },
-  { label: "週間", days: 7, active: true },
-  { label: "月間", days: 31, active: false },
+  { label: "直近", days: 3, active: true },
+  { label: "週間", days: 7, active: false },
+  { label: "月間", days: 30, active: false },
   { label: "年間", days: 365, active: false },
   { label: "歴代", days: Infinity, active: false },
 ];

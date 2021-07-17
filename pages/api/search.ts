@@ -38,6 +38,7 @@ export default function search(
     bookmarkCount: bookmarkCount,
     bookmarkCountMax: bookmarkCountMax,
     publisherIds: publisherIds,
+    isTrend: true,
     order: makeOrderParam(orderKey, orderAsc),
     page: page,
     perPage: perPage,
