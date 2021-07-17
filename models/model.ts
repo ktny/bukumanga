@@ -14,6 +14,7 @@ export interface IEntry {
   published_at: string;
   comments: IComment[];
   publisher: IPublisher;
+  is_trend: boolean;
   created_at: string;
   updated_at: string;
 }
