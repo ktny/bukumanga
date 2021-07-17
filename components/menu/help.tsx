@@ -1,9 +1,20 @@
 import { useState } from "react";
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle, IconButton, Typography } from "@material-ui/core";
 import HelpOutlineIcon from "@material-ui/icons/HelpOutline";
-import classes from "../styles/header.module.scss";
+import { makeStyles } from "@material-ui/core/styles";
+
+const useStyles = makeStyles({
+  heading: {
+    marginTop: "32px",
+    fontWeight: "bold",
+    "&:first-of-type": {
+      marginTop: 0,
+    },
+  },
+});
 
 export default function Help() {
+  const classes = useStyles();
   const [open, setOpen] = useState(false);
 
   const handleClickOpen = () => {
@@ -22,7 +33,7 @@ export default function Help() {
       <Dialog onClose={handleClose} open={open}>
         <DialogTitle>About</DialogTitle>
         <DialogContent dividers>
-          <Typography gutterBottom className="bold">
+          <Typography gutterBottom className={classes.heading}>
             当サイトについて
           </Typography>
           <Typography gutterBottom>
@@ -32,13 +43,13 @@ export default function Help() {
             </a>
             」を元にwebマンガをまとめています。はてな社様への負荷軽減のため一定の間隔を空けて情報を更新しています。
           </Typography>
-          <Typography gutterBottom className={classes.mt}>
+          <Typography gutterBottom className={classes.heading}>
             アクセス解析ツールについて
           </Typography>
           <Typography gutterBottom>
             当サイトでは、Googleによるアクセス解析ツール「Googleアナリティクス」を利用しています。このGoogleアナリティクスはトラフィックデータの収集のためにクッキー（Cookie）を使用しております。トラフィックデータは匿名で収集されており、個人を特定するものではありません。
           </Typography>
-          <Typography gutterBottom className={classes.mt}>
+          <Typography gutterBottom className={classes.heading}>
             お問い合わせ
           </Typography>
           <Typography gutterBottom>
@@ -47,7 +58,7 @@ export default function Help() {
             </a>
             のGoogleFormsからお問い合わせお願いします。
           </Typography>
-          <Typography gutterBottom className={classes.mt}>
+          <Typography gutterBottom className={classes.heading}>
             開発者について
           </Typography>
           <Typography gutterBottom>

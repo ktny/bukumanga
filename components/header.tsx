@@ -3,6 +3,7 @@ import classes from "../styles/header.module.scss";
 import { siteName } from "../pages/_app";
 import PeriodGroup from "./search/period-group";
 import Help from "./menu/help";
+import Announcement from "./menu/announcement";
 
 export default function Header(props) {
   return (
@@ -15,7 +16,10 @@ export default function Header(props) {
         </Typography>
         {props.isSP ? <></> : <PeriodGroup {...props}></PeriodGroup>}
       </div>
-      <Help></Help>
+      <div className={classes.headerRight}>
+        <Announcement></Announcement>
+        <Help></Help>
+      </div>
     </header>
   );
 }
