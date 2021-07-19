@@ -21,7 +21,7 @@ const defaultPeriods: IPeriod[] = [
 
 export const defaultKeyword = "";
 export const defaultBookmarkCount = 0;
-export const defaultBookmarkCountMax = 3000;
+export const defaultBookmarkCountMax = 3200;
 
 export default function Home() {
   // 各種state
