@@ -14,7 +14,7 @@ export default function BookmarkCount({
   setBookmarkCountMax: Dispatch<SetStateAction<number>>;
 }) {
   const MIN = 0;
-  const MAX = 2000;
+  const MAX = 3000;
   const STEP = 10;
 
   const handleSliderChange = (event: any, newValue: number | number[]) => {
