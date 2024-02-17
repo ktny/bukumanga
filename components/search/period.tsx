@@ -46,7 +46,7 @@ export default function Period({
             onChange={handleInputChangeStartDate}
             classes={{ root: classes.input }}
             color="secondary"
-            inputProps={{ min: "2005-01-01", max: date2str(new Date()) }}
+            inputProps={{ min: "2005-01-01", max: date2str(endDate) }}
           />
         </Grid>
         <span className={classes.glue}>~</span>
@@ -58,7 +58,7 @@ export default function Period({
             onChange={handleInputChangeEndDate}
             classes={{ root: classes.input }}
             color="secondary"
-            inputProps={{ min: "2005-01-01", max: date2str(new Date()) }}
+            inputProps={{ min: "2005-01-01", max: date2str(endDate) }}
           />
         </Grid>
       </Grid>
