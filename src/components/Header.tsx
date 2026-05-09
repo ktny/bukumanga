@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { Menu, X } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
-import { useAuth } from "../hooks/useAuth";
 import { cn } from "../lib/cn";
 
 const navItems = [
@@ -12,7 +11,6 @@ const navItems = [
 
 export default function Header() {
   const { pathname } = useLocation();
-  const { authenticated, login, logout, user } = useAuth();
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -64,10 +62,6 @@ export default function Header() {
       document.removeEventListener("keydown", handleEscape);
     };
   }, []);
-
-  useEffect(() => {
-    setIsMenuOpen(false);
-  }, [pathname]);
 
   const handleNavClick = (to: string) => {
     if (pathname === to) {
@@ -139,37 +133,7 @@ export default function Header() {
                   className="absolute right-0 top-[calc(100%+0.5rem)] flex min-w-[180px] flex-col rounded-[14px] border border-white/10 bg-[rgba(15,15,25,0.96)] p-1.5 shadow-[0_16px_40px_rgba(15,15,25,0.36)] backdrop-blur-[18px]"
                   role="menu"
                 >
-                  {authenticated ? (
-                    <>
-                      <div className="px-[0.85rem] py-[0.7rem] text-[0.8rem] font-semibold text-[#cbd5e1]">
-                        {user?.name}
-                      </div>
-                      <Link
-                        to="/favorites"
-                        className="block rounded-[10px] px-[0.85rem] py-[0.7rem] text-[0.92rem] font-semibold text-[#f8fafc] transition-colors duration-200 hover:bg-white/10"
-                        role="menuitem"
-                      >
-                        お気に入り
-                      </Link>
-                      <button
-                        type="button"
-                        onClick={() => void logout()}
-                        className="block rounded-[10px] px-[0.85rem] py-[0.7rem] text-left text-[0.92rem] font-semibold text-[#f8fafc] transition-colors duration-200 hover:bg-white/10"
-                        role="menuitem"
-                      >
-                        ログアウト
-                      </button>
-                    </>
-                  ) : (
-                    <button
-                      type="button"
-                      onClick={() => login()}
-                      className="block rounded-[10px] px-[0.85rem] py-[0.7rem] text-left text-[0.92rem] font-semibold text-[#f8fafc] transition-colors duration-200 hover:bg-white/10"
-                      role="menuitem"
-                    >
-                      Googleでログイン
-                    </button>
-                  )}
+                  {/* 一時的にログイン/ログアウトとお気に入り導線は非表示 */}
                   <Link
                     to="/about"
                     className="block rounded-[10px] px-[0.85rem] py-[0.7rem] text-[0.92rem] font-semibold text-[#f8fafc] transition-colors duration-200 hover:bg-white/10"

@@ -2,7 +2,6 @@ import { cn } from "../lib/cn";
 import { getPlatform } from "../lib/platforms";
 import { getHatenaUrl } from "../utils/hatena";
 import { DetailButton } from "./buttons/DetailButton";
-import { FavoriteToggleButton } from "./FavoriteToggleButton";
 import { HatenaBadge } from "./HatenaBadge";
 
 interface MangaCardProps {
@@ -55,7 +54,7 @@ export function MangaCard({ item, rank }: MangaCardProps) {
               {rank}
             </div>
           )}
-          <FavoriteToggleButton mangaId={item.mangaId} />
+          {/* 一時的にお気に入り登録ボタンは非表示 */}
           <DetailButton mangaId={item.mangaId} />
         </div>
       </div>

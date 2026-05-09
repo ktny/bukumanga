@@ -2,7 +2,6 @@ import { cn } from "../lib/cn";
 import { getPlatform } from "../lib/platforms";
 import { getHatenaUrl } from "../utils/hatena";
 import { DetailButton } from "./buttons/DetailButton";
-import { FavoriteToggleButton } from "./FavoriteToggleButton";
 import { HatenaBadge } from "./HatenaBadge";
 
 interface RankingListItemProps {
@@ -56,7 +55,7 @@ export function RankingListItem({ item, rank }: RankingListItemProps) {
           <HatenaBadge count={item.hatenaCount} compact hatenaUrl={hatenaUrl} />
         </div>
         <div className="flex items-center gap-2">
-          <FavoriteToggleButton mangaId={item.mangaId} />
+          {/* 一時的にお気に入り登録ボタンは非表示 */}
           <DetailButton mangaId={item.mangaId} />
         </div>
       </div>

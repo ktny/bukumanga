@@ -73,6 +73,16 @@ export default function About() {
         </section>
 
         <section className={sectionClassName}>
+          <h2 className={sectionTitleClassName}>漫画詳細について</h2>
+          <p className={paragraphClassName}>
+            漫画詳細ページの「読む」ボタンはシリーズものの場合は基本的に1話目のエピソードを指しています。
+            関連作品として同じ作者の漫画、漫画説明やはてブコメントなどから似ていると判断されたおすすめ漫画が表示されます。
+            面白いと思った漫画の次に読む漫画の発掘に是非ご活用ください。
+            エピソード一覧から各エピソードのはてなブックマーク数を知れたり、はてなブックマークURLに遷移することができます。
+          </p>
+        </section>
+
+        <section className={sectionClassName}>
           <h2 className={sectionTitleClassName}>お問い合わせ</h2>
           <p className={paragraphClassName}>
             掲載内容に誤りがある場合や、ご質問・ご意見がある場合は、

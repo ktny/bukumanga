@@ -15,7 +15,7 @@ interface RankingResponse {
   data: { items: EpisodeList; hasNextPage: boolean };
 }
 
-const PAGE_SIZE = 4;
+const PAGE_SIZE = 18;
 const MAX_ITEMS = 1000;
 
 export default function Ranking() {

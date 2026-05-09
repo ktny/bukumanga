@@ -6,7 +6,6 @@ import About from "./pages/About";
 import Home from "./pages/Home";
 import List from "./pages/List";
 import MangaDetail from "./pages/MangaDetail";
-import Favorites from "./pages/Favorites";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import Ranking from "./pages/Ranking";
 import Terms from "./pages/Terms";
@@ -23,7 +22,7 @@ export default function App() {
           <Route path="/ranking" element={<Ranking />} />
           <Route path="/search" element={<List />} />
           <Route path="/manga/:id" element={<MangaDetail />} />
-          <Route path="/favorites" element={<Favorites />} />
+          {/* <Route path="/favorites" element={<Favorites />} /> */}
           <Route path="/about" element={<About />} />
           <Route path="/privacy" element={<PrivacyPolicy />} />
           <Route path="/terms" element={<Terms />} />

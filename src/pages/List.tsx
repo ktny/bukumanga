@@ -24,7 +24,7 @@ interface MangaResponse {
     hasNextPage: boolean;
   };
 }
-const PAGE_SIZE = 6;
+const PAGE_SIZE = 18;
 
 // プラットフォーム一覧（フィルター用）
 const platformList = [
@@ -92,12 +92,6 @@ export default function List() {
     updateSearchQuery(value);
   };
 
-  const handleClearAllFilters = () => {
-    updateParams({ platform: undefined });
-    setSiteSearchQuery("");
-    setIsSiteDropdownOpen(false);
-  };
-
   const filteredPlatforms = useMemo(() => {
     if (!siteSearchQuery) {
       return platformList;
@@ -140,7 +134,7 @@ export default function List() {
         <div className="relative min-w-[200px] flex-1 sm:max-w-[400px]">
           <input
             type="text"
-            placeholder="タイトル・作者名で検索..."
+            placeholder="作品名・作者名・内容で検索..."
             value={inputValue}
             onChange={(e) => {
               const value = e.target.value;
@@ -190,7 +184,6 @@ export default function List() {
             }}
             className={inputClassName}
             aria-label="サイトで絞り込み"
-            aria-expanded={isSiteDropdownOpen}
             aria-autocomplete="list"
           />
           {(siteSearchQuery || platformFilter) && (
@@ -248,28 +241,6 @@ export default function List() {
           )}
         </div>
       </div>
-
-      {platformFilter && (
-        <div className="mt-2 flex w-full flex-wrap items-center gap-2">
-          <span className="text-[13px] text-[var(--text-secondary)]">絞り込み中:</span>
-          {platformFilter && selectedPlatformName && (
-            <button
-              type="button"
-              className="inline-flex items-center gap-1.5 rounded-full bg-[rgba(102,126,234,0.2)] px-3 py-1.5 text-[13px] font-semibold text-[#9fb3ff] transition hover:bg-[rgba(102,126,234,0.3)]"
-              onClick={() => updateParams({ platform: undefined })}
-            >
-              サイト: {selectedPlatformName} ✕
-            </button>
-          )}
-          <button
-            type="button"
-            className="rounded-full bg-white/10 px-3 py-1.5 text-xs text-[var(--text-secondary)] transition hover:bg-white/20 hover:text-white"
-            onClick={handleClearAllFilters}
-          >
-            すべてクリア
-          </button>
-        </div>
-      )}
     </div>
   );
 

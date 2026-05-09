@@ -2,14 +2,13 @@ import { useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import useSWR from "swr";
 import { ReadButton } from "../components/buttons/ReadButton";
-import type { MangaCardItem } from "../components/MangaGridCard";
 import { MangaCarouselList } from "../components/MangaCarouselList";
 import {
+  type EpisodeSortKey,
   MangaEpisodeList,
   type MangaEpisodeSummary,
-  type EpisodeSortKey,
 } from "../components/MangaEpisodeList";
-import { FavoriteToggleButton } from "../components/FavoriteToggleButton";
+import type { MangaCardItem } from "../components/MangaGridCard";
 import { LoadingIndicator } from "../components/LoadingIndicator";
 import { SEO } from "../components/SEO";
 import { useInfiniteApiList } from "../hooks/useInfiniteApiList";
@@ -75,10 +74,10 @@ export default function MangaDetail() {
   const [episodeSort, setEpisodeSort] = useState<EpisodeSortKey>("publishedAtDesc");
   const detailPath = id ? `/v1/manga/${id}` : null;
 
-  const { data, error, isLoading } = useSWR<{ success: boolean; data: MangaDetail }>(
-    detailPath,
-    createApiFetcher<{ success: boolean; data: MangaDetail }>(),
-  );
+  const { data, error, isLoading } = useSWR<{
+    success: boolean;
+    data: MangaDetail;
+  }>(detailPath, createApiFetcher<{ success: boolean; data: MangaDetail }>());
 
   const {
     isLoading: isEpisodesLoading,
@@ -158,7 +157,10 @@ export default function MangaDetail() {
                   referrerPolicy="no-referrer"
                   sizes="(max-width: 768px) 100vw, 360px"
                   onError={(e) => {
-                    e.currentTarget.parentElement!.style.display = "none";
+                    const parent = e.currentTarget.parentElement;
+                    if (parent) {
+                      parent.style.display = "none";
+                    }
                   }}
                 />
               )}
@@ -180,14 +182,14 @@ export default function MangaDetail() {
                           </Link>
                         </span>
                       ))
-                    ) : (
+                    ) : manga.author ? (
                       <Link
-                        to={`/search?q=${encodeURIComponent(manga.author || "")}`}
+                        to={`/search?q=${encodeURIComponent(manga.author)}`}
                         className="transition hover:text-[var(--text-primary,#fff)] hover:underline"
                       >
                         {manga.author}
                       </Link>
-                    )}
+                    ) : null}
                   </span>
                 )}
                 <div className="flex gap-2">
@@ -211,7 +213,7 @@ export default function MangaDetail() {
                     className="inline-flex min-w-[240px] justify-center whitespace-nowrap rounded-full bg-gradient-to-br from-[#667eea] to-[#764ba2] px-12 py-4 text-xl font-bold text-white shadow-[0_4px_14px_rgba(102,126,234,0.5)] transition duration-200 hover:-translate-y-0.5 hover:shadow-[0_6px_20px_rgba(102,126,234,0.6)]"
                   />
                 )}
-                <FavoriteToggleButton mangaId={manga.id} className="h-14 w-14 rounded-full" />
+                {/* 一時的にお気に入り機能を非表示 */}
               </div>
             </div>
           </div>

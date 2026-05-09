@@ -24,3 +24,7 @@ head_sampling_rate = 1
 
 [env.production.vars]
 ENVIRONMENT = "production"
+
+[[env.production.routes]]
+pattern = "bukumanga.com"
+custom_domain = true

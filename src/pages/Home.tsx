@@ -11,7 +11,7 @@ interface TrendResponse {
     hasNextPage: boolean;
   };
 }
-const TREND_LIMIT = 9;
+const TREND_LIMIT = 18;
 
 export default function Home() {
   const getKey = (pageIndex: number, previousPageData: TrendResponse | null) => {
