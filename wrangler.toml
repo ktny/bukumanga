@@ -1,0 +1,30 @@
+name = "bukumanga-web"
+main = "src/worker.tsx"
+compatibility_date = "2026-01-25"
+compatibility_flags = ["nodejs_compat"]
+
+[assets]
+directory = "dist"
+binding = "ASSETS"
+
+[observability]
+enabled = false
+head_sampling_rate = 1
+
+[observability.logs]
+enabled = true
+head_sampling_rate = 1
+persist = true
+invocation_logs = true
+
+[observability.traces]
+enabled = true
+persist = true
+head_sampling_rate = 1
+
+[env.production.vars]
+ENVIRONMENT = "production"
+
+[[env.production.routes]]
+pattern = "bukumanga.com"
+custom_domain = true
